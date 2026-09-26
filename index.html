@@ -458,9 +458,28 @@ a{color:var(--gold-dk);text-decoration:none}
 /* ================================================================
    COUNTDOWN
    ================================================================ */
-.countdown{background:var(--cream-w);padding:clamp(40px,6vw,72px) var(--spx);text-align:center;position:relative}
+.countdown{background:var(--cream-w);padding:clamp(60px,9vh,110px) var(--spx);text-align:center;position:relative}
 .countdown::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bdr-s),transparent)}
 .countdown::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bdr-s),transparent)}
+
+.countdown__title-main{
+    font-family:var(--fs);
+    font-size:clamp(36px,7vw,64px);
+    font-weight:400;
+    color:var(--txt-g);
+    line-height:1.2;
+    margin-bottom:clamp(4px,1vw,8px);
+    filter:drop-shadow(0 2px 12px rgba(196,162,101,.25));
+}
+.countdown__date{
+    font-family:var(--fse);
+    font-size:clamp(26px,5.5vw,44px);
+    font-weight:600;
+    color:var(--lotus-dp);
+    letter-spacing:.08em;
+    margin-bottom:clamp(6px,1.2vw,12px);
+    text-shadow:0 1px 8px rgba(107,30,46,.1);
+}
 
 .countdown__grid{display:flex;justify-content:center;gap:clamp(12px,4vw,44px);flex-wrap:wrap;margin-top:clamp(16px,2.5vw,28px)}
 .countdown__item{min-width:58px;position:relative;padding:clamp(12px,2vw,20px) clamp(8px,1.5vw,16px);border:1px solid var(--bdr);background:var(--cream-lt)}
@@ -797,42 +816,23 @@ a{color:var(--gold-dk);text-decoration:none}
         </div>
     </header>
 
-    <!-- ============ COUNTDOWN ============ -->
+    <!-- ============ COUNTDOWN (SCREEN 2) ============ -->
     <section class="countdown sec" aria-label="Countdown">
         <div class="sec__inner">
-            <p class="sec-title rv">Counting the Days</p>
+            <h2 class="countdown__title-main rv"><span class="metallic-text">Wedding Reception</span></h2>
+            <p class="countdown__date rv rv-d1">28th January 2027</p>
+            <div class="orn rv rv-d2" style="max-width:180px;margin:clamp(12px,2vw,20px) auto;"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+            <p class="sec-title rv rv-d3" style="margin-bottom:clamp(16px,2.5vw,28px);">Counting the Days</p>
             <div class="countdown__grid" id="countdownGrid">
-                <div class="countdown__item rv rv-d1"><div class="countdown__num" id="cdDays">--</div><div class="countdown__label">Days</div></div>
-                <div class="countdown__item rv rv-d2"><div class="countdown__num" id="cdHours">--</div><div class="countdown__label">Hours</div></div>
-                <div class="countdown__item rv rv-d3"><div class="countdown__num" id="cdMins">--</div><div class="countdown__label">Minutes</div></div>
-                <div class="countdown__item rv rv-d4"><div class="countdown__num" id="cdSecs">--</div><div class="countdown__label">Seconds</div></div>
+                <div class="countdown__item rv rv-d4"><div class="countdown__num" id="cdDays">--</div><div class="countdown__label">Days</div></div>
+                <div class="countdown__item rv rv-d4"><div class="countdown__num" id="cdHours">--</div><div class="countdown__label">Hours</div></div>
+                <div class="countdown__item rv rv-d5"><div class="countdown__num" id="cdMins">--</div><div class="countdown__label">Minutes</div></div>
+                <div class="countdown__item rv rv-d5"><div class="countdown__num" id="cdSecs">--</div><div class="countdown__label">Seconds</div></div>
             </div>
         </div>
     </section>
 
-    <!-- ============ INVITATION MESSAGE ============ -->
-    <section class="sec sec--alt invite" aria-label="Invitation">
-        <!-- Decorative side vines -->
-        <div class="invite__vine invite__vine--left" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
-        <div class="invite__vine invite__vine--right" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
-
-        <div class="sec__inner">
-            <p class="sec-title rv">You Are Cordially Invited</p>
-            <div class="invite__card rv-scale">
-                <div class="invite__corners" aria-hidden="true"></div>
-                <p class="invite__host">M.R. Usha Kumari &amp; P.N. Ajoy Kumar</p>
-                <div class="orn" style="max-width:200px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-                <p class="invite__body">Graciously invite you to join us in celebrating<br>the wedding reception of our daughter</p>
-                <span class="invite__name"><span class="metallic-text">Deepthi</span></span>
-                <span class="invite__with">with</span>
-                <span class="invite__name"><span class="metallic-text">Hari</span></span>
-                <div class="orn" style="max-width:200px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-                <p class="invite__groom-parents">S/o. Baby Rani &amp; Sasi Kumar</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ COUPLE ============ -->
+    <!-- ============ COUPLE (SCREEN 3) ============ -->
     <section class="sec couple" aria-label="The Couple">
         <!-- Subtle mandala background -->
         <svg class="couple__mandala" viewBox="0 0 400 400" fill="none" aria-hidden="true"><circle cx="200" cy="200" r="180" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="140" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="100" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="60" stroke="#C4A265" stroke-width=".3"/><path d="M200 20 L200 380 M20 200 L380 200" stroke="#C4A265" stroke-width=".2" opacity=".5"/><path d="M72 72 L328 328 M328 72 L72 328" stroke="#C4A265" stroke-width=".2" opacity=".4"/></svg>
@@ -853,6 +853,28 @@ a{color:var(--gold-dk);text-decoration:none}
                     <h3 class="couple__name">Hari</h3>
                     <p class="couple__parents">S/o. Baby Rani &amp;<br>Sasi Kumar</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ INVITATION MESSAGE (SCREEN 4) ============ -->
+    <section class="sec sec--alt invite" aria-label="Invitation">
+        <!-- Decorative side vines -->
+        <div class="invite__vine invite__vine--left" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
+        <div class="invite__vine invite__vine--right" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
+
+        <div class="sec__inner">
+            <p class="sec-title rv">You Are Cordially Invited</p>
+            <div class="invite__card rv-scale">
+                <div class="invite__corners" aria-hidden="true"></div>
+                <p class="invite__host">M.R. Usha Kumari &amp; P.N. Ajoy Kumar</p>
+                <div class="orn" style="max-width:200px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+                <p class="invite__body">Graciously invite you to join us in celebrating<br>the wedding reception of our daughter</p>
+                <span class="invite__name"><span class="metallic-text">Deepthi</span></span>
+                <span class="invite__with">with</span>
+                <span class="invite__name"><span class="metallic-text">Hari</span></span>
+                <div class="orn" style="max-width:200px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+                <p class="invite__groom-parents">S/o. Baby Rani &amp; Sasi Kumar</p>
             </div>
         </div>
     </section>
