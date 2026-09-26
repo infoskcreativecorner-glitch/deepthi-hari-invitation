@@ -520,6 +520,41 @@ a{color:var(--gold-dk);text-decoration:none}
 .invite__with{font-family:var(--fse);font-style:italic;font-size:clamp(14px,1.6vw,18px);color:var(--txt-g);display:block;margin:4px 0}
 .invite__groom-parents{font-family:var(--fse);font-size:clamp(15px,1.8vw,20px);font-weight:500;color:var(--txt);font-style:normal;margin-top:clamp(12px,2vw,20px)}
 
+/* Bride & Groom side-by-side layout */
+.invite__couple-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    gap:clamp(24px,5vw,60px);
+    padding:clamp(8px,1.5vw,16px) 0;
+}
+.invite__side{
+    flex:1;
+    text-align:center;
+    max-width:280px;
+}
+.invite__side-role{
+    font-family:var(--fsa);
+    font-weight:200;
+    font-size:clamp(9px,1.1vw,11px);
+    letter-spacing:.45em;
+    text-transform:uppercase;
+    color:var(--lotus);
+    margin-bottom:6px;
+}
+.invite__side-parents{
+    font-family:var(--fse);
+    font-size:clamp(13px,1.4vw,16px);
+    font-weight:400;
+    color:var(--txt2);
+    font-style:italic;
+    margin-top:8px;
+    line-height:1.6;
+}
+@media(max-width:540px){
+    .invite__couple-row{flex-direction:column;align-items:center;gap:clamp(16px,3vw,24px)}
+}
+
 /* ================================================================
    COUPLE
    ================================================================ */
@@ -832,7 +867,37 @@ a{color:var(--gold-dk);text-decoration:none}
         </div>
     </section>
 
-    <!-- ============ COUPLE (SCREEN 3) ============ -->
+    <!-- ============ INVITATION MESSAGE (SCREEN 3) ============ -->
+    <section class="sec sec--alt invite" aria-label="Invitation">
+        <!-- Decorative side vines -->
+        <div class="invite__vine invite__vine--left" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
+        <div class="invite__vine invite__vine--right" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
+
+        <div class="sec__inner">
+            <p class="sec-title rv">You Are Cordially Invited</p>
+            <div class="invite__card rv-scale">
+                <div class="invite__corners" aria-hidden="true"></div>
+
+                <!-- Bride (Left) & Groom (Right) side by side -->
+                <div class="invite__couple-row">
+                    <div class="invite__side rv-left rv-d1">
+                        <p class="invite__side-role">The Bride</p>
+                        <span class="invite__name"><span class="metallic-text">Deepthi</span></span>
+                        <p class="invite__side-parents">D/o. M.R. Usha Kumari &amp;<br>P.N. Ajoy Kumar</p>
+                    </div>
+                    <span class="invite__with rv rv-d2">with</span>
+                    <div class="invite__side rv-right rv-d3">
+                        <p class="invite__side-role">The Groom</p>
+                        <span class="invite__name"><span class="metallic-text">Hari</span></span>
+                        <p class="invite__side-parents">S/o. S.Baby Rani &amp;<br>K. Sasi Kumar</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ COUPLE (SCREEN 4) ============ -->
     <section class="sec couple" aria-label="The Couple">
         <!-- Subtle mandala background -->
         <svg class="couple__mandala" viewBox="0 0 400 400" fill="none" aria-hidden="true"><circle cx="200" cy="200" r="180" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="140" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="100" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="60" stroke="#C4A265" stroke-width=".3"/><path d="M200 20 L200 380 M20 200 L380 200" stroke="#C4A265" stroke-width=".2" opacity=".5"/><path d="M72 72 L328 328 M328 72 L72 328" stroke="#C4A265" stroke-width=".2" opacity=".4"/></svg>
@@ -851,30 +916,8 @@ a{color:var(--gold-dk);text-decoration:none}
                 <div class="couple__person rv-right rv-d3">
                     <p class="couple__role">The Groom</p>
                     <h3 class="couple__name">Hari</h3>
-                    <p class="couple__parents">S/o. Baby Rani &amp;<br>Sasi Kumar</p>
+                    <p class="couple__parents">S/o. S.Baby Rani &amp;<br>K. Sasi Kumar</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ INVITATION MESSAGE (SCREEN 4) ============ -->
-    <section class="sec sec--alt invite" aria-label="Invitation">
-        <!-- Decorative side vines -->
-        <div class="invite__vine invite__vine--left" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
-        <div class="invite__vine invite__vine--right" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
-
-        <div class="sec__inner">
-            <p class="sec-title rv">You Are Cordially Invited</p>
-            <div class="invite__card rv-scale">
-                <div class="invite__corners" aria-hidden="true"></div>
-                <p class="invite__host">M.R. Usha Kumari &amp; P.N. Ajoy Kumar</p>
-                <div class="orn" style="max-width:200px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-                <p class="invite__body">Graciously invite you to join us in celebrating<br>the wedding reception of our daughter</p>
-                <span class="invite__name"><span class="metallic-text">Deepthi</span></span>
-                <span class="invite__with">with</span>
-                <span class="invite__name"><span class="metallic-text">Hari</span></span>
-                <div class="orn" style="max-width:200px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-                <p class="invite__groom-parents">S/o. Baby Rani &amp; Sasi Kumar</p>
             </div>
         </div>
     </section>
@@ -896,48 +939,20 @@ a{color:var(--gold-dk);text-decoration:none}
                 <div class="events__row"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="events__text">6:30 PM onwards</span></div>
                 <div class="events__row"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><span class="events__text events__text--sub">Followed by Dinner</span></div>
                 <div class="orn" style="max-width:140px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-                <div class="events__row"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="events__text events__text--bold">Ushodhaya CSP Gardens</span></div>
-                <div class="events__row" style="margin-bottom:0"><span class="events__icon" aria-hidden="true"></span><span class="events__text events__text--sub">Function Hall &amp; Convention</span></div>
+                <div class="events__row"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 22h18"/><path d="m12 2 8 8H4z"/><path d="M7 22v-8"/><path d="M12 22v-8"/><path d="M17 22v-8"/><path d="M4 10h16"/></svg><span class="events__text events__text--bold">Ushodhaya CSP Gardens</span></div>
+                <div class="events__row" style="margin-bottom:0"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 22v-8a4 4 0 0 1 4-4h14"/><polyline points="16 5 21 10 16 15"/></svg><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068" target="_blank" rel="noopener noreferrer" class="events__text events__text--sub" style="text-decoration:underline;color:var(--gold-dk);">Get Directions</a></div>
             </div>
-        </div>
-    </section>
-
-    <!-- ============ VENUE ============ -->
-    <section class="sec venue" aria-label="Venue">
-        <div class="sec__inner">
-            <p class="sec-title rv">Venue</p>
-            <h3 class="venue__name rv rv-d1">Ushodhaya CSP Gardens</h3>
-            <p class="venue__addr rv rv-d2">Function Hall &amp; Convention</p>
-            <div class="venue__map rv-scale" aria-label="Map showing Ushodhaya CSP Gardens">
-                <iframe src="https://maps.google.com/maps?q=Ushodhaya+CSP+Gardens&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Venue location - Ushodhaya CSP Gardens"></iframe>
-            </div>
-            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068" target="_blank" rel="noopener noreferrer" class="venue__cta rv rv-d3" aria-label="Get directions to Ushodhaya CSP Gardens">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.71 11.29l-9-9a.996.996 0 0 0-1.41 0l-9 9a.996.996 0 0 0 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9a.996.996 0 0 0 0-1.41zm-8.21 4.21v-3h-4v-2h4v-3l4 4-4 4z"/></svg>Get Directions
-            </a>
-        </div>
-    </section>
-
-    <!-- ============ BLESSING ============ -->
-    <section class="sec sec--alt blessing" aria-label="Blessing">
-        <div class="blessing__bg" aria-hidden="true"></div>
-        <div class="sec__inner">
-            <p class="sec-title rv">With Love &amp; Blessings</p>
-            <div class="rv" style="text-align:center;margin-bottom:clamp(20px,3vw,36px)" aria-hidden="true"><svg width="70" height="44" viewBox="0 0 70 44" fill="none"><path d="M35 4 C33 12,26 22,26 30 C26 38,30 42,35 42 C40 42,44 38,44 30 C44 22,37 12,35 4Z" fill="#6B1E2E" opacity=".14"/><path d="M26 26 C18 22,10 26,14 34 C18 40,28 38,35 32" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".22"/><path d="M44 26 C52 22,60 26,56 34 C52 40,42 38,35 32" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".22"/></svg></div>
-            <blockquote class="blessing__quote rv rv-d1">&ldquo;As the couple begin their journey of love and togetherness, we would be deeply honoured by your presence to bless them, share in our happiness, and make this evening truly unforgettable.&rdquo;</blockquote>
-            <div class="orn rv rv-d2"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
         </div>
     </section>
 
     <!-- ============ CLOSING ============ -->
     <section class="sec sec--grad closing" aria-label="Closing">
         <div class="sec__inner">
-            <div class="rv" style="text-align:center;margin-bottom:clamp(20px,3.5vw,40px)" aria-hidden="true"><svg width="160" height="32" viewBox="0 0 160 32" fill="none"><path d="M28 16 C25 8,20 5,18 14 C16 5,11 8,14 18 C16 24,22 24,28 16Z" fill="#6B1E2E" opacity=".35"/><path d="M132 16 C135 8,140 5,142 14 C144 5,149 8,146 18 C144 24,138 24,132 16Z" fill="#6B1E2E" opacity=".35"/><line x1="38" y1="16" x2="122" y2="16" stroke="#C4A265" stroke-width=".5" opacity=".35"/><rect x="77" y="13" width="6" height="6" rx=".5" transform="rotate(45 80 16)" fill="#C4A265" opacity=".4"/></svg></div>
-            <p class="closing__names rv rv-d1"><span class="metallic-text">Deepthi</span> <span class="hero__amp">with</span> <span class="metallic-text">Hari</span></p>
-            <p class="closing__date rv rv-d2">28 · 01 · 2027</p>
+            <p class="sec-title rv">With Love &amp; Blessings</p>
+            <blockquote class="blessing__quote rv rv-d1">&ldquo;As the couple begin their journey of love and togetherness, we would be deeply honoured by your presence to bless them, share in our happiness, and make this evening truly unforgettable.&rdquo;</blockquote>
             <div class="orn rv rv-d2" style="max-width:180px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
             <p class="closing__msg rv rv-d3">Your gracious presence and blessings<br>would mean the world to us.<br><br>With love,<br><span class="closing__families">From Both Families</span></p>
             <p class="hero__type rv rv-d4" style="margin-top: 24px; font-size: clamp(12px, 1.5vw, 16px); color: var(--gold-dk);">#DeepthiWedHari</p>
-            <div class="closing__lotus rv rv-d4" aria-hidden="true"><svg viewBox="0 0 100 66" fill="none"><path d="M50 8 C46 22,34 34,34 46 C34 58,42 64,50 64 C58 64,66 58,66 46 C66 34,54 22,50 8Z" fill="#6B1E2E" opacity=".2"/><path d="M50 16 C48 24,40 34,40 44 C40 52,44 58,50 58 C56 58,60 52,60 44 C60 34,52 24,50 16Z" fill="#6B1E2E" opacity=".15"/><path d="M34 40 C24 36,14 40,20 50 C26 58,38 54,46 46" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".25"/><path d="M66 40 C76 36,86 40,80 50 C74 58,62 54,54 46" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".25"/><path d="M24 44 C14 42,6 46,12 54 C18 60,30 56,36 48" stroke="#C4A265" stroke-width=".5" fill="none" opacity=".15"/><path d="M76 44 C86 42,94 46,88 54 C82 60,70 56,64 48" stroke="#C4A265" stroke-width=".5" fill="none" opacity=".15"/></svg></div>
         </div>
     </section>
 
@@ -957,7 +972,7 @@ a{color:var(--gold-dk);text-decoration:none}
 const W={
     bride:'Deepthi',groom:'Hari',
     brideParents:'M.R. Usha Kumari & P.N. Ajoy Kumar',
-    groomParents:'Baby Rani & Sasi Kumar',
+    groomParents:'S.Baby Rani & K. Sasi Kumar',
     date:new Date('2027-01-28T18:30:00+05:30'),
     event:'Wedding Reception',
     venue:'Ushodhaya CSP Gardens',address:'Function Hall & Convention',
