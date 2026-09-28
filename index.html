@@ -42,27 +42,29 @@
     --e:cubic-bezier(.25,.46,.45,.94);--eo:cubic-bezier(0,0,.2,1);
     
     /* Metallic Gold Gradient */
-    --gold-grad: linear-gradient(135deg, #B59567 0%, #E6CFA3 40%, #A07F54 60%, #C9AE80 100%);
+    --gold-grad: linear-gradient(to right, #AA771C 0%, #D4AF37 22%, #F3E5AB 45%, #FFFFFF 50%, #F3E5AB 55%, #D4AF37 78%, #AA771C 100%);
 }
 
 .metallic-text {
     background: var(--gold-grad);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: var(--txt-g); /* fallback */
-    background-size: 200% 200%;
-    animation: goldShimmer 8s ease infinite alternate;
+    color: var(--txt-g);
+    background-size: 200% auto;
+    animation: goldShimmer 3s linear infinite;
 }
 
 @keyframes goldShimmer {
-    0% { background-position: 0% 50%; }
+    0% { background-position: 200% center; }
+    100% { background-position: 0% center; }
+}
     100% { background-position: 100% 50%; }
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
 html.envelope-active{overflow:hidden!important;height:100%!important;scroll-behavior:auto!important}
-body{font-family:var(--fb);background:var(--cream);color:var(--txt);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--fb);letter-spacing:0.02em;background:var(--cream);color:var(--txt);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 body.envelope-active{overflow:hidden!important;height:100%!important;position:fixed;width:100%;touch-action:none;-webkit-overflow-scrolling:auto}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.015;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
 img{max-width:100%;height:auto;display:block}
@@ -77,23 +79,24 @@ a{color:var(--gold-dk);text-decoration:none}
 /* ================================================================
    SCROLL REVEAL
    ================================================================ */
-.rv{opacity:0;transform:translateY(32px);transition:opacity 1s var(--e),transform 1s var(--e)}
-.rv.vis{opacity:1;transform:translateY(0)}
+.rv{opacity:0;transform:translateY(32px);filter:blur(8px);transition:opacity 1s var(--e),transform 1s var(--e)}
+.rv.vis{opacity:1;transform:translateY(0);filter:blur(0)}
 .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.22s}.rv-d3{transition-delay:.34s}
 .rv-d4{transition-delay:.46s}.rv-d5{transition-delay:.58s}.rv-d6{transition-delay:.7s}
 
 /* scale-in variant */
-.rv-scale{opacity:0;transform:scale(.92);transition:opacity 1.2s var(--e),transform 1.2s var(--e)}
-.rv-scale.vis{opacity:1;transform:scale(1)}
+.rv-scale{opacity:0;transform:scale(.92);filter:blur(10px);transition:opacity 1.2s var(--e),transform 1.2s var(--e)}
+.rv-scale.vis{opacity:1;transform:scale(1);filter:blur(0)}
 
 /* slide-left / slide-right */
-.rv-left{opacity:0;transform:translateX(-40px);transition:opacity 1s var(--e),transform 1s var(--e)}
+.rv-scale{opacity:0;transform:translateX(-40px);transition:opacity 1s var(--e),transform 1s var(--e)}
 .rv-right{opacity:0;transform:translateX(40px);transition:opacity 1s var(--e),transform 1s var(--e)}
-.rv-left.vis,.rv-right.vis{opacity:1;transform:translateX(0)}
+.rv-scale.vis,.rv-right.vis{opacity:1;transform:translateX(0)}
 
 /* ================================================================
    FLOATING PETALS
    ================================================================ */
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:9000;box-shadow:inset 0 0 150px rgba(107,30,46,0.03);}
 .petals-container{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .petal{position:absolute;opacity:0;animation:petalDrift linear infinite}
 @keyframes petalDrift{
@@ -106,7 +109,7 @@ a{color:var(--gold-dk);text-decoration:none}
    ORNAMENTAL DIVIDERS
    ================================================================ */
 .orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:clamp(18px,3vw,36px) auto;max-width:260px}
-.orn__line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.orn__line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.7}
 .orn__dot{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
 
 /* Wide ornament with lotus buds */
@@ -500,10 +503,12 @@ a{color:var(--gold-dk);text-decoration:none}
 .invite__vine--right{right:clamp(8px,2vw,30px);transform:scaleX(-1)}
 .invite__vine svg{width:100%;height:auto}
 
+.invite__card{transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;}
+.invite__card:hover{transform: translateY(-5px);box-shadow:0 12px 32px rgba(107,30,46,0.08);}
 .invite__card{
     position:relative;max-width:720px;margin:0 auto;
     padding:clamp(32px,5vw,64px) clamp(28px,4.5vw,72px);
-    border:1px solid var(--bdr-s);background:var(--cream-lt);
+    border:1px solid var(--gold);outline:1px solid var(--gold);outline-offset:-6px;background:var(--cream-lt);
     box-shadow:0 4px 24px var(--sh-s),0 12px 48px rgba(90,74,58,.04);
 }
 .invite__card::before,.invite__card::after{content:'';position:absolute;width:20px;height:20px;border-color:var(--gold);border-style:solid}
@@ -576,7 +581,16 @@ a{color:var(--gold-dk);text-decoration:none}
 .couple__row{display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3vw,36px)}
 .couple__person{position:relative}
 .couple__role{font-family:var(--fsa);font-weight:200;font-size:clamp(9px,1.1vw,11px);letter-spacing:.45em;text-transform:uppercase;color:var(--lotus);margin-bottom:6px}
-.couple__name{font-family:var(--fs);font-size:clamp(38px,7vw,72px);color:var(--txt-g);line-height:1.15;background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:goldShimmer 8s ease infinite alternate}
+.couple__name {
+    font-family: var(--fs);
+    font-size: clamp(38px, 7vw, 72px);
+    line-height: 1.15;
+    background: var(--gold-grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: goldShimmer 3s linear infinite;
+}
 .couple__parents{font-family:var(--fse);font-size:clamp(13px,1.4vw,16px);font-weight:400;color:var(--txt2);font-style:italic;margin-top:6px;line-height:1.6}
 .couple__and{font-family:var(--fse);font-size:clamp(16px,2vw,22px);font-weight:300;font-style:italic;color:var(--txt-g)}
 
@@ -590,6 +604,8 @@ a{color:var(--gold-dk);text-decoration:none}
    ================================================================ */
 .events{background:var(--ivory);text-align:center;position:relative;overflow:visible}
 
+.events__card{transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;}
+.events__card:hover{transform: translateY(-5px);box-shadow:0 12px 32px rgba(107,30,46,0.08);}
 .events__card{
     position:relative;background:var(--cream-lt);border:1px solid var(--bdr-s);
     padding:clamp(32px,5vw,60px) clamp(28px,4.5vw,72px);
@@ -709,10 +725,63 @@ a{color:var(--gold-dk);text-decoration:none}
 }
 @media print{
     .music-btn,.petals-container,.hero__scroll,.countdown,.envelope{display:none!important}
-    .rv,.rv-scale,.rv-left,.rv-right{opacity:1!important;transform:none!important}
+    .rv,.rv-scale,.rv-scale,.rv-right{opacity:1!important;transform:none!important}
     .main-content{opacity:1!important;transform:none!important}
     body{background:#fff}body::before{display:none}
 }
+/* ================================================================
+   NEW COMPONENTS (14-Section Layout)
+   ================================================================ */
+/* Monogram */
+.monogram{font-family:var(--fse);font-size:clamp(40px,8vw,60px);color:var(--gold);line-height:1;margin-bottom:clamp(16px,2.5vw,24px)}
+
+/* Timeline */
+.timeline { position: relative; max-width: 800px; margin: clamp(32px, 5vw, 60px) auto 0; padding: 0; display: flex; flex-direction: column; }
+.timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, transparent, var(--gold), transparent); }
+.timeline__item { position: relative; margin-bottom: clamp(28px, 4vw, 40px); width: 100%; padding-left: 45px; text-align: left; box-sizing: border-box; }
+.timeline__item:last-child { margin-bottom: 0; }
+.timeline__dot { position: absolute; left: 10px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--cream-lt); border: 1.5px solid var(--gold); z-index: 1; animation: dotPulse 3s infinite alternate; }
+@keyframes dotPulse { 0% { box-shadow: 0 0 0 0 rgba(196,162,101,0.4); } 100% { box-shadow: 0 0 0 8px rgba(196,162,101,0); } }
+.timeline__date { font-family: var(--fsa); font-size: clamp(10px, 1.2vw, 12px); letter-spacing: .25em; text-transform: uppercase; color: var(--gold-dk); margin-bottom: 4px; }
+.timeline__text { font-family: var(--fse); font-size: clamp(15px, 1.8vw, 20px); color: var(--txt); font-weight: 400; line-height: 1.4; }
+.timeline__sub { font-family: var(--fse); font-size: clamp(13px, 1.4vw, 15px); color: var(--txt2); font-style: italic; margin-top: 4px; line-height: 1.5; }
+
+@media (min-width: 768px) {
+    .timeline::before { left: 50%; transform: translateX(-50%); }
+    .timeline__item { width: 50%; padding: 0 45px; }
+    /* Odd items on the RIGHT (like the image) */
+    .timeline__item:nth-child(odd) { left: 50%; text-align: left; }
+    .timeline__item:nth-child(odd) .timeline__dot { left: -5px; }
+    
+    /* Even items on the LEFT (like the image) */
+    .timeline__item:nth-child(even) { left: 0; text-align: right; }
+    .timeline__item:nth-child(even) .timeline__dot { left: auto; right: -6px; }
+}
+
+/* Calendar */
+.calendar{max-width:320px;margin:0 auto;background:var(--cream-lt);border:1px solid var(--bdr);padding:clamp(24px,4vw,32px)}
+.calendar__header{font-family:var(--fsa);font-size:clamp(12px,1.4vw,14px);letter-spacing:.25em;text-transform:uppercase;color:var(--lotus);margin-bottom:16px;text-align:center}
+.calendar__grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;text-align:center;font-family:var(--fse)}
+.calendar__day{font-size:12px;color:var(--txt2)}
+.calendar__num{font-size:clamp(15px,1.8vw,18px);color:var(--txt);padding:8px;border-radius:50%;transition:background .3s ease;cursor:default}
+.calendar__num:hover:not(.calendar__num--active){background:var(--ivory);box-shadow:0 2px 10px var(--sh-s)}
+.calendar__num--active{background:var(--gold);color:var(--cream-lt);border-radius:50%;font-weight:600;box-shadow: 0 0 15px var(--gold);transform: scale(1.1);}
+
+/* Full Width Photo Overlay */
+.photo-full{position:relative;width:100%;height:75vh;background-attachment:fixed;min-height:400px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--spx)}
+.photo-full::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, rgba(46,42,38,0.2) 0%, rgba(46,42,38,0.6) 100%); box-shadow: inset 0 0 100px rgba(0,0,0,0.5);}
+.photo-full__content{position:relative;z-index:2;color:var(--cream-lt);max-width:600px}
+.photo-full__text{font-family:var(--fse);font-size:clamp(18px,2.5vw,28px);font-weight:300;font-style:italic;line-height:1.6}
+
+/* Dress Code */
+.dress-code{display:flex;flex-direction:column;gap:16px;max-width:400px;margin:0 auto;text-align:center}
+.dress-code__item{background:var(--cream-lt);border:1px solid var(--bdr);padding:16px}
+.dress-code__label{font-family:var(--fsa);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:4px}
+.dress-code__val{font-family:var(--fse);font-size:16px;color:var(--txt)}
+
+/* Traditional Message */
+.tamil-text{font-family:var(--fb);font-size:clamp(14px,1.6vw,18px);line-height:2;color:var(--txt);margin-bottom:12px}
+
 /* ---- SCOOTER ANIMATION ---- */
 .scooter-animation {
     position: absolute;
@@ -806,43 +875,33 @@ a{color:var(--gold-dk);text-decoration:none}
      MAIN CONTENT (hidden until envelope opens)
      ================================================================ -->
 <div class="main-content content-hidden" id="mainContent">
+    <div class="vignette" aria-hidden="true"></div>
 
-    <!-- ============ HERO ============ -->
+    <!-- 1. Opening / Cover -->
     <header class="hero sec" role="banner">
         <div class="hero__shimmer" aria-hidden="true"></div>
-
-        <div class="hero__lotus hero__lotus--tl" aria-hidden="true" data-parallax="0.03"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".65"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".75"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".55"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".55"/><path d="M89 81 C92 74,98 72,97 82 C94 88,90 86,89 81Z" fill="#9E5A6A" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".45"/><path d="M68 58 Q72 52,76 56" stroke="#C4A265" stroke-width=".5" fill="none" opacity=".3"/></svg></div>
-        <div class="hero__lotus hero__lotus--tr" aria-hidden="true" data-parallax="0.03"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".65"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".75"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".55"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".55"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".45"/></svg></div>
-        <div class="hero__lotus hero__lotus--bl" aria-hidden="true" data-parallax="0.02"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".65"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".75"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".55"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".55"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".45"/></svg></div>
-        <div class="hero__lotus hero__lotus--br" aria-hidden="true" data-parallax="0.02"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".65"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".75"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".55"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".55"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".45"/></svg></div>
-
+        <div class="hero__lotus hero__lotus--tl" aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
+        <div class="hero__lotus hero__lotus--tr" aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
+        <div class="hero__lotus hero__lotus--bl" aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
+        <div class="hero__lotus hero__lotus--br" aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
+        
         <div class="hero__corner hero__corner--tl" aria-hidden="true"></div>
         <div class="hero__corner hero__corner--tr" aria-hidden="true"></div>
         <div class="hero__corner hero__corner--bl" aria-hidden="true"></div>
         <div class="hero__corner hero__corner--br" aria-hidden="true"></div>
 
         <div class="hero__content">
-            <div class="hero__ganesh rv" aria-hidden="true">
-                <img src="assets/vinayagar.png" alt="Vinayagar">
+            <div class="rv" aria-hidden="true" style="margin-bottom:clamp(12px,2.5vw,24px)">
+                <!-- Traditional Tamil wedding visual (using existing vinayagar) -->
+                <img src="assets/vinayagar.png" alt="Vinayagar" style="width:clamp(40px,5.5vw,60px);margin:0 auto;mix-blend-mode:multiply">
             </div>
-
-            <!-- <div class="toran rv rv-d1" aria-hidden="true" style="margin-bottom:clamp(14px,2.5vw,24px)">
-                <svg viewBox="0 0 16 40" fill="none"><rect x="7" y="0" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="10" r="2.5" fill="#C4A265"/><rect x="7" y="14" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="24" r="2" fill="#C4A265"/><rect x="7" y="27" width="2" height="4" rx="1" fill="#C4A265"/><path d="M5.5 31 L8 40 L10.5 31" fill="#6B1E2E" opacity=".85"/></svg>
-                <svg viewBox="0 0 16 40" fill="none"><rect x="7" y="0" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="10" r="2.5" fill="#C4A265"/><rect x="7" y="14" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="24" r="2" fill="#C4A265"/><rect x="7" y="27" width="2" height="4" rx="1" fill="#C4A265"/><path d="M5.5 31 L8 40 L10.5 31" fill="#6B1E2E" opacity=".85"/></svg>
-                <svg viewBox="0 0 16 40" fill="none"><rect x="7" y="0" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="10" r="2.5" fill="#C4A265"/><rect x="7" y="14" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="24" r="2" fill="#C4A265"/><rect x="7" y="27" width="2" height="4" rx="1" fill="#C4A265"/><path d="M5.5 31 L8 40 L10.5 31" fill="#6B1E2E" opacity=".85"/></svg>
-                <svg viewBox="0 0 16 40" fill="none"><rect x="7" y="0" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="10" r="2.5" fill="#C4A265"/><rect x="7" y="14" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="24" r="2" fill="#C4A265"/><rect x="7" y="27" width="2" height="4" rx="1" fill="#C4A265"/><path d="M5.5 31 L8 40 L10.5 31" fill="#6B1E2E" opacity=".85"/></svg>
-                <svg viewBox="0 0 16 40" fill="none"><rect x="7" y="0" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="10" r="2.5" fill="#C4A265"/><rect x="7" y="14" width="2" height="7" rx="1" fill="#C4A265"/><circle cx="8" cy="24" r="2" fill="#C4A265"/><rect x="7" y="27" width="2" height="4" rx="1" fill="#C4A265"/><path d="M5.5 31 L8 40 L10.5 31" fill="#6B1E2E" opacity=".85"/></svg>
-            </div> -->
-
+            <div class="monogram rv rv-d1">ஹ &bull; தீ</div>
             <div class="rv rv-d2" style="margin-bottom: clamp(14px, 2.5vw, 24px);">
-                <p style="font-family: var(--fse); font-style: italic; font-size: clamp(14px, 1.8vw, 18px); color: var(--txt2); margin-bottom: 6px;">"Love brought us together, and family grounds our path." <span style="font-style: normal;">💍❤️</span></p>
-                <p style="font-family: var(--fsa); font-weight: 300; font-size: clamp(11px, 1.4vw, 14px); letter-spacing: 0.15em; color: var(--gold-dk);">✨ WE DECIDED ON FOREVER! ✨</p>
+                <p style="font-family: var(--fsa); font-weight: 300; font-size: clamp(11px, 1.4vw, 14px); letter-spacing: 0.15em; color: var(--gold-dk);">✨ WE DECIDED ON FOREVER. ✨</p>
             </div>
-
             <p class="guest-welcome guest-welcome__hero rv rv-d3" id="guestWelcomeHero"></p>
-            <h1 class="hero__names rv rv-d4"><span class="metallic-text">Deepthi</span> <span class="hero__amp">weds</span> <span class="metallic-text">Hari</span></h1>
-            <p class="rv rv-d4" style="font-family: var(--fse); font-style: italic; font-weight: 300; font-size: clamp(13px, 1.5vw, 16px); color: var(--txt2); max-width: 540px; margin: clamp(8px, 1.5vw, 16px) auto clamp(14px, 2vw, 22px); line-height: 1.6;">Please join us for an evening filled with laughter, dinner, and dancing as we step into this new chapter of life together.</p>
-            <p class="hero__date rv rv-d5">28th January 2027</p>
+            <h1 class="hero__names rv rv-d4" style="font-size:clamp(40px,8vw,80px)"><span class="metallic-text">Hari</span> <span style="font-family:sans-serif;font-size:0.4em;color:#D4A0AC;vertical-align:middle;margin:0 8px">❤️</span> <span class="metallic-text">Deepthi</span></h1>
+            <p class="hero__date rv rv-d5" style="margin-top:clamp(12px,2vw,20px)">28th January 2027</p>
         </div>
 
         <div class="hero__scroll" id="scrollHint" aria-label="Scroll down">
@@ -851,13 +910,198 @@ a{color:var(--gold-dk);text-decoration:none}
         </div>
     </header>
 
-    <!-- ============ COUNTDOWN (SCREEN 2) ============ -->
-    <section class="countdown sec" aria-label="Countdown">
+    <!-- 2. Our Journey -->
+    <section class="sec sec--warm" aria-label="Our Journey">
+        <div class="sec__inner" style="text-align:center">
+            <h2 class="countdown__title-main rv" style="font-family:var(--fs);font-size:clamp(48px,8vw,80px);margin-bottom:12px;color:var(--txt-g);font-weight:400">Our Journey</h2>
+            <p class="rv rv-d1" style="font-family:var(--fsa);font-size:clamp(10px,1.2vw,12px);letter-spacing:.2em;color:var(--gold-dk);text-transform:uppercase;margin-bottom:40px">Same Souls &bull; Different Paths &bull; One Destiny</p>
+            
+            <div class="timeline">
+                <div class="timeline__item rv rv-scale">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__date">February 2017</div>
+                    <div class="timeline__text">When He Knew &hearts;</div>
+                    <div class="timeline__sub">Long before it was official, he knew she was the one. Seven years of growing together started right here.</div>
+                </div>
+                <div class="timeline__item rv rv-scale rv-d1">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__date">March 2019</div>
+                    <div class="timeline__text">The First Proposal &#128141;</div>
+                    <div class="timeline__sub">He took a chance and asked the question. A special milestone that set our story in motion!</div>
+                </div>
+                <div class="timeline__item rv rv-scale rv-d2">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__date">2019 &ndash; 2024</div>
+                    <div class="timeline__text">Building Memories &#128200;</div>
+                    <div class="timeline__sub">Five years filled with late-night chats, shared dreams, milestone celebrations, and endless coffee runs. We grew up together, took time to build our careers, and became best friends along the way.</div>
+                </div>
+                <div class="timeline__item rv rv-scale rv-d3">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__date">April 2024</div>
+                    <div class="timeline__text">She Said Yes! &#128149;</div>
+                    <div class="timeline__sub">Five years after his first proposal, it all came full circle &mdash; and this time, it was an enthusiastic "Yes!"</div>
+                </div>
+                <div class="timeline__item rv rv-scale rv-d4">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__date">July 2026</div>
+                    <div class="timeline__text">Bringing the Families Together &#128106;</div>
+                    <div class="timeline__sub">Two worlds officially merged as our families met, shared a feast, and toasted to our future together.</div>
+                </div>
+                <div class="timeline__item rv rv-scale rv-d5">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__date">January 2027</div>
+                    <div class="timeline__text">The Wedding &hearts;</div>
+                    <div class="timeline__sub">Ten years in the making! We can't wait to tie the knot and celebrate with everyone we love.</div>
+                </div>
+            </div>
+
+            <p class="rv rv-d6" style="font-family:var(--fsa);font-size:clamp(10px,1.2vw,12px);letter-spacing:.25em;color:var(--gold-dk);text-transform:uppercase;margin-top:48px">&hearts; &nbsp; Same Team &bull; Always &nbsp; &hearts;</p>
+        </div>
+    </section>
+
+    <!-- 3. The Wedding Announcement -->
+    <section class="sec sec--alt invite" aria-label="Wedding Announcement">
         <div class="sec__inner">
-            <h2 class="countdown__title-main rv"><span class="metallic-text">Wedding Reception</span></h2>
-            <p class="countdown__date rv rv-d1">28th January 2027</p>
-            <div class="orn rv rv-d2" style="max-width:180px;margin:clamp(12px,2vw,20px) auto;"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-            <p class="sec-title rv rv-d3" style="margin-bottom:clamp(16px,2.5vw,28px);">Counting the Days</p>
+            <p class="sec-title rv">The Wedding</p>
+            <div class="invite__card rv-scale" style="max-width:540px">
+                <div class="invite__corners" aria-hidden="true"></div>
+                <p style="font-family:var(--fse);font-style:italic;font-size:clamp(16px,2vw,20px);color:var(--lotus-lt);margin-bottom:24px">Two hearts. One promise.<br>One beautiful beginning.</p>
+                <h2 class="invite__name" style="margin-bottom:4px"><span class="metallic-text">Hari Prasath</span></h2>
+                <span class="invite__with" style="margin:12px 0;font-size:24px">&amp;</span>
+                <h2 class="invite__name" style="margin-top:4px"><span class="metallic-text">Deepthi</span></h2>
+                <p style="font-family:var(--fse);font-size:clamp(14px,1.6vw,18px);color:var(--txt2);margin-top:32px;font-style:italic">with the blessings of their beloved parents</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Wedding Date -->
+    <section class="sec" aria-label="Wedding Date">
+        <div class="sec__inner">
+            <p class="sec-title rv" style="margin-bottom:32px">Save The Date</p>
+            <div class="calendar rv-scale">
+                <div class="calendar__header">January 2027</div>
+                <div class="calendar__grid">
+                    <div class="calendar__day">S</div><div class="calendar__day">M</div><div class="calendar__day">T</div><div class="calendar__day">W</div><div class="calendar__day">T</div><div class="calendar__day">F</div><div class="calendar__day">S</div>
+                    <div></div><div></div><div></div><div></div><div></div><div class="calendar__num">1</div><div class="calendar__num">2</div>
+                    <div class="calendar__num">3</div><div class="calendar__num">4</div><div class="calendar__num">5</div><div class="calendar__num">6</div><div class="calendar__num">7</div><div class="calendar__num">8</div><div class="calendar__num">9</div>
+                    <div class="calendar__num">10</div><div class="calendar__num">11</div><div class="calendar__num">12</div><div class="calendar__num">13</div><div class="calendar__num">14</div><div class="calendar__num">15</div><div class="calendar__num">16</div>
+                    <div class="calendar__num">17</div><div class="calendar__num">18</div><div class="calendar__num">19</div><div class="calendar__num">20</div><div class="calendar__num">21</div><div class="calendar__num">22</div><div class="calendar__num">23</div>
+                    <div class="calendar__num">24</div><div class="calendar__num">25</div><div class="calendar__num">26</div><div class="calendar__num">27</div><div class="calendar__num calendar__num--active">28</div><div class="calendar__num">29</div><div class="calendar__num">30</div>
+                    <div class="calendar__num">31</div><div></div><div></div><div></div><div></div><div></div><div></div>
+                </div>
+            </div>
+            <p class="hero__date rv rv-d2" style="margin-top:24px;text-align:center">Thursday</p>
+        </div>
+    </section>
+
+    <!-- 5. Muhurtham & 6. Reception -->
+    <section class="sec sec--grad events" aria-label="Event Details">
+        <div class="sec__inner">
+            <p class="sec-title rv">Ceremonies</p>
+            
+            <!-- Muhurtham -->
+            <div class="events__card rv-scale" style="margin-bottom:40px;max-width:540px">
+                <div class="c-orn c-orn--tl" aria-hidden="true"></div><div class="c-orn c-orn--tr" aria-hidden="true"></div>
+                <div class="c-orn c-orn--bl" aria-hidden="true"></div><div class="c-orn c-orn--br" aria-hidden="true"></div>
+                
+                <h3 class="events__name" style="font-family:var(--fb);font-size:clamp(24px,4vw,32px)">🪷 திருமண நிகழ்வு</h3>
+                <p style="font-family:var(--fsa);font-size:10px;letter-spacing:.25em;color:var(--gold-dk);margin-top:-10px;margin-bottom:16px;text-transform:uppercase">Muhurtham</p>
+                <div class="orn" style="max-width:120px;margin-bottom:24px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+
+                <div class="events__row"><span class="events__text events__text--bold">Date:</span> <span class="events__text">28 January 2027</span></div>
+                <div class="events__row"><span class="events__text events__text--bold">Venue:</span> <span class="events__text">Your temple/wedding ceremony location</span></div>
+                <div class="events__row"><span class="events__text events__text--bold">Muhurtham:</span> <span class="events__text">Exact confirmed time</span></div>
+            </div>
+
+            <!-- Reception -->
+            <div class="events__card rv-scale rv-d2" style="max-width:540px">
+                <div class="c-orn c-orn--tl" aria-hidden="true"></div><div class="c-orn c-orn--tr" aria-hidden="true"></div>
+                <div class="c-orn c-orn--bl" aria-hidden="true"></div><div class="c-orn c-orn--br" aria-hidden="true"></div>
+                
+                <h3 class="events__name" style="font-size:clamp(24px,4vw,32px)">✨ Reception</h3>
+                <div class="orn" style="max-width:120px;margin-bottom:24px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+
+                <div class="events__row"><span class="events__text events__text--bold">Date:</span> <span class="events__text">28 January 2027</span></div>
+                <div class="events__row"><span class="events__text events__text--bold">Venue:</span> <span class="events__text">Udhayama CSP Garden, Madhavaram, Chennai</span></div>
+                <div class="events__row"><span class="events__text events__text--bold">Time:</span> <span class="events__text">Add confirmed reception timing</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Couple Photo -->
+    <div class="photo-full rv" style="background-image:url('assets/IMG_0448.JPG.jpeg')">
+        <div class="photo-full__content">
+            <p class="photo-full__text">&ldquo;From seven years of memories<br>to a lifetime together.&rdquo;</p>
+        </div>
+    </div>
+
+    <!-- 8. Family Invitation & 9. Traditional Message -->
+    <section class="sec sec--warm" aria-label="Family Invitation" style="text-align:center">
+        <div class="sec__inner">
+            <p class="sec-title rv">Family Invitation</p>
+            <p class="rv" style="font-family:var(--fse);font-style:italic;font-size:clamp(16px,2vw,22px);color:var(--txt2);margin-bottom:32px">With the love and blessings of our families</p>
+            
+            <div class="rv rv-scale">
+                <h3 style="font-family:var(--fs);font-size:clamp(36px,6vw,56px);margin-bottom:4px" class="metallic-text">Deepthi</h3>
+                <p style="font-family:var(--fse);font-size:clamp(14px,1.6vw,18px);color:var(--txt2)">Daughter of P.N. Ajoy Kumar &amp; M.R. Usha Kumari</p>
+            </div>
+            
+            <div class="orn rv rv-d1" style="max-width:140px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+
+            <div class="rv rv-scale rv-d2">
+                <h3 style="font-family:var(--fs);font-size:clamp(36px,6vw,56px);margin-bottom:4px" class="metallic-text">Hari Prasath</h3>
+                <p style="font-family:var(--fse);font-size:clamp(14px,1.6vw,18px);color:var(--txt2)">Son of Sasi Kumar &amp; Baby Rani</p>
+            </div>
+
+            <div class="rv rv-d3" style="margin-top:60px;max-width:600px;margin-left:auto;margin-right:auto">
+                <p class="tamil-text">அன்பும் அருளும் நிறைந்த இந்த இனிய நாளில்,<br>எங்கள் திருமண விழாவில் தாங்கள் குடும்பத்துடன் கலந்து கொண்டு<br>மணமக்களை ஆசீர்வதிக்க அன்புடன் அழைக்கின்றோம்.</p>
+                <p style="font-family:var(--fse);font-style:italic;color:var(--txt2);margin-top:24px;line-height:1.8">We warmly invite you and your family to grace our wedding ceremony and bless us as we begin our new journey together.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Venue / Location -->
+    <section class="sec" aria-label="Location" style="text-align:center">
+        <div class="sec__inner">
+            <p class="sec-title rv">Venue Location</p>
+            <h3 class="events__name rv rv-d1" style="font-size:clamp(22px,3.5vw,32px)">📍 Udhayama CSP Garden</h3>
+            <p class="events__text rv rv-d2" style="margin-bottom:32px">Madhavaram, Chennai</p>
+            
+            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068" target="_blank" rel="noopener noreferrer" class="venue__cta rv rv-d3" style="margin-bottom:32px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 22v-8a4 4 0 0 1 4-4h14"/><polyline points="16 5 21 10 16 15"/></svg>
+                Open in Google Maps
+            </a>
+            
+            <p class="events__text events__text--sub rv rv-d4" style="max-width:400px;margin:0 auto;line-height:1.8">Valet parking is available.<br>Please enter through the main reception gate.</p>
+        </div>
+    </section>
+
+    <!-- 11. Dress Code -->
+    <section class="sec sec--alt" aria-label="Dress Code">
+        <div class="sec__inner">
+            <p class="sec-title rv">Dress Code</p>
+            <h2 class="countdown__title-main rv rv-d1" style="text-align:center;font-size:clamp(28px,5vw,44px);margin-bottom:32px"><span class="metallic-text">Traditional Elegance</span></h2>
+            
+            <div class="dress-code rv-scale rv-d2">
+                <div class="dress-code__item">
+                    <div class="dress-code__label">Men</div>
+                    <div class="dress-code__val">Veshti / Traditional or Formal</div>
+                </div>
+                <div class="dress-code__item">
+                    <div class="dress-code__label">Women</div>
+                    <div class="dress-code__val">Saree / Traditional attire</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Countdown -->
+    <section class="countdown sec sec--grad" aria-label="Countdown">
+        <div class="sec__inner">
+            <p class="sec-title rv">Looking Forward</p>
+            <h2 class="countdown__title-main rv rv-d1" style="font-size:clamp(24px,4vw,36px)"><span class="metallic-text">The countdown to forever begins...</span></h2>
+            <p class="countdown__date rv rv-d2" style="margin-top:16px;font-size:clamp(20px,3.5vw,28px)">28 &bull; 01 &bull; 2027</p>
+            <div class="orn rv rv-d3" style="max-width:180px;margin:clamp(12px,2vw,20px) auto;"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
             <div class="countdown__grid" id="countdownGrid">
                 <div class="countdown__item rv rv-d4"><div class="countdown__num" id="cdDays">--</div><div class="countdown__label">Days</div></div>
                 <div class="countdown__item rv rv-d4"><div class="countdown__num" id="cdHours">--</div><div class="countdown__label">Hours</div></div>
@@ -867,101 +1111,29 @@ a{color:var(--gold-dk);text-decoration:none}
         </div>
     </section>
 
-    <!-- ============ INVITATION MESSAGE (SCREEN 3) ============ -->
-    <section class="sec sec--alt invite" aria-label="Invitation">
-        <!-- Decorative side vines -->
-        <div class="invite__vine invite__vine--left" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
-        <div class="invite__vine invite__vine--right" aria-hidden="true"><svg viewBox="0 0 40 300" fill="none"><path d="M20 0 Q25 40,15 80 Q5 120,20 160 Q35 200,15 240 Q5 280,20 300" stroke="#C4A265" stroke-width=".6" fill="none" opacity=".4"/><circle cx="15" cy="80" r="4" fill="#6B1E2E" opacity=".2"/><circle cx="20" cy="160" r="5" fill="#6B1E2E" opacity=".15"/><circle cx="15" cy="240" r="4" fill="#6B1E2E" opacity=".2"/></svg></div>
-
-        <div class="sec__inner">
-            <p class="sec-title rv">You Are Cordially Invited</p>
-            <div class="invite__card rv-scale">
-                <div class="invite__corners" aria-hidden="true"></div>
-
-                <!-- Bride (Left) & Groom (Right) side by side -->
-                <div class="invite__couple-row">
-                    <div class="invite__side rv-left rv-d1">
-                        <p class="invite__side-role">The Bride</p>
-                        <span class="invite__name"><span class="metallic-text">Deepthi</span></span>
-                        <p class="invite__side-parents">D/o. M.R. Usha Kumari &amp;<br>P.N. Ajoy Kumar</p>
-                    </div>
-                    <span class="invite__with rv rv-d2">with</span>
-                    <div class="invite__side rv-right rv-d3">
-                        <p class="invite__side-role">The Groom</p>
-                        <span class="invite__name"><span class="metallic-text">Hari</span></span>
-                        <p class="invite__side-parents">S/o. S.Baby Rani &amp;<br>K. Sasi Kumar</p>
-                    </div>
-                </div>
-
-            </div>
+    <!-- 13. Closing Couple Photo -->
+    <div class="photo-full rv" style="background-image:url('assets/3B5A6592.JPG.jpeg');min-height:500px">
+        <div class="photo-full__content">
+            <p class="photo-full__text" style="margin-bottom:24px">&ldquo;A new chapter begins,<br>and we'd love to have you there.&rdquo;</p>
+            <h3 style="font-family:var(--fs);font-size:clamp(36px,6vw,56px);color:var(--gold-lt);line-height:1">Hari <span style="font-family:sans-serif;font-size:0.5em;color:#D4A0AC;vertical-align:middle;margin:0 6px">❤️</span> Deepthi</h3>
         </div>
-    </section>
+    </div>
 
-    <!-- ============ COUPLE (SCREEN 4) ============ -->
-    <section class="sec couple" aria-label="The Couple">
-        <!-- Subtle mandala background -->
-        <svg class="couple__mandala" viewBox="0 0 400 400" fill="none" aria-hidden="true"><circle cx="200" cy="200" r="180" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="140" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="100" stroke="#C4A265" stroke-width=".3"/><circle cx="200" cy="200" r="60" stroke="#C4A265" stroke-width=".3"/><path d="M200 20 L200 380 M20 200 L380 200" stroke="#C4A265" stroke-width=".2" opacity=".5"/><path d="M72 72 L328 328 M328 72 L72 328" stroke="#C4A265" stroke-width=".2" opacity=".4"/></svg>
-
+    <!-- 14. Final Blessing -->
+    <section class="sec closing" aria-label="Closing" style="padding-top:clamp(72px,10vh,140px)">
         <div class="sec__inner">
-            <p class="sec-title rv">The Couple</p>
-            <div class="couple__frame rv-scale"><img src="assets/IMG_0448.JPG.jpeg" alt="Deepthi and Hari" class="couple__img"></div>
-
-            <div class="couple__row">
-                <div class="couple__person rv-left rv-d1">
-                    <p class="couple__role">The Bride</p>
-                    <h3 class="couple__name">Deepthi</h3>
-                    <p class="couple__parents">D/o. M.R. Usha Kumari &amp;<br>P.N. Ajoy Kumar</p>
-                </div>
-                <p class="couple__and rv rv-d2">with</p>
-                <div class="couple__person rv-right rv-d3">
-                    <p class="couple__role">The Groom</p>
-                    <h3 class="couple__name">Hari</h3>
-                    <p class="couple__parents">S/o. S.Baby Rani &amp;<br>K. Sasi Kumar</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ EVENTS ============ -->
-    <section class="sec sec--alt events" aria-label="Event Details">
-        <div class="sec__inner">
-            <p class="sec-title rv">Celebration Details</p>
-            <div class="events__card rv-scale">
-                <div class="c-orn c-orn--tl" aria-hidden="true"></div><div class="c-orn c-orn--tr" aria-hidden="true"></div>
-                <div class="c-orn c-orn--bl" aria-hidden="true"></div><div class="c-orn c-orn--br" aria-hidden="true"></div>
-                <h3 class="events__name">Wedding Reception</h3>
-                <div class="toran" aria-hidden="true" style="margin-bottom:clamp(16px,2.5vw,28px)">
-                    <svg viewBox="0 0 16 32" fill="none"><rect x="7" y="0" width="2" height="5" rx="1" fill="#C4A265"/><circle cx="8" cy="7.5" r="2" fill="#C4A265"/><rect x="7" y="11" width="2" height="5" rx="1" fill="#C4A265"/><circle cx="8" cy="19" r="1.5" fill="#C4A265"/><rect x="7" y="21.5" width="2" height="3.5" rx="1" fill="#C4A265"/><path d="M5.5 25 L8 32 L10.5 25" fill="#6B1E2E" opacity=".8"/></svg>
-                    <svg viewBox="0 0 16 32" fill="none"><rect x="7" y="0" width="2" height="5" rx="1" fill="#C4A265"/><circle cx="8" cy="7.5" r="2" fill="#C4A265"/><rect x="7" y="11" width="2" height="5" rx="1" fill="#C4A265"/><circle cx="8" cy="19" r="1.5" fill="#C4A265"/><rect x="7" y="21.5" width="2" height="3.5" rx="1" fill="#C4A265"/><path d="M5.5 25 L8 32 L10.5 25" fill="#6B1E2E" opacity=".8"/></svg>
-                    <svg viewBox="0 0 16 32" fill="none"><rect x="7" y="0" width="2" height="5" rx="1" fill="#C4A265"/><circle cx="8" cy="7.5" r="2" fill="#C4A265"/><rect x="7" y="11" width="2" height="5" rx="1" fill="#C4A265"/><circle cx="8" cy="19" r="1.5" fill="#C4A265"/><rect x="7" y="21.5" width="2" height="3.5" rx="1" fill="#C4A265"/><path d="M5.5 25 L8 32 L10.5 25" fill="#6B1E2E" opacity=".8"/></svg>
-                </div>
-                <div class="events__row"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="events__text events__text--bold">Thursday, 28th January 2027</span></div>
-                <div class="events__row"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="events__text">6:30 PM onwards</span></div>
-                <div class="events__row"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><span class="events__text events__text--sub">Followed by Dinner</span></div>
-                <div class="orn" style="max-width:140px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-                <div class="events__row"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 22h18"/><path d="m12 2 8 8H4z"/><path d="M7 22v-8"/><path d="M12 22v-8"/><path d="M17 22v-8"/><path d="M4 10h16"/></svg><span class="events__text events__text--bold">Ushodhaya CSP Gardens</span></div>
-                <div class="events__row" style="margin-bottom:0"><svg class="events__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 22v-8a4 4 0 0 1 4-4h14"/><polyline points="16 5 21 10 16 15"/></svg><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068" target="_blank" rel="noopener noreferrer" class="events__text events__text--sub" style="text-decoration:underline;color:var(--gold-dk);">Get Directions</a></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ CLOSING ============ -->
-    <section class="sec sec--grad closing" aria-label="Closing">
-        <div class="sec__inner">
-            <p class="sec-title rv">With Love &amp; Blessings</p>
-            <blockquote class="blessing__quote rv rv-d1">&ldquo;As the couple begin their journey of love and togetherness, we would be deeply honoured by your presence to bless them, share in our happiness, and make this evening truly unforgettable.&rdquo;</blockquote>
-            <div class="orn rv rv-d2" style="max-width:180px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-            <p class="closing__msg rv rv-d3">Your gracious presence and blessings<br>would mean the world to us.<br><br>With love,<br><span class="closing__families">From Both Families</span></p>
-            <p class="hero__type rv rv-d4" style="margin-top: 24px; font-size: clamp(12px, 1.5vw, 16px); color: var(--gold-dk);">#DeepthiWedHari</p>
+            <p class="tamil-text rv" style="font-size:clamp(16px,2vw,24px);color:var(--lotus)">உங்கள் வருகையே எங்கள் மகிழ்ச்சி <span style="color:#D4A0AC;font-family:sans-serif">❤️</span></p>
+            <div class="orn rv rv-d1" style="max-width:180px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+            <p class="closing__msg rv rv-d2">With love,<br><span class="closing__families">Hari &amp; Deepthi</span></p>
         </div>
     </section>
 
     <!-- ============ FOOTER ============ -->
     <footer class="footer" role="contentinfo">
         <p class="footer__text">Made with <span class="footer__heart" aria-label="love">♥</span> for Deepthi &amp; Hari</p>
-    <!-- Moving Scooter Animation -->
         <img src="assets/scooter.png" alt="Couple driving a scooter" class="scooter-animation">
     </footer>
+
 </div><!-- /main-content -->
 
 <script>
@@ -1095,7 +1267,7 @@ window.addEventListener('beforeunload',()=>{window.scrollTo(0,0)});
    SCROLL REVEAL (Intersection Observer)
    ================================================================ */
 function initScrollReveal(){
-    const els=document.querySelectorAll('.rv,.rv-scale,.rv-left,.rv-right');
+    const els=document.querySelectorAll('.rv,.rv-scale,.rv-scale,.rv-right');
     if('IntersectionObserver' in window){
         const io=new IntersectionObserver(entries=>{
             entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}});
