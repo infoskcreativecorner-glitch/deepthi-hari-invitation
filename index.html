@@ -802,6 +802,55 @@ a{color:var(--gold-dk);text-decoration:none}
     75%  { transform: translateX(calc(75vw + 225px)) translateY(-4px); }
     100% { transform: translateX(calc(100vw + 350px)) translateY(0); }
 }
+
+/* ================================================================
+   SCENIC LANDSCAPE (FOOTER)
+   ================================================================ */
+.landscape {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+}
+.scene-tree {
+    position: absolute;
+    bottom: -2px;
+    color: var(--gold-dk);
+    opacity: 0.12;
+}
+.scene-tree-1 { left: 5%; width: 140px; height: 180px; }
+.scene-tree-2 { left: 35%; width: 90px; height: 120px; transform: scaleX(-1); opacity: 0.08; }
+.scene-tree-3 { left: 65%; width: 180px; height: 220px; opacity: 0.15;}
+.scene-tree-4 { left: 85%; width: 110px; height: 150px; opacity: 0.1; }
+.scene-tree-5 { left: -10%; width: 220px; height: 260px; opacity: 0.06; }
+
+.scene-bird {
+    position: absolute;
+    color: var(--gold-dk);
+    opacity: 0.4;
+    animation: flyBird linear infinite;
+    transform: translateX(-100px); 
+}
+/* Stagger the birds to make it look like a flock flying naturally */
+.scene-bird-1 { top: 25%; width: 24px; animation-duration: 22s; animation-delay: 0s; }
+.scene-bird-2 { top: 35%; width: 16px; animation-duration: 30s; animation-delay: 5s; }
+.scene-bird-3 { top: 15%; width: 22px; animation-duration: 26s; animation-delay: 11s; }
+.scene-bird-4 { top: 28%; width: 18px; animation-duration: 35s; animation-delay: 18s; }
+.scene-bird-5 { top: 10%; width: 30px; animation-duration: 24s; animation-delay: 24s; opacity: 0.6; }
+.scene-bird-6 { top: 20%; width: 20px; animation-duration: 28s; animation-delay: 30s; }
+
+@keyframes flyBird {
+    0% { left: -10%; transform: translateY(0) scale(0.8) rotate(5deg); }
+    25% { transform: translateY(-20px) scale(1) rotate(-5deg); }
+    50% { transform: translateY(10px) scale(0.9) rotate(5deg); }
+    75% { transform: translateY(-10px) scale(1) rotate(-5deg); }
+    100% { left: 110%; transform: translateY(0) scale(0.8) rotate(5deg); }
+}
+
 </style>
 </head>
 
@@ -1131,7 +1180,26 @@ a{color:var(--gold-dk);text-decoration:none}
     <!-- ============ FOOTER ============ -->
     <footer class="footer" role="contentinfo">
         <p class="footer__text">Made with <span class="footer__heart" aria-label="love">♥</span> for Deepthi &amp; Hari</p>
-        <img src="assets/scooter.png" alt="Couple driving a scooter" class="scooter-animation">
+        
+    <!-- Scenic Background for Scooter -->
+    <div class="landscape" aria-hidden="true">
+        <!-- Trees -->
+        <svg class="scene-tree scene-tree-1" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V70 C20 70 5 45 25 25 C35 15 65 15 75 25 C95 45 80 70 52 70 V100 Z" fill="currentColor"/></svg>
+        <svg class="scene-tree scene-tree-2" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V70 C20 70 5 45 25 25 C35 15 65 15 75 25 C95 45 80 70 52 70 V100 Z" fill="currentColor"/></svg>
+        <svg class="scene-tree scene-tree-3" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V60 C15 60 0 35 25 15 C40 0 60 0 75 15 C100 35 85 60 52 60 V100 Z" fill="currentColor"/></svg>
+        <svg class="scene-tree scene-tree-4" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V70 C20 70 5 45 25 25 C35 15 65 15 75 25 C95 45 80 70 52 70 V100 Z" fill="currentColor"/></svg>
+        <svg class="scene-tree scene-tree-5" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V60 C15 60 0 35 25 15 C40 0 60 0 75 15 C100 35 85 60 52 60 V100 Z" fill="currentColor"/></svg>
+
+        <!-- Birds -->
+        <svg class="scene-bird scene-bird-1" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
+        <svg class="scene-bird scene-bird-2" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
+        <svg class="scene-bird scene-bird-3" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
+        <svg class="scene-bird scene-bird-4" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
+        <svg class="scene-bird scene-bird-5" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
+        <svg class="scene-bird scene-bird-6" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
+    </div>
+    <img src="assets/scooter.png" alt="Couple driving a scooter" class="scooter-animation">
+
     </footer>
 
 </div><!-- /main-content -->
