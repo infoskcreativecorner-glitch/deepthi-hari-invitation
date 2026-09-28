@@ -803,45 +803,127 @@ a{color:var(--gold-dk);text-decoration:none}
     100% { transform: translateX(calc(100vw + 350px)) translateY(0); }
 }
 
+
 /* ================================================================
-   SCENIC LANDSCAPE (FOOTER)
+   SCENIC LANDSCAPE (Starry Night)
    ================================================================ */
 .landscape {
     position: absolute;
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: 400px;
+    height: 450px;
     pointer-events: none;
     z-index: 10;
     overflow: hidden;
 }
-.scene-tree {
+.night-sky-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, transparent 0%, rgba(107,30,46,0.18) 100%);
+    z-index: 0;
+}
+.landscape-ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    z-index: 5;
+    box-shadow: 0 -2px 10px rgba(107,30,46,0.1);
+}
+
+.crescent-moon {
+    position: absolute;
+    top: 60px;
+    right: 22%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: inset 10px -8px 0 0 var(--gold-lt);
+    filter: drop-shadow(0 0 20px rgba(243,229,171,0.6));
+    transform: rotate(-15deg);
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    background: #FFF;
+    border-radius: 50%;
+    animation: twinkleStar 4s infinite ease-in-out alternate;
+    z-index: 1;
+}
+.star-1 { top: 40px; left: 15%; width: 2px; height: 2px; animation-delay: 0s; }
+.star-2 { top: 90px; left: 35%; width: 3px; height: 3px; animation-delay: 1s; box-shadow: 0 0 4px #FFF; }
+.star-3 { top: 60px; left: 55%; width: 2px; height: 2px; animation-delay: 2s; }
+.star-4 { top: 120px; left: 75%; width: 2px; height: 2px; animation-delay: 0.5s; }
+.star-5 { top: 50px; left: 85%; width: 3px; height: 3px; animation-delay: 1.5s; box-shadow: 0 0 4px #FFF; }
+.star-6 { top: 150px; left: 25%; width: 2px; height: 2px; animation-delay: 2.5s; }
+.star-7 { top: 70px; left: 10%; width: 3px; height: 3px; animation-delay: 0.8s; box-shadow: 0 0 4px #FFF; }
+.star-8 { top: 110px; left: 90%; width: 2px; height: 2px; animation-delay: 1.2s; }
+.star-9 { top: 180px; left: 45%; width: 2px; height: 2px; animation-delay: 0.3s; }
+.star-10 { top: 80px; left: 65%; width: 3px; height: 3px; animation-delay: 1.8s; box-shadow: 0 0 4px #FFF; }
+
+@keyframes twinkleStar {
+    0% { opacity: 0.1; transform: scale(0.6); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+.scene-tree-wrapper {
     position: absolute;
     bottom: -2px;
     color: var(--gold-dk);
-    opacity: 0.12;
+    z-index: 2;
+    filter: drop-shadow(0 -10px 20px rgba(107,30,46,0.1));
 }
-.scene-tree-1 { left: 5%; width: 140px; height: 180px; }
-.scene-tree-2 { left: 35%; width: 90px; height: 120px; transform: scaleX(-1); opacity: 0.08; }
-.scene-tree-3 { left: 65%; width: 180px; height: 220px; opacity: 0.15;}
-.scene-tree-4 { left: 85%; width: 110px; height: 150px; opacity: 0.1; }
-.scene-tree-5 { left: -10%; width: 220px; height: 260px; opacity: 0.06; }
+.tree-1 { left: -5%; width: 280px; height: 350px; opacity: 0.12; }
+.tree-2 { left: 45%; width: 220px; height: 280px; transform: scaleX(-1); opacity: 0.16; filter: drop-shadow(0 -5px 10px rgba(0,0,0,0.05)); }
+.tree-3 { left: 82%; width: 200px; height: 250px; opacity: 0.1; }
 
-.scene-bird {
+.firefly {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #FFFADD;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 2px #FFD700;
+    animation: flyFirefly 8s infinite alternate ease-in-out;
+    z-index: 3;
+}
+.ff-1 { bottom: 50px; left: 20%; animation-delay: 0s; animation-duration: 6s; }
+.ff-2 { bottom: 90px; left: 45%; animation-delay: -2s; animation-duration: 7s; }
+.ff-3 { bottom: 40px; left: 65%; animation-delay: -4s; animation-duration: 8s; }
+.ff-4 { bottom: 120px; left: 15%; animation-delay: -1s; animation-duration: 6.5s; }
+.ff-5 { bottom: 70px; left: 85%; animation-delay: -3s; animation-duration: 7.5s; }
+.ff-6 { bottom: 30px; left: 55%; animation-delay: -5s; animation-duration: 5.5s; }
+.ff-7 { bottom: 100px; left: 75%; animation-delay: -2.5s; animation-duration: 9s; }
+.ff-8 { bottom: 60px; left: 35%; animation-delay: -1.5s; animation-duration: 6.8s; }
+
+@keyframes flyFirefly {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+    33% { transform: translate(15px, -20px) scale(1.3); opacity: 1; }
+    66% { transform: translate(-10px, -35px) scale(0.8); opacity: 0.6; }
+    100% { transform: translate(15px, 5px) scale(1.1); opacity: 0.4; }
+}
+/* ================================================================ */
+
+
+/* Birds */
+.bird {
     position: absolute;
     color: var(--gold-dk);
-    opacity: 0.4;
+    opacity: 0.45;
+    z-index: 3;
     animation: flyBird linear infinite;
     transform: translateX(-100px); 
 }
-/* Stagger the birds to make it look like a flock flying naturally */
-.scene-bird-1 { top: 25%; width: 24px; animation-duration: 22s; animation-delay: 0s; }
-.scene-bird-2 { top: 35%; width: 16px; animation-duration: 30s; animation-delay: 5s; }
-.scene-bird-3 { top: 15%; width: 22px; animation-duration: 26s; animation-delay: 11s; }
-.scene-bird-4 { top: 28%; width: 18px; animation-duration: 35s; animation-delay: 18s; }
-.scene-bird-5 { top: 10%; width: 30px; animation-duration: 24s; animation-delay: 24s; opacity: 0.6; }
-.scene-bird-6 { top: 20%; width: 20px; animation-duration: 28s; animation-delay: 30s; }
+.bird-1 { top: 25%; width: 24px; height: 24px; animation-duration: 22s; animation-delay: 0s; }
+.bird-2 { top: 35%; width: 16px; height: 16px; animation-duration: 30s; animation-delay: 5s; }
+.bird-3 { top: 15%; width: 22px; height: 22px; animation-duration: 26s; animation-delay: 11s; }
+.bird-4 { top: 28%; width: 18px; height: 18px; animation-duration: 35s; animation-delay: 18s; }
+.bird-5 { top: 10%; width: 30px; height: 30px; animation-duration: 24s; animation-delay: 24s; opacity: 0.6; }
+.bird-6 { top: 20%; width: 20px; height: 20px; animation-duration: 28s; animation-delay: 30s; }
 
 @keyframes flyBird {
     0% { left: -10%; transform: translateY(0) scale(0.8) rotate(5deg); }
@@ -849,6 +931,29 @@ a{color:var(--gold-dk);text-decoration:none}
     50% { transform: translateY(10px) scale(0.9) rotate(5deg); }
     75% { transform: translateY(-10px) scale(1) rotate(-5deg); }
     100% { left: 110%; transform: translateY(0) scale(0.8) rotate(5deg); }
+}
+
+/* Air Breeze */
+.breeze-line {
+    position: absolute;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(212,184,122,0.4), transparent);
+    border-radius: 50%;
+    animation: blowBreeze linear infinite;
+    z-index: 2;
+    filter: drop-shadow(0 0 2px rgba(212,184,122,0.3));
+}
+.bl-1 { top: 120px; width: 100px; animation-duration: 8s; animation-delay: 0s; }
+.bl-2 { top: 250px; width: 180px; animation-duration: 12s; animation-delay: 3s; }
+.bl-3 { top: 320px; width: 80px; animation-duration: 6s; animation-delay: 1.5s; }
+.bl-4 { top: 180px; width: 150px; animation-duration: 10s; animation-delay: 5s; }
+.bl-5 { top: 80px; width: 120px; animation-duration: 9s; animation-delay: 7s; }
+
+@keyframes blowBreeze {
+    0% { left: -20%; opacity: 0; transform: scaleX(0.5); }
+    15% { opacity: 1; transform: scaleX(1); }
+    85% { opacity: 1; transform: scaleX(1.2); }
+    100% { left: 110%; opacity: 0; transform: scaleX(0.5); }
 }
 
 </style>
@@ -1024,7 +1129,8 @@ a{color:var(--gold-dk);text-decoration:none}
     </section>
 
     <!-- 4. Wedding Date -->
-    <section class="sec" aria-label="Wedding Date">
+    <!-- 
+<section class="sec" aria-label="Wedding Date">
         <div class="sec__inner">
             <p class="sec-title rv" style="margin-bottom:32px">Save The Date</p>
             <div class="calendar rv-scale">
@@ -1042,6 +1148,7 @@ a{color:var(--gold-dk);text-decoration:none}
             <p class="hero__date rv rv-d2" style="margin-top:24px;text-align:center">Thursday</p>
         </div>
     </section>
+-->
 
     <!-- 5. Muhurtham & 6. Reception -->
     <section class="sec sec--grad events" aria-label="Event Details">
@@ -1126,7 +1233,8 @@ a{color:var(--gold-dk);text-decoration:none}
     </section>
 
     <!-- 11. Dress Code -->
-    <section class="sec sec--alt" aria-label="Dress Code">
+    <!-- 
+<section class="sec sec--alt" aria-label="Dress Code">
         <div class="sec__inner">
             <p class="sec-title rv">Dress Code</p>
             <h2 class="countdown__title-main rv rv-d1" style="text-align:center;font-size:clamp(28px,5vw,44px);margin-bottom:32px"><span class="metallic-text">Traditional Elegance</span></h2>
@@ -1143,6 +1251,7 @@ a{color:var(--gold-dk);text-decoration:none}
             </div>
         </div>
     </section>
+-->
 
     <!-- 12. Countdown -->
     <section class="countdown sec sec--grad" aria-label="Countdown">
@@ -1169,9 +1278,9 @@ a{color:var(--gold-dk);text-decoration:none}
     </div>
 
     <!-- 14. Final Blessing -->
-    <section class="sec closing" aria-label="Closing" style="padding-top:clamp(72px,10vh,140px)">
+    <section class="sec closing" aria-label="Closing" style="padding-top:clamp(72px,10vh,140px); padding-bottom: 280px;">
         <div class="sec__inner">
-            <p class="tamil-text rv" style="font-size:clamp(16px,2vw,24px);color:var(--lotus)">உங்கள் வருகையே எங்கள் மகிழ்ச்சி <span style="color:#D4A0AC;font-family:sans-serif">❤️</span></p>
+            <!-- <p class="tamil-text rv" style="font-size:clamp(16px,2vw,24px);color:var(--lotus)">உங்கள் வருகையே எங்கள் மகிழ்ச்சி <span style="color:#D4A0AC;font-family:sans-serif">❤️</span></p> -->
             <div class="orn rv rv-d1" style="max-width:180px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
             <p class="closing__msg rv rv-d2">With love,<br><span class="closing__families">Hari &amp; Deepthi</span></p>
         </div>
@@ -1182,21 +1291,112 @@ a{color:var(--gold-dk);text-decoration:none}
         <p class="footer__text">Made with <span class="footer__heart" aria-label="love">♥</span> for Deepthi &amp; Hari</p>
         
     <!-- Scenic Background for Scooter -->
+    
+    <!-- Scenic Background for Scooter (Theme 1: Magical Evening) -->
+    
+    <!-- Scenic Background for Scooter (Theme 2: Sunset Journey) -->
+    
+    <!-- Scenic Background for Scooter (Theme 1: Realistic Magical Evening) -->
+    
+    <!-- Scenic Background for Scooter (Option 1: Starry Night & Fireflies) -->
     <div class="landscape" aria-hidden="true">
-        <!-- Trees -->
-        <svg class="scene-tree scene-tree-1" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V70 C20 70 5 45 25 25 C35 15 65 15 75 25 C95 45 80 70 52 70 V100 Z" fill="currentColor"/></svg>
-        <svg class="scene-tree scene-tree-2" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V70 C20 70 5 45 25 25 C35 15 65 15 75 25 C95 45 80 70 52 70 V100 Z" fill="currentColor"/></svg>
-        <svg class="scene-tree scene-tree-3" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V60 C15 60 0 35 25 15 C40 0 60 0 75 15 C100 35 85 60 52 60 V100 Z" fill="currentColor"/></svg>
-        <svg class="scene-tree scene-tree-4" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V70 C20 70 5 45 25 25 C35 15 65 15 75 25 C95 45 80 70 52 70 V100 Z" fill="currentColor"/></svg>
-        <svg class="scene-tree scene-tree-5" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M48 100 V60 C15 60 0 35 25 15 C40 0 60 0 75 15 C100 35 85 60 52 60 V100 Z" fill="currentColor"/></svg>
+        <div class="night-sky-gradient"></div>
+        
+        <!-- Glowing Crescent Moon -->
+        <div class="crescent-moon"></div>
+        
+        <!-- Twinkling Stars -->
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="star star-6"></div>
+        <div class="star star-7"></div>
+        <div class="star star-8"></div>
+        <div class="star star-9"></div>
+        <div class="star star-10"></div>
+        
+        <!-- Lush Trees -->
+        <div class="scene-tree-wrapper tree-1">
+<svg width="100%" height="100%" viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <g fill="currentColor">
+        <path d="M 95 250 C 90 180 75 140 90 100 C 105 110 110 180 105 250 Z" />
+        <path d="M 95 150 C 60 130 50 100 40 100 C 50 110 70 140 95 150 Z" />
+        <path d="M 105 160 C 140 130 160 110 170 110 C 150 120 120 150 105 160 Z" />
+        <circle cx="95" cy="80" r="45" />
+        <circle cx="50" cy="110" r="40" />
+        <circle cx="150" cy="110" r="35" />
+        <circle cx="30" cy="140" r="25" />
+        <circle cx="170" cy="130" r="25" />
+        <circle cx="70" cy="50" r="35" />
+        <circle cx="120" cy="55" r="35" />
+        <circle cx="100" cy="120" r="40" />
+    </g>
+</svg>
+</div>
+        <div class="scene-tree-wrapper tree-2">
+<svg width="100%" height="100%" viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <g fill="currentColor">
+        <path d="M 95 250 C 90 180 75 140 90 100 C 105 110 110 180 105 250 Z" />
+        <path d="M 95 150 C 60 130 50 100 40 100 C 50 110 70 140 95 150 Z" />
+        <path d="M 105 160 C 140 130 160 110 170 110 C 150 120 120 150 105 160 Z" />
+        <circle cx="95" cy="80" r="45" />
+        <circle cx="50" cy="110" r="40" />
+        <circle cx="150" cy="110" r="35" />
+        <circle cx="30" cy="140" r="25" />
+        <circle cx="170" cy="130" r="25" />
+        <circle cx="70" cy="50" r="35" />
+        <circle cx="120" cy="55" r="35" />
+        <circle cx="100" cy="120" r="40" />
+    </g>
+</svg>
+</div>
+        <div class="scene-tree-wrapper tree-3">
+<svg width="100%" height="100%" viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <g fill="currentColor">
+        <path d="M 95 250 C 90 180 75 140 90 100 C 105 110 110 180 105 250 Z" />
+        <path d="M 95 150 C 60 130 50 100 40 100 C 50 110 70 140 95 150 Z" />
+        <path d="M 105 160 C 140 130 160 110 170 110 C 150 120 120 150 105 160 Z" />
+        <circle cx="95" cy="80" r="45" />
+        <circle cx="50" cy="110" r="40" />
+        <circle cx="150" cy="110" r="35" />
+        <circle cx="30" cy="140" r="25" />
+        <circle cx="170" cy="130" r="25" />
+        <circle cx="70" cy="50" r="35" />
+        <circle cx="120" cy="55" r="35" />
+        <circle cx="100" cy="120" r="40" />
+    </g>
+</svg>
+</div>
 
-        <!-- Birds -->
-        <svg class="scene-bird scene-bird-1" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
-        <svg class="scene-bird scene-bird-2" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
-        <svg class="scene-bird scene-bird-3" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
-        <svg class="scene-bird scene-bird-4" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
-        <svg class="scene-bird scene-bird-5" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
-        <svg class="scene-bird scene-bird-6" viewBox="0 0 24 24"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg>
+        <!-- Magical Fireflies -->
+        <div class="firefly ff-1"></div>
+        <div class="firefly ff-2"></div>
+        <div class="firefly ff-3"></div>
+        <div class="firefly ff-4"></div>
+        <div class="firefly ff-5"></div>
+        <div class="firefly ff-6"></div>
+        <div class="firefly ff-7"></div>
+        <div class="firefly ff-8"></div>
+        
+        
+        <!-- Air Breeze -->
+        <div class="breeze-line bl-1"></div>
+        <div class="breeze-line bl-2"></div>
+        <div class="breeze-line bl-3"></div>
+        <div class="breeze-line bl-4"></div>
+        <div class="breeze-line bl-5"></div>
+        
+        <!-- Flock of Birds -->
+        <div class="bird bird-1"><svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg></div>
+        <div class="bird bird-2"><svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg></div>
+        <div class="bird bird-3"><svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg></div>
+        <div class="bird bird-4"><svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg></div>
+        <div class="bird bird-5"><svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg></div>
+        <div class="bird bird-6"><svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true"><path d="M1 12 C 1 12, 6 6, 12 12 C 18 6, 23 12, 23 12 C 23 12, 18 9, 12 15 C 6 9, 1 12, 1 12 Z" fill="currentColor"/></svg></div>
+
+        <div class="landscape-ground"></div>
     </div>
     <img src="assets/scooter.png" alt="Couple driving a scooter" class="scooter-animation">
 
