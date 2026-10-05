@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="envelope-active">
 <head>
     <script>
@@ -1230,6 +1230,38 @@ a{color:var(--gold-dk);text-decoration:none}
 .sec--dark .timeline__sub {
     color: rgba(242, 237, 230, 0.7);
 }
+.jump-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--cream-lt);
+    border: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px var(--sh-m);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s var(--e);
+}
+.jump-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.jump-to-top:hover {
+    background: var(--gold-dk);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--sh-l);
+}
 </style>
 </head>
 
@@ -1741,6 +1773,11 @@ a{color:var(--gold-dk);text-decoration:none}
 
 </div><!-- /main-content -->
 
+<!-- Jump to Top Button -->
+<button id="jumpToTop" class="jump-to-top" aria-label="Jump to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 (function(){
 'use strict';
@@ -2182,6 +2219,22 @@ if (shootingStarsContainer) {
             setTimeout(() => star.remove(), 2000);
         }
     }, 3000);
+}
+
+/* Jump to Top Button Logic */
+const jumpBtn = document.getElementById('jumpToTop');
+if (jumpBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            jumpBtn.classList.add('show');
+        } else {
+            jumpBtn.classList.remove('show');
+        }
+    }, { passive: true });
+    
+    jumpBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }
 
 })();
