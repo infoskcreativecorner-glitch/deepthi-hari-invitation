@@ -9,14 +9,14 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Deepthi & Hari — Wedding Reception | 28th January 2027</title>
-    <meta name="description" content="You are cordially invited to the Wedding Reception of Deepthi & Hari on Thursday, 28th January 2027 at Ushodhaya CSP Gardens.">
-    <meta property="og:title" content="Deepthi & Hari — Wedding Reception Invitation">
-    <meta property="og:description" content="Join us in celebrating the wedding reception of Deepthi & Hari on Thursday, 28th January 2027 at 6:30 PM at Ushodhaya CSP Gardens.">
+    <title>Deepthi & Hari — Engagement | 28th January 2027</title>
+    <meta name="description" content="You are cordially invited to the Engagement of Deepthi & Hari on Thursday, 28th January 2027 at Ushodhaya Csp Gardens.">
+    <meta property="og:title" content="Deepthi & Hari — Engagement Invitation">
+    <meta property="og:description" content="Join us in celebrating the wedding reception of Deepthi & Hari on Thursday, 28th January 2027 at 6:30 PM at Ushodhaya Csp Gardens.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Deepthi & Hari — Wedding Reception">
-    <meta name="twitter:description" content="Wedding Reception Invitation — 28th January 2027, Ushodhaya CSP Gardens">
+    <meta name="twitter:title" content="Deepthi & Hari — Engagement">
+    <meta name="twitter:description" content="Engagement Invitation — 28th January 2027, Ushodhaya Csp Gardens">
     <meta name="theme-color" content="#F2EDE6">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1261,6 +1261,40 @@ a{color:var(--gold-dk);text-decoration:none}
     background: var(--gold-dk);
     transform: translateY(-3px);
     box-shadow: 0 6px 16px var(--sh-l);
+.sec--dark .timeline__sub {
+    color: rgba(242, 237, 230, 0.7);
+}
+.jump-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--cream-lt);
+    border: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px var(--sh-m);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s var(--e);
+}
+.jump-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.jump-to-top:hover {
+    background: var(--gold-dk);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--sh-l);
 }
 </style>
 </head>
@@ -1285,7 +1319,7 @@ a{color:var(--gold-dk);text-decoration:none}
     <!-- The card -->
     <div class="envelope__card">
         <p class="guest-welcome guest-welcome__envelope" id="guestWelcomeEnvelope"></p>
-        <p class="envelope__card-title">Wedding Reception</p>
+        <p class="envelope__card-title">Engagement</p>
 
         <div class="orn" style="max-width:180px;margin-top:0;margin-bottom:clamp(12px,2vw,20px)">
             <span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span>
@@ -1514,7 +1548,7 @@ a{color:var(--gold-dk);text-decoration:none}
     </section>
 -->
 
-    <!-- 5. Muhurtham & 6. Reception -->
+    <!-- 5. Muhurtham & 6. Engagement -->
     <section class="sec sec--grad events" aria-label="Event Details">
         <div class="sec__inner">
             <p class="sec-title rv">Ceremonies</p>
@@ -1534,17 +1568,17 @@ a{color:var(--gold-dk);text-decoration:none}
                 <div class="events__row"><span class="events__text events__text--bold">Muhurtham:</span> <span class="events__text">Exact confirmed time</span></div>
             </div>
 
-            <!-- Reception -->
+            <!-- Engagement -->
             <div class="events__card rv-scale rv-d2" data-tilt style="max-width:540px">
                 <div class="shimmer-border" aria-hidden="true"></div>
                 <div class="c-orn c-orn--tl" aria-hidden="true"></div><div class="c-orn c-orn--tr" aria-hidden="true"></div>
                 <div class="c-orn c-orn--bl" aria-hidden="true"></div><div class="c-orn c-orn--br" aria-hidden="true"></div>
                 
-                <h3 class="events__name" style="font-size:clamp(24px,4vw,32px)">✨ Reception</h3>
+                <h3 class="events__name" style="font-size:clamp(24px,4vw,32px)">✨ Engagement</h3>
                 <div class="orn" style="max-width:120px;margin-bottom:24px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
 
                 <div class="events__row"><span class="events__text events__text--bold">Date:</span> <span class="events__text">28 January 2027</span></div>
-                <div class="events__row"><span class="events__text events__text--bold">Venue:</span> <span class="events__text">Udhayama CSP Garden, Madhavaram, Chennai</span></div>
+                <div class="events__row"><span class="events__text events__text--bold">Venue:</span> <span class="events__text">Ushodhaya Csp Gardens, Madhavaram, Chennai</span></div>
                 <div class="events__row"><span class="events__text events__text--bold">Time:</span> <span class="events__text">Add confirmed reception timing</span></div>
             </div>
         </div>
@@ -1588,7 +1622,7 @@ a{color:var(--gold-dk);text-decoration:none}
     <section class="sec" aria-label="Location" style="text-align:center">
         <div class="sec__inner">
             <p class="sec-title rv">Venue Location</p>
-            <h3 class="events__name rv rv-d1" style="font-size:clamp(22px,3.5vw,32px)">📍 Udhayama CSP Garden</h3>
+            <h3 class="events__name rv rv-d1" style="font-size:clamp(22px,3.5vw,32px)">📍 Ushodhaya Csp Gardens</h3>
             <p class="events__text rv rv-d2" style="margin-bottom:32px">Madhavaram, Chennai</p>
             
             <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068" target="_blank" rel="noopener noreferrer" class="venue__cta rv rv-d3" style="margin-bottom:32px">
@@ -1651,7 +1685,7 @@ a{color:var(--gold-dk);text-decoration:none}
     <!-- 14. Final Blessing -->
     <section class="sec closing" aria-label="Closing" style="padding-top:clamp(72px,10vh,140px); padding-bottom: 280px;">
         <div class="sec__inner">
-            <!-- <p class="tamil-text rv" style="font-size:clamp(16px,2vw,24px);color:var(--lotus)">உங்கள் வருகையே எங்கள் மகிழ்ச்சி <span style="color:#D4A0AC;font-family:sans-serif">❤️</span></p> -->
+            <!-- <p class="tamil-text rv" style="font-size:clamp(16px,2vw,24px);color:var(--lotus)">அன்பும் அருளும் நிறைந்த இந்த இனிய நாளில்,<br>எங்கள் திருமண விழாவில் தாங்கள் குடும்பத்துடன் கலந்து கொண்டு<br>மணமக்களை ஆசீர்வதிக்க அன்புடன் அழைக்கின்றோம்.</p> -->
             <div class="orn rv rv-d1" style="max-width:180px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
             <p class="closing__msg rv rv-d2">With love,<br><span class="closing__families">Hari &amp; Deepthi</span></p>
         </div>
@@ -1788,8 +1822,8 @@ const W={
     brideParents:'M.R. Usha Kumari & P.N. Ajoy Kumar',
     groomParents:'S.Baby Rani & K. Sasi Kumar',
     date:new Date('2027-01-28T18:30:00+05:30'),
-    event:'Wedding Reception',
-    venue:'Ushodhaya CSP Gardens',address:'Function Hall & Convention',
+    event:'Engagement',
+    venue:'Ushodhaya Csp Gardens',address:'Function Hall & Convention',
     mapsUrl:'https://www.google.com/maps/dir/?api=1&destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068'
 };
 
@@ -2241,5 +2275,6 @@ if (jumpBtn) {
 </script>
 </body>
 </html>
+
 
 
