@@ -9,14 +9,14 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Deepthi & Hari — Engagement | 28th January 2027</title>
-    <meta name="description" content="You are cordially invited to the Engagement of Deepthi & Hari on Thursday, 28th January 2027 at Ushodhaya Csp Gardens.">
-    <meta property="og:title" content="Deepthi & Hari — Engagement Invitation">
+    <title>Deepthi & Hari — Wedding Reception | 28th January 2027</title>
+    <meta name="description" content="You are cordially invited to the Wedding Reception of Deepthi & Hari on Thursday, 28th January 2027 at Ushodhaya Csp Gardens.">
+    <meta property="og:title" content="Deepthi & Hari — Wedding Reception Invitation">
     <meta property="og:description" content="Join us in celebrating the wedding reception of Deepthi & Hari on Thursday, 28th January 2027 at 6:30 PM at Ushodhaya Csp Gardens.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Deepthi & Hari — Engagement">
-    <meta name="twitter:description" content="Engagement Invitation — 28th January 2027, Ushodhaya Csp Gardens">
+    <meta name="twitter:title" content="Deepthi & Hari — Wedding Reception">
+    <meta name="twitter:description" content="Wedding Reception Invitation — 28th January 2027, Ushodhaya Csp Gardens">
     <meta name="theme-color" content="#F2EDE6">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -405,7 +405,7 @@ a{color:var(--gold-dk);text-decoration:none}
     min-height:100vh;min-height:100dvh;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     position:relative;background:var(--cream-lt);
-    padding:48px var(--spx);overflow:hidden;
+    padding:clamp(12px, 2.5vh, 24px) var(--spx);overflow:hidden;
 }
 .hero::after{
     content:'';position:absolute;inset:0;pointer-events:none;
@@ -439,21 +439,24 @@ a{color:var(--gold-dk);text-decoration:none}
 .hero__type{font-family:var(--fsa);font-size:clamp(10px,1.2vw,12px);font-weight:400;letter-spacing:.5em;text-transform:uppercase;color:var(--txt2)}
 
 /* Lotus corners */
-.hero__lotus{position:absolute;z-index:1}
-.hero__lotus svg{width:clamp(55px,12vw,150px);height:auto}
-.hero__lotus--tl{top:2%;left:1%}.hero__lotus--tr{top:2%;right:1%}
-.hero__lotus--bl{bottom:2%;left:1%}.hero__lotus--br{bottom:2%;right:1%}
-.hero__lotus--tr svg{transform:scaleX(-1)}.hero__lotus--bl svg{transform:scaleY(-1)}
-.hero__lotus--br svg{transform:scale(-1,-1)}
+.hero__lotus{position:absolute;z-index:1;pointer-events:none}
+.hero__lotus img, .hero__lotus svg{width:clamp(160px,28vw,360px);height:auto;display:block}
+.hero__lotus--tl{top:0;left:0}
+.hero__lotus--tr{top:0;right:0}
+.hero__lotus--bl{bottom:0;left:0}
+.hero__lotus--br{bottom:0;right:0}
+.hero__lotus--tr img, .hero__lotus--tr svg{transform:scaleX(-1)}
+.hero__lotus--bl img, .hero__lotus--bl svg{transform:scaleY(-1)}
+.hero__lotus--br img, .hero__lotus--br svg{transform:scale(-1,-1)}
 
 /* Parallax lotus subtle movement via JS */
 .hero__lotus[data-parallax]{transition:transform .1s linear}
 
-.hero__corner{position:absolute;z-index:1;width:clamp(36px,7vw,90px);height:clamp(36px,7vw,90px)}
-.hero__corner--tl{top:7%;left:4%;border-top:1px solid var(--bdr);border-left:1px solid var(--bdr)}
-.hero__corner--tr{top:7%;right:4%;border-top:1px solid var(--bdr);border-right:1px solid var(--bdr)}
-.hero__corner--bl{bottom:7%;left:4%;border-bottom:1px solid var(--bdr);border-left:1px solid var(--bdr)}
-.hero__corner--br{bottom:7%;right:4%;border-bottom:1px solid var(--bdr);border-right:1px solid var(--bdr)}
+.hero__corner{position:absolute;z-index:1;width:clamp(80px,16vw,220px);height:clamp(80px,16vw,220px);pointer-events:none}
+.hero__corner--tl{top:3%;left:2.5%;border-top:1px solid var(--bdr);border-left:1px solid var(--bdr)}
+.hero__corner--tr{top:3%;right:2.5%;border-top:1px solid var(--bdr);border-right:1px solid var(--bdr)}
+.hero__corner--bl{bottom:3%;left:2.5%;border-bottom:1px solid var(--bdr);border-left:1px solid var(--bdr)}
+.hero__corner--br{bottom:3%;right:2.5%;border-bottom:1px solid var(--bdr);border-right:1px solid var(--bdr)}
 
 .hero__scroll{position:absolute;bottom:clamp(18px,3.5vh,36px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:opacity .5s ease}
 .hero__scroll-txt{font-family:var(--fsa);font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold)}
@@ -461,38 +464,379 @@ a{color:var(--gold-dk);text-decoration:none}
 @keyframes sPulse{0%,100%{opacity:.3;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
 
 /* ================================================================
+   VENUE LOCATION SECTION (MATCHING EXACT REFERENCE DESIGN)
+   ================================================================ */
+.venue-ref-section {
+    background: #FAF6F0 !important;
+    padding: clamp(56px, 7.5vh, 96px) var(--spx);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Floating Rose Petals Layer */
+.venue-petals-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.v-petal {
+    position: absolute;
+    background: radial-gradient(circle at 30% 30%, #F8BBD0 0%, #E91E63 60%, #C2185B 100%);
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    opacity: 0.65;
+    filter: drop-shadow(0 2px 6px rgba(194, 24, 91, 0.25));
+    animation: floatRosePetal 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatRosePetal {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.9);
+        opacity: 0.45;
+    }
+    50% {
+        transform: translateY(-25px) rotate(180deg) scale(1.15);
+        opacity: 0.85;
+    }
+    100% {
+        transform: translateY(18px) rotate(360deg) scale(0.95);
+        opacity: 0.5;
+    }
+}
+
+.venue-ref-container {
+    max-width: 840px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.venue-ref-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 240px;
+    margin-bottom: 24px;
+}
+
+.v-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A265, transparent);
+}
+
+.v-lotus, .v-leaf {
+    font-size: 16px;
+    color: #C4A265;
+    line-height: 1;
+}
+
+.venue-ref-title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.venue-pin-icon-3d {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.venue-ref-name {
+    font-family: var(--fb);
+    font-size: clamp(22px, 3.2vw, 34px);
+    color: #2E2219;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.venue-ref-sub-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.v-sub-dash {
+    color: #C4A265;
+    font-size: 14px;
+}
+
+.v-sub-txt {
+    font-family: var(--fsa);
+    font-size: clamp(12px, 1.5vw, 15px);
+    letter-spacing: 0.32em;
+    color: #6E5A47;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.venue-ref-btn-wrap {
+    margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.venue-ref-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: clamp(14px, 1.8vw, 18px) clamp(32px, 4.5vw, 52px);
+    border-radius: 50px;
+    background: #FAF6F0;
+    border: 1.5px solid #C4A265;
+    box-shadow: 
+        0 8px 24px rgba(196, 162, 101, 0.16),
+        0 2px 6px rgba(90, 74, 58, 0.05);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.venue-ref-pill-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 14px 32px rgba(196, 162, 101, 0.28),
+        0 4px 10px rgba(90, 74, 58, 0.08);
+    background: #FFFFFF;
+    border-color: #A38048;
+}
+
+.gmaps-pin-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.gmaps-btn-txt {
+    font-family: var(--fsa);
+    font-size: clamp(11px, 1.3vw, 13px);
+    letter-spacing: 0.28em;
+    color: #7D6337;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.gmaps-btn-arrow {
+    font-size: 16px;
+    color: #8C7247;
+    transition: transform 0.3s ease;
+}
+
+.venue-ref-pill-btn:hover .gmaps-btn-arrow {
+    transform: translateX(4px);
+}
+
+.venue-ref-leaf-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 220px;
+    margin-bottom: 20px;
+}
+
+.venue-ref-note {
+    font-family: var(--fse);
+    font-size: clamp(14px, 1.7vw, 18px);
+    color: #5A4A3A;
+    line-height: 1.75;
+}
+
+.venue-ref-note p {
+    margin: 2px 0;
+}
+
+/* ================================================================
    COUNTDOWN
    ================================================================ */
-.countdown{background:var(--cream-w);padding:clamp(60px,9vh,110px) var(--spx);text-align:center;position:relative}
-.countdown::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bdr-s),transparent)}
-.countdown::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bdr-s),transparent)}
-
-.countdown__title-main{
-    font-family:var(--fs);
-    font-size:clamp(36px,7vw,64px);
-    font-weight:400;
-    color:var(--txt-g);
-    line-height:1.2;
-    margin-bottom:clamp(4px,1vw,8px);
-    filter:drop-shadow(0 2px 12px rgba(196,162,101,.25));
-}
-.countdown__date{
-    font-family:var(--fse);
-    font-size:clamp(26px,5.5vw,44px);
-    font-weight:600;
-    color:var(--lotus-dp);
-    letter-spacing:.08em;
-    margin-bottom:clamp(6px,1.2vw,12px);
-    text-shadow:0 1px 8px rgba(107,30,46,.1);
+.countdown {
+    background: #FAF6F0 url('assets/Ivory Botanical Wedding Invitation Background.png') center / cover no-repeat !important;
+    padding: clamp(52px, 7vh, 80px) var(--spx) 16px var(--spx) !important;
+    text-align: center;
+    position: relative;
+    width: 100% !important;
 }
 
-.countdown__grid{display:flex;justify-content:center;gap:clamp(12px,4vw,44px);flex-wrap:wrap;margin-top:clamp(16px,2.5vw,28px)}
-.countdown__item{min-width:58px;position:relative;padding:clamp(12px,2vw,20px) clamp(8px,1.5vw,16px);border:1px solid var(--bdr);background:var(--cream-lt)}
-.countdown__item::before,.countdown__item::after{content:'';position:absolute;width:8px;height:8px;border-color:var(--gold);border-style:solid}
-.countdown__item::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
-.countdown__item::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
-.countdown__num{font-family:var(--fse);font-weight:400;font-size:clamp(28px,5vw,48px);color:var(--txt-g);line-height:1.1}
-.countdown__label{font-family:var(--fsa);font-weight:400;font-size:clamp(8px,.9vw,10px);letter-spacing:.35em;text-transform:uppercase;color:var(--txt2);margin-top:4px}
+.countdown-card-wrapper {
+    position: relative;
+    width: 100% !important;
+    max-width: 1240px !important;
+    margin: 0 auto;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.countdown-card-wrapper::before {
+    display: none;
+}
+
+/* ================================================================
+   COUNTDOWN SECTION (MATCHING EXACT REFERENCE DESIGN)
+   ================================================================ */
+.countdown__tag-small {
+    font-family: var(--fsa);
+    font-size: clamp(10px, 1.2vw, 12px);
+    letter-spacing: 0.35em;
+    color: #8C7247;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.countdown__title-script {
+    font-family: var(--fs);
+    font-size: clamp(34px, 4.8vw, 56px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0 0 10px 0;
+}
+
+.countdown__heart-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    max-width: 200px;
+    margin: 0 auto 12px auto;
+}
+
+.countdown__line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A265, transparent);
+}
+
+.countdown__heart {
+    color: #8C7247;
+    font-size: 13px;
+}
+
+.countdown__date-formatted {
+    font-family: var(--fse);
+    font-size: clamp(15px, 2vw, 21px);
+    letter-spacing: 0.25em;
+    color: #3A3026;
+    margin-bottom: clamp(24px, 3.5vw, 36px);
+    font-weight: 500;
+}
+
+.countdown__shield-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(10px, 1.8vw, 22px);
+    justify-content: center;
+    align-items: stretch;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.countdown__shield-card {
+    background: linear-gradient(180deg, #FDFBF7 0%, #F8F2E4 100%);
+    border: 1.5px solid #D4B475;
+    border-radius: 28px 28px 16px 16px;
+    padding: clamp(14px, 2vw, 22px) clamp(8px, 1.2vw, 14px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 8px 24px rgba(90, 74, 58, 0.06),
+        0 2px 8px rgba(196, 162, 101, 0.12),
+        inset 0 0 0 1px #FFFFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.countdown__shield-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 14px 32px rgba(90, 74, 58, 0.1),
+        0 3px 12px rgba(196, 162, 101, 0.2);
+}
+
+.countdown__icon-ring {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(196, 162, 101, 0.12);
+    border: 1px solid rgba(196, 162, 101, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.countdown__shield-num {
+    font-family: var(--fse);
+    font-size: clamp(22px, 3.2vw, 34px);
+    font-weight: 500;
+    color: #261E17;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.countdown__shield-label {
+    font-family: var(--fsa);
+    font-size: clamp(8px, 1vw, 10px);
+    letter-spacing: 0.22em;
+    color: #8C7247;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.countdown__bottom-dash {
+    width: 18px;
+    height: 1.5px;
+    background: #D4B475;
+    border-radius: 2px;
+}
+
+.countdown__bottom-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    max-width: 240px;
+    margin: clamp(20px, 3vw, 32px) auto 0 auto;
+}
+
+.countdown__leaf {
+    color: #8C7247;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    .countdown__shield-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+}
+
+
 
 /* ================================================================
    INVITATION MESSAGE
@@ -527,6 +871,219 @@ a{color:var(--gold-dk);text-decoration:none}
 .invite__with{font-family:var(--fse);font-style:italic;font-size:clamp(14px,1.6vw,18px);color:var(--txt-g);display:block;margin:4px 0}
 .invite__groom-parents{font-family:var(--fse);font-size:clamp(15px,1.8vw,20px);font-weight:500;color:var(--txt);font-style:normal;margin-top:clamp(12px,2vw,20px)}
 
+/* ROYAL SPLIT WEDDING ANNOUNCEMENT CARD (RICH & LUXURIOUS) */
+.invite--royal {
+    position: relative;
+    padding: clamp(24px, 3vh, 48px) clamp(12px, 2.5vw, 32px);
+    background: #FAF6F0;
+    overflow: hidden;
+}
+
+.invite--royal .sec__inner {
+    max-width: 1360px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Main Card Container (FULL WIDE ELEGANT CARD) */
+.invite__royal-card {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    background: #FDFBF7;
+    border-radius: 24px;
+    border: 1.5px solid #C4A265;
+    box-shadow: 
+        0 24px 70px rgba(90, 74, 58, 0.12),
+        0 4px 20px rgba(196, 162, 101, 0.16),
+        inset 0 0 0 7px #FDFBF7,
+        inset 0 0 0 8.5px rgba(196, 162, 101, 0.35);
+    padding: clamp(32px, 4.5vw, 56px) clamp(28px, 4vw, 60px);
+    z-index: 3;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.invite__royal-card::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px dashed rgba(196, 162, 101, 0.3);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+/* Card Corner Filigree Markers */
+.invite__card-corner {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-color: #C4A265;
+    border-style: solid;
+    pointer-events: none;
+    opacity: 0.75;
+    z-index: 3;
+}
+.invite__card-corner--tl { top: 16px; left: 16px; border-width: 1.5px 0 0 1.5px; }
+.invite__card-corner--tr { top: 16px; right: 16px; border-width: 1.5px 1.5px 0 0; }
+.invite__card-corner--bl { bottom: 16px; left: 16px; border-width: 0 0 1.5px 1.5px; }
+.invite__card-corner--br { bottom: 16px; right: 16px; border-width: 0 1.5px 1.5px 0; }
+
+/* 2-Column Grid Layout */
+.invite__split-grid {
+    display: grid;
+    grid-template-columns: clamp(320px, 36vw, 460px) 1fr;
+    gap: clamp(28px, 4.5vw, 64px);
+    align-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+/* Couple Column */
+.invite__couple-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invite__couple-frame {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.invite__couple-frame img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform: none;
+    filter: drop-shadow(0 8px 20px rgba(90, 74, 58, 0.12));
+}
+
+/* Details Column */
+.invite__details-column {
+    text-align: center;
+}
+
+.invite__tag {
+    font-family: var(--fsa);
+    font-size: clamp(10px, 1.2vw, 12px);
+    letter-spacing: 0.25em;
+    color: #8C7247;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.invite__quote-box {
+    position: relative;
+    max-width: 440px;
+    margin: 0 auto 10px;
+}
+
+.invite__quote-txt {
+    font-family: var(--fse);
+    font-style: italic;
+    font-size: clamp(15px, 1.8vw, 19px);
+    color: #6B1E2E;
+    line-height: 1.5;
+}
+
+.invite__gold-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px auto;
+    max-width: 240px;
+    color: #C4A265;
+}
+
+.invite__divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A265, transparent);
+}
+
+.invite__divider-symbol {
+    font-size: 13px;
+}
+
+.invite__name {
+    font-family: var(--fs);
+    font-size: clamp(32px, 4.8vw, 56px);
+    font-weight: 400;
+    color: var(--txt-g);
+    white-space: nowrap;
+    line-height: 1.15;
+    display: block;
+    filter: drop-shadow(0 1px 12px rgba(196,162,101,.14));
+}
+
+.invite__amp-crest {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(196, 162, 101, 0.12);
+    border: 1px solid rgba(196, 162, 101, 0.4);
+    margin: 4px 0;
+}
+
+.invite__amp-symbol {
+    font-family: var(--fse);
+    font-style: italic;
+    font-size: 20px;
+    color: #8C7247;
+}
+
+.invite__blessings {
+    font-family: var(--fse);
+    font-size: clamp(13px, 1.5vw, 16px);
+    color: #4A423A;
+    font-style: italic;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.invite__lotus-icon {
+    font-style: normal;
+    font-size: 15px;
+}
+
+/* Mobile Responsiveness (< 768px) */
+@media (max-width: 767px) {
+    .invite__split-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .invite__couple-frame {
+        max-width: 240px;
+    }
+
+    .invite__name {
+        white-space: normal;
+    }
+}
+
 /* Bride & Groom side-by-side layout */
 .invite__couple-row{
     display:flex;
@@ -558,8 +1115,230 @@ a{color:var(--gold-dk);text-decoration:none}
     margin-top:8px;
     line-height:1.6;
 }
+
 @media(max-width:540px){
     .invite__couple-row{flex-direction:column;align-items:center;gap:clamp(16px,3vw,24px)}
+}
+
+/* ================================================================
+   ROYAL FAMILY ANNOUNCEMENT DESIGN
+   ================================================================ */
+.invite__family-wrap {
+    text-align: center;
+    padding: clamp(10px, 2vw, 24px) clamp(10px, 2vw, 20px);
+}
+
+.invite__blessings-title {
+    font-family: var(--fse);
+    font-style: italic;
+    font-size: clamp(17px, 2.3vw, 24px);
+    color: #8C7247;
+    margin-bottom: clamp(20px, 3.5vw, 32px);
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.invite__blessings-title::before,
+.invite__blessings-title::after {
+    content: '';
+    width: clamp(24px, 5vw, 50px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A265, transparent);
+}
+
+.invite__person-block {
+    margin: clamp(12px, 2vw, 20px) 0;
+}
+
+.invite__person-title {
+    font-family: var(--fs);
+    font-size: clamp(40px, 6.5vw, 68px);
+    line-height: 1.15;
+    margin: 0 0 6px 0;
+    font-weight: 400;
+}
+
+.invite__parents-desc {
+    font-family: var(--fse);
+    font-size: clamp(14px, 1.8vw, 19px);
+    color: #4A423A;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.invite__center-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: clamp(16px, 2.5vw, 24px) auto;
+    max-width: 220px;
+    color: #C4A265;
+}
+
+.invite__divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A265, transparent);
+}
+
+.invite__divider-symbol {
+    font-size: 16px;
+}
+
+/* ================================================================
+   SECTION 8: SIDE-BY-SIDE DUAL ARCH PILLARS DESIGN
+   ================================================================ */
+.family-dual-header-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 8px 26px;
+    background: rgba(196, 162, 101, 0.12);
+    border: 1px solid rgba(196, 162, 101, 0.4);
+    border-radius: 50px;
+    margin: 0 auto clamp(20px, 3.5vw, 32px) auto;
+    box-shadow: 0 4px 16px rgba(196, 162, 101, 0.1);
+}
+
+.family-dual-header-txt {
+    font-family: var(--fse);
+    font-style: italic;
+    font-size: clamp(16px, 2.2vw, 22px);
+    color: #8C7247;
+    margin: 0;
+    font-weight: 500;
+}
+
+.family-dual-pillars {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: clamp(14px, 2.5vw, 28px);
+    max-width: 1040px;
+    margin: clamp(16px, 3vw, 28px) auto 0;
+    position: relative;
+    z-index: 3;
+}
+
+.family-pillar-card {
+    background: linear-gradient(180deg, #FDFBF7 0%, #F8F2E6 100%);
+    border: 1.5px solid #C4A265;
+    border-radius: 100px 100px 24px 24px;
+    padding: clamp(36px, 4.5vw, 54px) clamp(18px, 3vw, 32px) clamp(28px, 4vw, 40px);
+    text-align: center;
+    position: relative;
+    box-shadow: 
+        0 16px 48px rgba(90, 74, 58, 0.08),
+        0 2px 12px rgba(196, 162, 101, 0.12),
+        inset 0 0 0 6px #FDFBF7,
+        inset 0 0 0 7.5px rgba(196, 162, 101, 0.3);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.family-pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 22px 56px rgba(90, 74, 58, 0.12),
+        0 4px 18px rgba(196, 162, 101, 0.22);
+}
+
+.family-pillar-card::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px dashed rgba(196, 162, 101, 0.35);
+    border-radius: 88px 88px 16px 16px;
+    pointer-events: none;
+}
+
+.family-pillar-badge {
+    font-family: var(--fsa);
+    font-size: clamp(10px, 1.1vw, 12px);
+    letter-spacing: 0.2em;
+    color: #8C7247;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 4px 14px;
+    background: rgba(196, 162, 101, 0.14);
+    border: 1px solid rgba(196, 162, 101, 0.35);
+    border-radius: 30px;
+    margin-bottom: clamp(14px, 2vw, 22px);
+    position: relative;
+    z-index: 3;
+}
+
+.family-pillar-name {
+    font-family: var(--fs);
+    font-size: clamp(38px, 5.5vw, 60px);
+    line-height: 1.15;
+    margin: 0 0 8px 0;
+    font-weight: 400;
+    filter: drop-shadow(0 2px 8px rgba(196, 162, 101, 0.18));
+}
+
+.family-pillar-parents {
+    font-family: var(--fse);
+    font-size: clamp(14px, 1.7vw, 18px);
+    color: #4A423A;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.family-dual-center-knot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.family-dual-knot-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #D4B475, #B08D4C);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fse);
+    font-style: italic;
+    font-size: 24px;
+    box-shadow: 0 6px 20px rgba(176, 141, 76, 0.35);
+    border: 2px solid #FDFBF7;
+}
+
+.family-dual-msg-card {
+    max-width: 920px;
+    margin: clamp(24px, 4vw, 40px) auto 0;
+    background: linear-gradient(145deg, rgba(255, 254, 250, 0.95), rgba(248, 242, 230, 0.95));
+    border: 1.5px solid rgba(196, 162, 101, 0.4);
+    border-radius: 24px;
+    padding: clamp(24px, 4vw, 40px) clamp(20px, 4vw, 40px);
+    box-shadow: 0 10px 32px rgba(90, 74, 58, 0.06);
+    text-align: center;
+    position: relative;
+    z-index: 3;
+}
+
+@media (max-width: 767px) {
+    .family-dual-pillars {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .family-dual-center-knot {
+        margin: -8px 0;
+    }
 }
 
 /* ================================================================
@@ -606,28 +1385,447 @@ a{color:var(--gold-dk);text-decoration:none}
 /* ================================================================
    EVENTS
    ================================================================ */
-.events{background:var(--ivory);text-align:center;position:relative;overflow:visible}
-
-.events__card{transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;}
-.events__card:hover{transform: translateY(-5px);box-shadow:0 12px 32px rgba(107,30,46,0.08);}
-.events__card{
-    position:relative;background:var(--cream-lt);border:1px solid var(--bdr-s);
-    padding:clamp(32px,5vw,60px) clamp(28px,4.5vw,72px);
-    max-width:580px;margin:0 auto;
-    box-shadow:0 4px 20px var(--sh-s);
+.events {
+    background: var(--ivory) !important;
+    padding: clamp(48px, 7vh, 88px) 5px !important;
+    text-align: center;
+    position: relative;
+    overflow: visible;
 }
-.events__card .c-orn{position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid;pointer-events:none}
-.events__card .c-orn--tl{top:6px;left:6px;border-width:1px 0 0 1px}
-.events__card .c-orn--tr{top:6px;right:6px;border-width:1px 1px 0 0}
-.events__card .c-orn--bl{bottom:6px;left:6px;border-width:0 0 1px 1px}
-.events__card .c-orn--br{bottom:6px;right:6px;border-width:0 1px 1px 0}
 
-.events__name{font-family:var(--fs);font-size:clamp(28px,5vw,44px);color:var(--txt-g);margin-bottom:clamp(12px,2vw,24px)}
-.events__row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:clamp(8px,1.2vw,14px)}
-.events__icon{flex-shrink:0;width:18px;height:18px;color:var(--gold)}
-.events__text{font-family:var(--fse);font-size:clamp(14px,1.5vw,17px);font-weight:400;color:var(--txt)}
-.events__text--bold{font-weight:600;color:var(--txt-dk)}
-.events__text--sub{font-size:clamp(12px,1.3vw,15px);color:var(--txt2);font-style:italic}
+/* ================================================================
+   ENGAGEMENT FLORAL BACKGROUND CARD DESIGN
+   ================================================================ */
+.engagement-card {
+    position: relative;
+    width: calc(100% - 10px) !important;
+    max-width: 100% !important;
+    margin: clamp(24px, 4vw, 48px) auto 0;
+    background: url('assets/engagement_floral_bg.png') center / cover no-repeat !important;
+    border-radius: 24px;
+    border: 1.5px solid rgba(196, 162, 101, 0.45);
+    box-shadow: 0 16px 48px rgba(90, 74, 58, 0.12);
+    padding: clamp(36px, 5vw, 60px) clamp(20px, 4vw, 48px);
+    text-align: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.engagement-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 56px rgba(90, 74, 58, 0.16);
+}
+
+/* Hidden inner frame lines & corners */
+.engagement-card__inner-border,
+.engagement-card__corner {
+    display: none !important;
+}
+
+.engagement-card__header {
+    position: relative;
+    z-index: 3;
+    margin-bottom: clamp(24px, 4vw, 36px);
+}
+
+.engagement-card__ring-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(196, 162, 101, 0.16);
+    border: 1px solid rgba(196, 162, 101, 0.4);
+    font-size: 20px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 16px rgba(196, 162, 101, 0.15);
+}
+
+.engagement-card__title {
+    font-family: var(--fs);
+    font-size: clamp(36px, 6vw, 60px);
+    line-height: 1.15;
+    margin: 2px 0;
+    font-weight: 400;
+}
+
+.engagement-card__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px auto 0;
+    max-width: 200px;
+    color: #C4A265;
+}
+
+.engagement-card__grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0;
+    position: relative;
+    z-index: 3;
+}
+
+.engagement-pillar {
+    padding: clamp(18px, 2.4vw, 26px) clamp(10px, 1.6vw, 18px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 16px;
+    border: 1px solid rgba(196, 162, 101, 0.3);
+    box-shadow: 0 4px 18px rgba(90, 74, 58, 0.05);
+    margin: 0 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.engagement-pillar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(196, 162, 101, 0.18);
+}
+
+.engagement-pillar__icon-ring {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(196, 162, 101, 0.14);
+    border: 1px solid rgba(196, 162, 101, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.engagement-pillar__label {
+    font-family: var(--fsa);
+    font-size: clamp(10px, 1.1vw, 11px);
+    letter-spacing: 0.25em;
+    color: #C4A265;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.engagement-pillar__val {
+    font-family: var(--fse);
+    font-size: clamp(14px, 1.6vw, 18px);
+    color: #1B2A4A;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.engagement-divider {
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(196, 162, 101, 0.6), transparent);
+    align-self: stretch;
+    margin: 10px 0;
+}
+
+@media (max-width: 767px) {
+    .engagement-card__grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .engagement-pillar {
+        margin: 0;
+        padding: 16px 14px;
+    }
+    .engagement-divider {
+        display: none;
+    }
+}
+
+/* ================================================================
+   MUHURTHAM CARD (PREMIUM ELEGANT TRADITIONAL DESIGN)
+   ================================================================ */
+/* ================================================================
+   MUHURTHAM GLASS-MANDALA CENTERPIECE DESIGN
+   ================================================================ */
+.muhurtham-centerpiece {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto clamp(36px, 5vw, 64px);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: clamp(20px, 3vw, 40px) clamp(12px, 2vw, 24px);
+    text-align: center;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+/* Central Gold Mandala SVG Watermark */
+.muhurtham-centerpiece__mandala-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(340px, 60vw, 560px);
+    height: clamp(340px, 60vw, 560px);
+    pointer-events: none;
+    opacity: 0.95;
+    z-index: 0;
+}
+
+/* Corner Watercolor Florals */
+.muhurtham-centerpiece__floral {
+    position: absolute;
+    width: clamp(140px, 18vw, 220px);
+    height: clamp(140px, 18vw, 220px);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.92;
+}
+.muhurtham-centerpiece__floral img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+.muhurtham-centerpiece__floral--tl { top: -20px; left: -20px; }
+.muhurtham-centerpiece__floral--br { bottom: -20px; right: -20px; }
+
+/* Hidden card frame lines & corners */
+.muhurtham-centerpiece__inner-frame,
+.muhurtham-centerpiece__corner {
+    display: none !important;
+}
+
+/* Side Half-Mandala Ornaments for Muhurtham Section (Flush to Screen Edges) */
+.sec.events {
+    position: relative;
+    overflow: hidden;
+    padding-top: 0 !important;
+}
+
+.muhurtham-side-img {
+    position: absolute;
+    top: 28%;
+    width: clamp(160px, 24vw, 360px);
+    height: auto;
+    pointer-events: none;
+    z-index: 5;
+    filter: drop-shadow(0 6px 20px rgba(90, 74, 58, 0.08));
+}
+
+.muhurtham-side-img--right {
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.muhurtham-side-img--left {
+    left: 0;
+    transform: translateY(-50%) scaleX(-1);
+}
+
+.muhurtham-side-img img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 991px) {
+    .muhurtham-side-img {
+        top: 24%;
+        width: clamp(110px, 22vw, 200px);
+    }
+}
+@media (max-width: 767px) {
+    .muhurtham-side-img {
+        top: 25%;
+        width: clamp(180px, 45vw, 280px);
+        opacity: 0.22;
+        z-index: 1;
+        filter: none;
+    }
+}
+
+/* Header Content */
+.muhurtham-centerpiece__header {
+    position: relative;
+    z-index: 3;
+    margin-bottom: clamp(28px, 4.5vw, 40px);
+}
+
+.muhurtham-centerpiece__lotus-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(196, 162, 101, 0.12);
+    border: 1px solid rgba(196, 162, 101, 0.35);
+    font-size: 22px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 16px rgba(196, 162, 101, 0.15);
+}
+
+.muhurtham-centerpiece__title {
+    font-family: var(--fb);
+    font-size: clamp(30px, 4.8vw, 46px);
+    color: #1B2A4A;
+    margin: 4px 0 2px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 10px rgba(27, 42, 74, 0.08);
+}
+
+.muhurtham-centerpiece__subtitle {
+    font-family: var(--fsa);
+    font-size: clamp(10px, 1.2vw, 12px);
+    letter-spacing: 0.35em;
+    color: #C4A265;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.muhurtham-centerpiece__gold-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 14px auto 0;
+    max-width: 220px;
+    color: #C4A265;
+}
+
+.muhurtham-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A265, transparent);
+}
+
+.muhurtham-symbol {
+    font-size: 13px;
+}
+
+/* Details Grid: 3 Glass Pillars */
+.muhurtham-centerpiece__grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0;
+    position: relative;
+    z-index: 3;
+    margin-bottom: clamp(28px, 4.5vw, 40px);
+}
+
+.muhurtham-pillar {
+    padding: clamp(16px, 2.2vw, 24px) clamp(12px, 1.8vw, 20px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 18px;
+    border: 1px solid rgba(196, 162, 101, 0.22);
+    box-shadow: 0 4px 16px rgba(90, 74, 58, 0.04);
+    margin: 0 6px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.muhurtham-pillar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(196, 162, 101, 0.15);
+}
+
+.muhurtham-pillar__icon-ring {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(196, 162, 101, 0.12);
+    border: 1px solid rgba(196, 162, 101, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.muhurtham-pillar__label {
+    font-family: var(--fsa);
+    font-size: clamp(10px, 1.1vw, 11px);
+    letter-spacing: 0.25em;
+    color: #C4A265;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.muhurtham-pillar__val {
+    font-family: var(--fse);
+    font-size: clamp(15px, 1.7vw, 19px);
+    color: #1B2A4A;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.muhurtham-pillar-divider {
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(196, 162, 101, 0.6), transparent);
+    align-self: stretch;
+    margin: 12px 0;
+}
+
+/* Footer Blessings Container */
+.muhurtham-centerpiece__footer {
+    position: relative;
+    z-index: 3;
+    padding-top: 8px;
+}
+
+.muhurtham-centerpiece__footer-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    color: #C4A265;
+}
+
+.muhurtham-centerpiece__blessings-text {
+    font-family: var(--fse);
+    font-style: italic;
+    font-size: clamp(14px, 1.6vw, 18px);
+    color: #1B2A4A;
+    line-height: 1.65;
+    font-weight: 500;
+}
+
+/* Mobile Responsiveness (< 768px) */
+@media (max-width: 767px) {
+    .muhurtham-centerpiece {
+        padding: 32px 18px;
+        border-radius: 24px;
+    }
+
+    .muhurtham-centerpiece__grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    
+    .muhurtham-pillar {
+        margin: 0;
+        padding: 16px 14px;
+    }
+
+    .muhurtham-pillar-divider {
+        display: none;
+    }
+}
 
 /* ================================================================
    VENUE
@@ -753,13 +1951,384 @@ a{color:var(--gold-dk);text-decoration:none}
 @media (min-width: 768px) {
     .timeline::before { left: 50%; transform: translateX(-50%); }
     .timeline__item { width: 50%; padding: 0 45px; }
-    /* Odd items on the RIGHT (like the image) */
     .timeline__item:nth-child(odd) { left: 50%; text-align: left; }
     .timeline__item:nth-child(odd) .timeline__dot { left: -5px; }
-    
-    /* Even items on the LEFT (like the image) */
     .timeline__item:nth-child(even) { left: 0; text-align: right; }
     .timeline__item:nth-child(even) .timeline__dot { left: auto; right: -6px; }
+}
+
+/* ================================================================
+   OUR JOURNEY ZIG-ZAG ANIMATED TIMELINE (EXACT MATCH TO REFERENCE IMAGE)
+   ================================================================ */
+.journey-sec {
+    position: relative;
+    padding: clamp(60px, 10vh, 120px) 0;
+    background: #FAF6F0;
+    overflow: hidden;
+}
+
+.journey-sec::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(212, 184, 122, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(212, 184, 122, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+/* Floral Corner Accents */
+.journey-corner {
+    position: absolute;
+    width: clamp(130px, 17vw, 240px);
+    height: clamp(130px, 17vw, 240px);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.92;
+}
+
+.journey-corner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.journey-corner--tl {
+    top: -12px;
+    left: -20px;
+}
+
+.journey-corner--tr {
+    top: -12px;
+    right: -20px;
+}
+
+.journey-corner--bl {
+    bottom: -12px;
+    left: -20px;
+}
+
+.journey-corner--br {
+    bottom: -12px;
+    right: -20px;
+}
+
+.journey-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+    padding: 0 20px;
+}
+
+/* Header Flourish */
+.journey-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 10px auto 20px;
+    max-width: 320px;
+}
+
+.journey-flourish__line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #8C7247, transparent);
+}
+
+.journey-flourish__heart {
+    font-size: 16px;
+    color: #8C7247;
+    line-height: 1;
+}
+
+.journey-subtitle {
+    font-family: var(--fsa);
+    font-size: clamp(10px, 1.2vw, 12px);
+    letter-spacing: 0.28em;
+    color: #8C7247;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+
+/* Timeline Layout */
+.journey-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 6vw, 80px);
+}
+
+/* Central Golden Vertical Line */
+.journey-timeline__line {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    background: linear-gradient(180deg, 
+        rgba(196,162,101,0.1) 0%, 
+        rgba(196,162,101,0.7) 10%, 
+        rgba(196,162,101,0.7) 90%, 
+        rgba(196,162,101,0.1) 100%);
+    z-index: 1;
+}
+
+/* Timeline Item (Zig-Zag Row) */
+.journey-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(30px, 5vw, 70px);
+    align-items: center;
+    width: 100%;
+}
+
+/* Heart Node on Center Line */
+.journey-node {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    background: #FAF6F0;
+    border: 1px stroke #C4A265;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #8C7247;
+    z-index: 4;
+    box-shadow: 0 0 0 5px #FAF6F0;
+}
+
+/* Content Box (Text side) */
+.journey-content {
+    padding: 10px 0;
+    z-index: 3;
+}
+
+.journey-item--odd .journey-content {
+    text-align: left;
+    padding-left: clamp(10px, 2vw, 30px);
+}
+
+.journey-item--even .journey-content {
+    text-align: left;
+    padding-right: clamp(10px, 2vw, 30px);
+}
+
+/* Date Badge */
+.journey-date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--fsa);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    font-weight: 500;
+    color: #7D6337;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.journey-cal-icon {
+    stroke: #8C7247;
+    flex-shrink: 0;
+}
+
+/* Title & Description */
+.journey-title {
+    font-family: 'Playfair Display', var(--fse);
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 500;
+    color: #2A241E;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.journey-title__heart, .journey-title__ring, .journey-title__icon {
+    font-size: 0.85em;
+    margin-left: 4px;
+}
+
+.journey-desc {
+    font-family: var(--fse);
+    font-size: clamp(14px, 1.4vw, 16px);
+    font-style: italic;
+    color: #554C43;
+    line-height: 1.65;
+}
+
+.journey-desc strong {
+    color: #8C6A32;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Media Box (Illustration side) */
+.journey-media {
+    z-index: 3;
+    position: relative;
+}
+
+.journey-img-frame {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(90, 74, 58, 0.08);
+    background: #FFF;
+    border: 1px solid rgba(196,162,101,0.25);
+    transition: transform 0.6s var(--e), box-shadow 0.6s var(--e);
+}
+
+.journey-img-frame:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(90, 74, 58, 0.14);
+}
+
+.journey-img-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 17px;
+}
+
+.journey-img-frame--script {
+    position: relative;
+}
+
+.journey-img-overlay-text {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    text-align: right;
+    font-family: var(--fs);
+    font-size: clamp(20px, 3vw, 26px);
+    color: #4A3A22;
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(255,255,255,0.9);
+}
+
+.journey-img-overlay-text span {
+    display: block;
+}
+
+.journey-img-overlay-text span:nth-child(2) {
+    font-family: var(--fse);
+    font-style: italic;
+    font-size: 14px;
+}
+
+/* Footer Text */
+.journey-footer-text {
+    font-family: var(--fsa);
+    font-size: clamp(10px, 1.2vw, 12px);
+    letter-spacing: 0.28em;
+    color: #8C7247;
+    text-transform: uppercase;
+    margin-top: 24px;
+}
+
+.journey-heart-dot {
+    font-size: 10px;
+    color: #8C7247;
+}
+
+/* ================================================================
+   SCROLL REVEAL ANIMATIONS (LEFT TO RIGHT TO LEFT mathi mathi)
+   ================================================================ */
+.rv-slide-right {
+    opacity: 0;
+    transform: translateX(-70px);
+    filter: blur(6px);
+    transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.rv-slide-left {
+    opacity: 0;
+    transform: translateX(70px);
+    filter: blur(6px);
+    transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.rv-slide-right.vis, .rv-slide-left.vis {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+}
+
+/* Mobile Responsiveness (< 768px) */
+@media (max-width: 767px) {
+    .journey-timeline__line {
+        left: 20px;
+        transform: none;
+    }
+    
+    .journey-item {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-left: 44px;
+    }
+    
+    .journey-node {
+        left: 20px;
+        top: 20px;
+        transform: translate(-50%, 0);
+    }
+    
+    .journey-item--even .journey-content,
+    .journey-item--odd .journey-content {
+        order: 1 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .journey-item--even .journey-media,
+    .journey-item--odd .journey-media {
+        order: 2 !important;
+    }
+
+    .journey-content:not(.vis) {
+        opacity: 0 !important;
+        transform: translateX(-50px) !important;
+        filter: blur(6px) !important;
+    }
+    .journey-content.vis {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        filter: blur(0) !important;
+        transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                    transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    filter 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    }
+
+    .journey-media:not(.vis) {
+        opacity: 0 !important;
+        transform: translateX(50px) !important;
+        filter: blur(6px) !important;
+    }
+    .journey-media.vis {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        filter: blur(0) !important;
+        transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                    transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    filter 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    }
 }
 
 /* Calendar */
@@ -983,9 +2552,9 @@ a{color:var(--gold-dk);text-decoration:none}
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(300px, 80vw, 800px);
+    width: clamp(350px, 85vw, 850px);
     height: auto;
-    opacity: 0.05;
+    opacity: 0.22;
     pointer-events: none;
     animation: rotateMandala 60s linear infinite;
     z-index: 0;
@@ -993,6 +2562,104 @@ a{color:var(--gold-dk);text-decoration:none}
 @keyframes rotateMandala {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Floating Rose Pink Hearts Container */
+.hero__floating-hearts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.rose-heart {
+    position: absolute;
+    bottom: -40px;
+    color: #E85B7B;
+    font-size: clamp(16px, 2.2vw, 28px);
+    opacity: 0;
+    user-select: none;
+    animation: floatRoseHeart 8.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    filter: drop-shadow(0 3px 8px rgba(232, 91, 123, 0.4));
+}
+
+@keyframes floatRoseHeart {
+    0% {
+        transform: translateY(0) scale(0.6) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.85;
+    }
+    50% {
+        transform: translateY(-42vh) translateX(30px) scale(1.15) rotate(18deg);
+        opacity: 0.9;
+    }
+    85% {
+        opacity: 0.65;
+    }
+    100% {
+        transform: translateY(-88vh) translateX(-25px) scale(0.8) rotate(-18deg);
+        opacity: 0;
+    }
+}
+
+.hero__ganesh-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: clamp(10px, 1.8vw, 18px);
+}
+.hero__ganesh-wrap::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    border: 1px stroke rgba(196, 162, 101, 0.3);
+    background: radial-gradient(circle, rgba(212, 184, 122, 0.3) 0%, transparent 70%);
+    animation: pulseAura 4s ease-in-out infinite alternate;
+}
+@keyframes pulseAura {
+    0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(1.18); opacity: 1; }
+}
+
+.hero__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: clamp(4px, 0.8vh, 10px) auto;
+    max-width: 260px;
+    color: #C4A265;
+}
+.hero__divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A265, transparent);
+}
+.hero__divider-symbol {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.hero__date-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 20px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(245, 235, 215, 0.95), rgba(235, 215, 175, 0.8));
+    border: 1px solid rgba(196, 162, 101, 0.5);
+    box-shadow: 0 4px 15px rgba(196, 162, 101, 0.18);
+    font-family: var(--fse);
+    font-size: clamp(13px, 1.6vw, 18px);
+    font-weight: 500;
+    color: #7D6337;
+    letter-spacing: 0.12em;
+    margin-top: clamp(6px, 1vh, 12px);
 }
 .hero__bokeh {
     position: absolute;
@@ -1296,6 +2963,224 @@ a{color:var(--gold-dk);text-decoration:none}
     transform: translateY(-3px);
     box-shadow: 0 6px 16px var(--sh-l);
 }
+
+/* ================================================================
+   GLOBAL MICRO-ANIMATIONS & HIGH-ENGAGEMENT HOVER EFFECTS
+   ================================================================ */
+/* Gentle Bobbing Float for Icons & Badges */
+.engagement-card__ring-badge,
+.muhurtham-centerpiece__lotus-badge,
+.family-dual-knot-badge,
+.venue-pin-badge,
+.muhurtham-pillar__icon-ring,
+.engagement-pillar__icon-ring,
+.countdown__icon-ring {
+    animation: gentleBob 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes gentleBob {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-4px) scale(1.04); }
+}
+
+/* Luxury Interactive Card Hover Effects */
+.family-pillar-card,
+.engagement-pillar,
+.muhurtham-pillar,
+.countdown__shield-card,
+.invite__royal-card,
+.family-dual-msg-card {
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+.family-pillar-card:hover,
+.engagement-pillar:hover,
+.muhurtham-pillar:hover,
+.countdown__shield-card:hover,
+.invite__royal-card:hover,
+.family-dual-msg-card:hover {
+    transform: translateY(-5px) scale(1.015);
+    box-shadow: 
+        0 18px 44px rgba(196, 162, 101, 0.22),
+        0 6px 16px rgba(90, 74, 58, 0.08) !important;
+    border-color: rgba(196, 162, 101, 0.6) !important;
+}
+
+/* Pulsing Filigree Divider Glow */
+.countdown__line,
+.hero__divider-line,
+.muhurtham-line,
+.v-line,
+.orn__line {
+    background: linear-gradient(90deg, transparent, #D4B475, transparent);
+    animation: lineGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes lineGlow {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; filter: drop-shadow(0 0 4px rgba(196, 162, 101, 0.6)); }
+}
+
+/* Shimmer Sheen Sweep on Pill Buttons */
+.venue-ref-pill-btn,
+.hero__date-pill,
+.jump-to-top {
+    position: relative;
+    overflow: hidden;
+}
+
+.venue-ref-pill-btn::after,
+.hero__date-pill::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+    transform: rotate(25deg);
+    animation: buttonSheen 4s ease-in-out infinite;
+}
+
+@keyframes buttonSheen {
+    0%, 70% { left: -60%; }
+    100% { left: 140%; }
+}
+
+/* ================================================================
+   MOBILE ULTRA-POLISH & RESPONSIVE REFINEMENT (< 768px)
+   ================================================================ */
+@media (max-width: 767px) {
+    /* Hero lotus corner image sizing for mobile */
+    .hero__lotus img, .hero__lotus svg {
+        width: clamp(100px, 26vw, 160px) !important;
+    }
+    .hero__corner {
+        width: clamp(50px, 15vw, 100px) !important;
+        height: clamp(50px, 15vw, 100px) !important;
+    }
+    .hero__ganesh-wrap::before {
+        width: 90px;
+        height: 90px;
+    }
+
+    /* Section spacing on mobile */
+    .sec {
+        padding: clamp(36px, 6vh, 60px) clamp(14px, 4vw, 20px) !important;
+    }
+    
+    /* Journey Timeline mobile ordering & animations */
+    .journey-sec {
+        padding: 36px 12px !important;
+    }
+    .journey-timeline {
+        gap: 32px !important;
+    }
+    .journey-subtitle {
+        margin-bottom: 30px !important;
+        letter-spacing: 0.18em !important;
+    }
+    .journey-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    /* Mobile: Text ALWAYS First (order: 1) and slides LEFT to RIGHT */
+    .journey-content {
+        order: 1 !important;
+        width: 100% !important;
+        transform: translateX(-40px) !important;
+        opacity: 0 !important;
+        transition: opacity 1s var(--e), transform 1s var(--e) !important;
+    }
+    .journey-content.vis {
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+    }
+    /* Mobile: Photo ALWAYS Second (order: 2) and slides RIGHT to LEFT */
+    .journey-media {
+        order: 2 !important;
+        width: 100% !important;
+        margin-top: 14px !important;
+        transform: translateX(40px) !important;
+        opacity: 0 !important;
+        transition: opacity 1s var(--e), transform 1s var(--e) !important;
+    }
+    .journey-media.vis {
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+    }
+    .journey-img-frame {
+        max-width: 100% !important;
+        border-radius: 14px !important;
+    }
+    
+    /* Wedding Announcement Card mobile layout */
+    .invite__royal-card {
+        padding: 22px 14px !important;
+        border-radius: 20px !important;
+    }
+    .invite__couple-frame {
+        max-width: 170px !important;
+        height: 220px !important;
+        border-radius: 80px 80px 16px 16px !important;
+    }
+    .invite__quote-txt {
+        font-size: 15px !important;
+    }
+    .invite__top-garland {
+        width: 65% !important;
+        max-width: 260px !important;
+    }
+
+    /* Wedding Reception Card mobile grid adjustments */
+    .engagement-card {
+        padding: 24px 14px !important;
+        border-radius: 18px !important;
+    }
+    .engagement-card__grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    .engagement-divider {
+        width: 60% !important;
+        height: 1px !important;
+        margin: 6px auto !important;
+        background: linear-gradient(90deg, transparent, rgba(196,162,101,0.5), transparent) !important;
+    }
+
+    /* Venue Location Section mobile adjustment */
+    .venue-ref-section {
+        padding: 40px 14px !important;
+    }
+    .venue-ref-pill-btn {
+        padding: 12px 24px !important;
+        width: 100% !important;
+        max-width: 320px !important;
+    }
+    .v-sub-txt {
+        letter-spacing: 0.18em !important;
+        font-size: 11px !important;
+    }
+
+    /* Muhurtham centerpiece grid mobile layout */
+    .muhurtham-centerpiece__grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    .muhurtham-pillar-divider {
+        width: 60% !important;
+        height: 1px !important;
+        margin: 6px auto !important;
+    }
+
+    /* Countdown shield grid 2x2 layout on mobile */
+    .countdown__shield-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        max-width: 360px !important;
+    }
+}
 </style>
 </head>
 
@@ -1319,7 +3204,7 @@ a{color:var(--gold-dk);text-decoration:none}
     <!-- The card -->
     <div class="envelope__card">
         <p class="guest-welcome guest-welcome__envelope" id="guestWelcomeEnvelope"></p>
-        <p class="envelope__card-title">Engagement</p>
+        <p class="envelope__card-title">Wedding Reception</p>
 
         <div class="orn" style="max-width:180px;margin-top:0;margin-bottom:clamp(12px,2vw,20px)">
             <span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span>
@@ -1427,33 +3312,71 @@ a{color:var(--gold-dk);text-decoration:none}
         <div class="hero__bokeh"></div>
         <canvas id="heroParticles" class="hero__particles"></canvas>
         <div class="hero__shimmer" aria-hidden="true"></div>
-        <div class="hero__lotus hero__lotus--tl" data-parallax aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
-        <div class="hero__lotus hero__lotus--tr" data-parallax aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
-        <div class="hero__lotus hero__lotus--bl" data-parallax aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
-        <div class="hero__lotus hero__lotus--br" data-parallax aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
+        <div class="hero__lotus hero__lotus--tl" data-parallax aria-hidden="true"><img src="assets/Untitled_design-removebg-preview.png" alt="Corner Ornament"></div>
+        <div class="hero__lotus hero__lotus--br" data-parallax aria-hidden="true"><img src="assets/Untitled_design-removebg-preview.png" alt="Corner Ornament"></div>
         
-        <div class="hero__corner hero__corner--tl" aria-hidden="true"></div>
         <div class="hero__corner hero__corner--tr" aria-hidden="true"></div>
         <div class="hero__corner hero__corner--bl" aria-hidden="true"></div>
         <div class="hero__corner hero__corner--br" aria-hidden="true"></div>
 
+        <!-- Floating Rose Pink Hearts Background -->
+        <div class="hero__floating-hearts" aria-hidden="true">
+            <span class="rose-heart" style="left: 10%; animation-delay: 0s; animation-duration: 7s;">💕</span>
+            <span class="rose-heart" style="left: 22%; animation-delay: 2.2s; animation-duration: 9s; font-size: 24px;">💖</span>
+            <span class="rose-heart" style="left: 36%; animation-delay: 4.5s; animation-duration: 6.5s;">💗</span>
+            <span class="rose-heart" style="left: 50%; animation-delay: 1.1s; animation-duration: 8.5s; font-size: 26px;">❤️</span>
+            <span class="rose-heart" style="left: 64%; animation-delay: 3.4s; animation-duration: 7.5s;">💕</span>
+            <span class="rose-heart" style="left: 78%; animation-delay: 5.8s; animation-duration: 9.5s; font-size: 24px;">💖</span>
+            <span class="rose-heart" style="left: 88%; animation-delay: 1.8s; animation-duration: 8s;">💗</span>
+            <span class="rose-heart" style="left: 15%; animation-delay: 5.1s; animation-duration: 10s; font-size: 20px;">💓</span>
+            <span class="rose-heart" style="left: 42%; animation-delay: 3.9s; animation-duration: 7.8s;">💕</span>
+            <span class="rose-heart" style="left: 72%; animation-delay: 6.2s; animation-duration: 8.8s; font-size: 22px;">💗</span>
+        </div>
+
         <div class="hero__content">
-            <div class="rv" aria-hidden="true" style="margin-bottom:clamp(12px,2.5vw,24px)">
-                <!-- Traditional Tamil wedding visual (using existing vinayagar) -->
-                <img src="assets/vinayagar.png" alt="Vinayagar" style="width:clamp(40px,5.5vw,60px);margin:0 auto;mix-blend-mode:multiply">
+            <div class="rv" aria-hidden="true">
+                <div class="hero__ganesh-wrap">
+                    <img src="assets/vinayagar.png" alt="Vinayagar" style="width:clamp(80px,11vw,130px);margin:0 auto;mix-blend-mode:multiply;position:relative;z-index:2">
+                </div>
             </div>
-            <div class="rv rv-d1" style="margin-bottom: clamp(10px, 2vw, 20px);">
+
+            <!-- Top Filigree Divider -->
+            <div class="hero__divider rv rv-d1">
+                <span class="hero__divider-line"></span>
+                <span class="hero__divider-symbol">✨</span>
+                <span class="hero__divider-line"></span>
+            </div>
+
+            <div class="rv rv-d1">
                 <p style="font-family: var(--fse); font-weight:400; font-style: italic; font-size: clamp(14px, 1.8vw, 20px); color: var(--txt2); line-height: 1.6; max-width: 500px; margin: 0 auto;">&ldquo;Love brought us together, and family grounds our path.&rdquo; <span style="font-style:normal">💍❤️</span></p>
             </div>
-            <div class="rv rv-d2" style="margin-bottom: clamp(14px, 2.5vw, 24px);">
-                <p style="font-family: var(--fsa); font-weight:400; font-size: clamp(11px, 1.4vw, 14px); letter-spacing: 0.15em; color: var(--gold-dk);">✨ WE DECIDED ON FOREVER! ✨</p>
+
+            <div class="rv rv-d2" style="margin-top: 10px; margin-bottom: 12px;">
+                <p style="font-family: var(--fsa); font-weight:500; font-size: clamp(11px, 1.4vw, 14px); letter-spacing: 0.22em; color: var(--gold-dk);">WE DECIDED ON FOREVER!</p>
             </div>
+
+            <!-- Center Filigree Flourish -->
+            <div class="hero__divider rv rv-d3">
+                <span class="hero__divider-line"></span>
+                <span class="hero__divider-symbol">❦</span>
+                <span class="hero__divider-line"></span>
+            </div>
+
             <p class="guest-welcome guest-welcome__hero rv rv-d3" id="guestWelcomeHero"></p>
-            <h1 class="hero__names rv rv-d4" style="font-size:clamp(40px,8vw,80px)"><span class="metallic-text">Deepthi</span> <span style="font-family:var(--fse);font-style:italic;font-size:0.35em;color:var(--txt-g);vertical-align:middle;margin:0 8px">weds</span> <span class="metallic-text">Hari</span></h1>
-            <div class="rv rv-d5" style="margin-top:clamp(12px,2vw,24px); margin-bottom:clamp(10px,1.5vw,16px);">
+            
+            <h1 class="hero__names rv rv-d4" style="font-size:clamp(42px,8.5vw,85px);margin: 8px 0;"><span class="metallic-text">Deepthi</span> <span style="font-family:var(--fse);font-style:italic;font-size:0.35em;color:var(--txt-g);vertical-align:middle;margin:0 8px">weds</span> <span class="metallic-text">Hari</span></h1>
+            
+            <div class="rv rv-d5" style="margin-top:clamp(12px,2vw,20px); margin-bottom:clamp(10px,1.5vw,16px);">
                 <p style="font-family: var(--fse); font-weight:400; font-style: italic; font-size: clamp(13px, 1.5vw, 17px); color: var(--txt2); line-height: 1.8; max-width: 520px; margin: 0 auto;">Please join us for an evening filled with laughter, dinner, and dancing as we step into this new chapter of life together.</p>
             </div>
-            <p class="hero__date rv rv-d6" style="margin-top:clamp(8px,1.5vw,16px)">28th January 2027</p>
+
+            <div class="rv rv-d6">
+                <div class="hero__date-pill">
+                    <span>✨</span>
+                    <span>28th January 2027</span>
+                    <span>✨</span>
+                </div>
+            </div>
         </div>
 
         <div class="hero__scroll" id="scrollHint" aria-label="Scroll down">
@@ -1463,65 +3386,210 @@ a{color:var(--gold-dk);text-decoration:none}
     </header>
 
     <!-- 2. Our Journey -->
-    <section class="sec sec--warm" aria-label="Our Journey">
-        <div class="sec__inner" style="text-align:center">
-            <h2 class="countdown__title-main rv" style="font-family:var(--fs);font-size:clamp(48px,8vw,80px);margin-bottom:12px;color:var(--txt-g);font-weight:400">Our Journey</h2>
-            <p class="rv rv-d1" style="font-family:var(--fsa);font-size:clamp(10px,1.2vw,12px);letter-spacing:.2em;color:var(--gold-dk);text-transform:uppercase;margin-bottom:40px">Same Souls &bull; Different Paths &bull; One Destiny</p>
+    <section class="sec sec--warm journey-sec" aria-label="Our Journey">
+        <!-- Floral watercolor corner accents -->
+        <div class="journey-corner journey-corner--tl" aria-hidden="true"><img src="assets/Delicate Cream Blossom Branch.png" alt="Top Left Blossom"></div>
+        <div class="journey-corner journey-corner--tr" aria-hidden="true"><img src="assets/Elegant Ivory Blossom Branch.png" alt="Top Right Blossom"></div>
+        <div class="journey-corner journey-corner--bl" aria-hidden="true"><img src="assets/Cream Blossoms on a Sage Branch.png" alt="Bottom Left Blossom"></div>
+        <div class="journey-corner journey-corner--br" aria-hidden="true"><img src="assets/Delicate Cream Blossom Botanical Sprig.png" alt="Bottom Right Blossom"></div>
+
+        <div class="sec__inner journey-inner" style="text-align:center">
+            <!-- Header -->
+            <h2 class="countdown__title-main rv" style="font-family:var(--fs);font-size:clamp(48px,8vw,80px);margin-bottom:8px;color:var(--txt-g);font-weight:400;text-shadow:0 2px 10px rgba(196,162,101,0.15)">Our Journey</h2>
             
-            <div class="timeline">
-                <div class="timeline__item rv rv-scale">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__date">February 2017</div>
-                    <div class="timeline__text">When He Knew &hearts;</div>
-                    <div class="timeline__sub">Long before it was official, he knew she was the one. Seven years of growing together started right here.</div>
+            <!-- Header Flourish with Heart -->
+            <div class="journey-flourish rv rv-d1">
+                <span class="journey-flourish__line"></span>
+                <span class="journey-flourish__heart">♡</span>
+                <span class="journey-flourish__line"></span>
+            </div>
+
+            <!-- Subtitle -->
+            <p class="rv rv-d1 journey-subtitle">SAME SOULS &nbsp;&middot;&nbsp; DIFFERENT PATHS &nbsp;&middot;&nbsp; ONE DESTINY</p>
+            
+            <!-- Zig-Zag Timeline Container -->
+            <div class="journey-timeline">
+                <!-- Center Vertical Gold Line -->
+                <div class="journey-timeline__line"></div>
+
+                <!-- Item 1: February 2017 (Illustration Left, Text Right) -->
+                <div class="journey-item journey-item--odd">
+                    <div class="journey-node">♥</div>
+                    <div class="journey-media rv rv-slide-right">
+                        <div class="journey-img-frame">
+                            <img src="assets/journey_1.jpg" alt="When He Knew" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="journey-content rv rv-slide-left rv-d1">
+                        <div class="journey-date-badge">
+                            <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
+                            <span>FEBRUARY 2017</span>
+                        </div>
+                        <h3 class="journey-title">When He Knew <span class="journey-title__heart">♥</span></h3>
+                        <p class="journey-desc">Long before it was official, he knew she was the one. Seven years of growing together started right here.</p>
+                    </div>
                 </div>
-                <div class="timeline__item rv rv-scale rv-d1">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__date">March 2019</div>
-                    <div class="timeline__text">The First Proposal &#128141;</div>
-                    <div class="timeline__sub">He took a chance and asked the question. A special milestone that set our story in motion!</div>
+
+                <!-- Item 2: March 2019 (Text Left, Illustration Right) -->
+                <div class="journey-item journey-item--even">
+                    <div class="journey-node">♥</div>
+                    <div class="journey-content rv rv-slide-right">
+                        <div class="journey-date-badge">
+                            <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
+                            <span>MARCH 2019</span>
+                        </div>
+                        <h3 class="journey-title">The First Proposal <span class="journey-title__ring">💍</span></h3>
+                        <p class="journey-desc">He took a chance and asked the question. A special milestone that set our story in motion!</p>
+                    </div>
+                    <div class="journey-media rv rv-slide-left rv-d1">
+                        <div class="journey-img-frame">
+                            <img src="assets/journey_2.jpg" alt="The First Proposal" loading="lazy">
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline__item rv rv-scale rv-d2">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__date">2019 &ndash; 2024</div>
-                    <div class="timeline__text">Building Memories &#128200;</div>
-                    <div class="timeline__sub">Five years filled with late-night chats, shared dreams, milestone celebrations, and endless coffee runs. We grew up together, took time to build our careers, and became best friends along the way.</div>
+
+                <!-- Item 3: 2019 - 2024 (Illustration Left, Text Right) -->
+                <div class="journey-item journey-item--odd">
+                    <div class="journey-node">♥</div>
+                    <div class="journey-media rv rv-slide-right">
+                        <div class="journey-img-frame">
+                            <img src="assets/journey_3.jpg" alt="Building Memories" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="journey-content rv rv-slide-left rv-d1">
+                        <div class="journey-date-badge">
+                            <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
+                            <span>2019 &ndash; 2024</span>
+                        </div>
+                        <h3 class="journey-title">Building Memories <span class="journey-title__icon">📈</span></h3>
+                        <p class="journey-desc">Five years filled with late-night chats, shared dreams, milestone celebrations, and endless coffee runs. We grew up together, <strong>took time to build our careers</strong>, and became best friends along the way.</p>
+                    </div>
                 </div>
-                <div class="timeline__item rv rv-scale rv-d3">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__date">April 2024</div>
-                    <div class="timeline__text">She Said Yes! &#128149;</div>
-                    <div class="timeline__sub">Five years after his first proposal, it all came full circle &mdash; and this time, it was an enthusiastic "Yes!"</div>
+
+                <!-- Item 4: April 2024 (Text Left, Illustration Right) -->
+                <div class="journey-item journey-item--even">
+                    <div class="journey-node">♥</div>
+                    <div class="journey-content rv rv-slide-right">
+                        <div class="journey-date-badge">
+                            <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
+                            <span>APRIL 2024</span>
+                        </div>
+                        <h3 class="journey-title">She Said Yes! <span class="journey-title__heart">💕</span></h3>
+                        <p class="journey-desc">Five years after his first proposal, it all came full circle &mdash; and this time, it was an enthusiastic "Yes!"</p>
+                    </div>
+                    <div class="journey-media rv rv-slide-left rv-d1">
+                        <div class="journey-img-frame">
+                            <img src="assets/journey_4.jpg" alt="She Said Yes!" loading="lazy">
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline__item rv rv-scale rv-d4">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__date">July 2026</div>
-                    <div class="timeline__text">Bringing the Families Together &#128106;</div>
-                    <div class="timeline__sub">Two worlds officially merged as our families met, shared a feast, and toasted to our future together.</div>
+
+                <!-- Item 5: July 2026 (Illustration Left, Text Right) -->
+                <div class="journey-item journey-item--odd">
+                    <div class="journey-node">♥</div>
+                    <div class="journey-media rv rv-slide-right">
+                        <div class="journey-img-frame">
+                            <img src="assets/journey_5.jpg" alt="Bringing Families Together" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="journey-content rv rv-slide-left rv-d1">
+                        <div class="journey-date-badge">
+                            <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
+                            <span>JULY 2026</span>
+                        </div>
+                        <h3 class="journey-title">Bringing the Families Together <span class="journey-title__icon">👨‍👩‍👧</span></h3>
+                        <p class="journey-desc">Two worlds officially merged as our families met, shared a feast, and toasted to our future together.</p>
+                    </div>
                 </div>
-                <div class="timeline__item rv rv-scale rv-d5">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__date">January 2027</div>
-                    <div class="timeline__text">The Wedding &hearts;</div>
-                    <div class="timeline__sub">Ten years in the making! We can't wait to tie the knot and celebrate with everyone we love.</div>
+
+                <!-- Item 6: January 2027 (Text Left, Illustration Right) -->
+                <div class="journey-item journey-item--even">
+                    <div class="journey-node">♥</div>
+                    <div class="journey-content rv rv-slide-right">
+                        <div class="journey-date-badge">
+                            <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
+                            <span>JANUARY 2027</span>
+                        </div>
+                        <h3 class="journey-title">The Wedding <span class="journey-title__heart">♡</span></h3>
+                        <p class="journey-desc">Ten years in the making! We can't wait to tie the knot and celebrate with everyone we love.</p>
+                    </div>
+                    <div class="journey-media rv rv-slide-left rv-d1">
+                        <div class="journey-img-frame journey-img-frame--script">
+                            <img src="assets/journey_6.jpg" alt="The Wedding" loading="lazy">
+                            <div class="journey-img-overlay-text">
+                                <span>From then...</span>
+                                <span>to</span>
+                                <span>Forever ♡</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <p class="rv rv-d6" style="font-family:var(--fsa);font-size:clamp(10px,1.2vw,12px);letter-spacing:.25em;color:var(--gold-dk);text-transform:uppercase;margin-top:48px">&hearts; &nbsp; Same Team &bull; Always &nbsp; &hearts;</p>
+            <!-- Bottom Footer Flourish -->
+            <div class="journey-flourish rv" style="margin-top:60px">
+                <span class="journey-flourish__line"></span>
+                <span class="journey-flourish__heart">♡</span>
+                <span class="journey-flourish__line"></span>
+            </div>
+
+            <p class="rv rv-d1 journey-footer-text">
+                <span class="journey-heart-dot">♥</span> &nbsp; SAME TEAM &nbsp;&middot;&nbsp; ALWAYS &nbsp; <span class="journey-heart-dot">♥</span>
+            </p>
         </div>
     </section>
 
     <!-- 3. The Wedding Announcement -->
-    <section class="sec sec--alt invite" aria-label="Wedding Announcement">
+    <section class="sec sec--alt invite invite--royal" aria-label="Wedding Announcement">
         <div class="sec__inner">
             <p class="sec-title rv">The Wedding</p>
-            <div class="invite__card rv-scale" style="max-width:540px">
-                <div class="invite__corners" aria-hidden="true"></div>
-                <p style="font-family:var(--fse);font-style:italic;font-size:clamp(16px,2vw,20px);color:var(--lotus-lt);margin-bottom:24px">Two hearts. One promise.<br>One beautiful beginning.</p>
-                <h2 class="invite__name" style="margin-bottom:4px"><span class="metallic-text">Hari Prasath</span></h2>
-                <span class="invite__with" style="margin:12px 0;font-size:24px">&amp;</span>
-                <h2 class="invite__name" style="margin-top:4px"><span class="metallic-text">Deepthi</span></h2>
-                <p style="font-family:var(--fse);font-size:clamp(14px,1.6vw,18px);color:var(--txt2);margin-top:32px;font-style:italic">with the blessings of their beloved parents</p>
+            
+            <div class="invite__royal-card rv-scale">
+                <!-- Card Corner Ornaments -->
+                <div class="invite__card-corner invite__card-corner--tl" aria-hidden="true"></div>
+                <div class="invite__card-corner invite__card-corner--tr" aria-hidden="true"></div>
+                <div class="invite__card-corner invite__card-corner--bl" aria-hidden="true"></div>
+                <div class="invite__card-corner invite__card-corner--br" aria-hidden="true"></div>
+
+                <div class="invite__split-grid">
+                    <!-- Left: Couple Illustration Frame -->
+                    <div class="invite__couple-column">
+                        <div class="invite__couple-frame">
+                            <img src="assets/Romantic Couple in Golden Floral Arch.png" alt="Hari &amp; Deepthi in Golden Floral Arch" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Right: Invitation Text -->
+                    <div class="invite__details-column">
+                        <div class="invite__family-wrap">
+                            <!-- Top Blessing Header -->
+                            <h3 class="invite__blessings-title">With the love and blessings of our families</h3>
+
+                            <!-- Bride: Deepthi -->
+                            <div class="invite__person-block">
+                                <h2 class="invite__person-title">
+                                    <span class="metallic-text">Deepthi</span>
+                                </h2>
+                                <p class="invite__parents-desc">Daughter of P.N. Ajoy Kumar &amp; M.R. Usha Kumari</p>
+                            </div>
+
+                            <!-- Center Divider -->
+                            <div class="invite__center-divider">
+                                <span class="invite__divider-line"></span>
+                                <span class="invite__divider-symbol">✦</span>
+                                <span class="invite__divider-line"></span>
+                            </div>
+
+                            <!-- Groom: Hari Prasath -->
+                            <div class="invite__person-block">
+                                <h2 class="invite__person-title">
+                                    <span class="metallic-text">Hari Prasath</span>
+                                </h2>
+                                <p class="invite__parents-desc">Son of Sasi Kumar &amp; Baby Rani</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1550,36 +3618,184 @@ a{color:var(--gold-dk);text-decoration:none}
 
     <!-- 5. Muhurtham & 6. Engagement -->
     <section class="sec sec--grad events" aria-label="Event Details">
+        <!-- Left & Right Screen-Border Flush Mandalas -->
+        <div class="muhurtham-side-img muhurtham-side-img--left" aria-hidden="true">
+            <img src="assets/Untitled design (3)-Photoroom.png" alt="Left Mandala Accent" loading="lazy">
+        </div>
+        <div class="muhurtham-side-img muhurtham-side-img--right" aria-hidden="true">
+            <img src="assets/Untitled design (3)-Photoroom.png" alt="Right Mandala Accent" loading="lazy">
+        </div>
+
         <div class="sec__inner">
-            <p class="sec-title rv">Ceremonies</p>
-            
             <!-- Muhurtham -->
-            <div class="events__card rv-scale" data-tilt style="margin-bottom:40px;max-width:540px">
-                <div class="shimmer-border" aria-hidden="true"></div>
-                <div class="c-orn c-orn--tl" aria-hidden="true"></div><div class="c-orn c-orn--tr" aria-hidden="true"></div>
-                <div class="c-orn c-orn--bl" aria-hidden="true"></div><div class="c-orn c-orn--br" aria-hidden="true"></div>
-                
-                <h3 class="events__name" style="font-family:var(--fb);font-size:clamp(24px,4vw,32px)">🪷 திருமண நிகழ்வு</h3>
-                <p style="font-family:var(--fsa);font-size:10px;letter-spacing:.25em;color:var(--gold-dk);margin-top:-10px;margin-bottom:16px;text-transform:uppercase">Muhurtham</p>
-                <div class="orn" style="max-width:120px;margin-bottom:24px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+            <div class="muhurtham-centerpiece rv-scale">
+                <!-- Central Gold Mandala Watermark SVG -->
+                <div class="muhurtham-centerpiece__mandala-bg" aria-hidden="true">
+                    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="200" cy="200" r="185" stroke="#C4A265" stroke-width="0.8" opacity="0.2" stroke-dasharray="6 6"/>
+                        <circle cx="200" cy="200" r="150" stroke="#C4A265" stroke-width="0.6" opacity="0.18"/>
+                        <circle cx="200" cy="200" r="115" stroke="#C4A265" stroke-width="0.5" opacity="0.15"/>
+                        <!-- 12 Petal Lotus Mandala -->
+                        <g opacity="0.22" stroke="#C4A265" stroke-width="0.75" fill="none">
+                            <path d="M200 40 C215 110, 260 140, 200 180 C140 140, 185 110, 200 40Z"/>
+                            <path d="M200 360 C215 290, 260 260, 200 220 C140 260, 185 290, 200 360Z"/>
+                            <path d="M40 200 C110 215, 140 260, 180 200 C140 140, 110 185, 40 200Z"/>
+                            <path d="M360 200 C290 215, 260 260, 220 200 C260 140, 290 185, 360 200Z"/>
+                            <path d="M87 87 C140 120, 155 165, 186 186 C165 155, 120 140, 87 87Z"/>
+                            <path d="M313 313 C260 280, 245 235, 214 214 C235 245, 280 260, 313 313Z"/>
+                            <path d="M313 87 C260 120, 245 165, 214 186 C235 155, 280 140, 313 87Z"/>
+                            <path d="M87 313 C140 280, 155 235, 186 214 C165 245, 120 260, 87 313Z"/>
+                        </g>
+                    </svg>
+                </div>
 
-                <div class="events__row"><span class="events__text events__text--bold">Date:</span> <span class="events__text">28 January 2027</span></div>
-                <div class="events__row"><span class="events__text events__text--bold">Venue:</span> <span class="events__text">Your temple/wedding ceremony location</span></div>
-                <div class="events__row"><span class="events__text events__text--bold">Muhurtham:</span> <span class="events__text">Exact confirmed time</span></div>
+                <!-- Header Content -->
+                <div class="muhurtham-centerpiece__header">
+                    <div class="muhurtham-centerpiece__lotus-badge">🪷</div>
+                    <h3 class="muhurtham-centerpiece__title">திருமண நிகழ்வு</h3>
+                    <p class="muhurtham-centerpiece__subtitle">MUHURTHAM</p>
+                    <div class="muhurtham-centerpiece__gold-divider">
+                        <span class="muhurtham-line"></span>
+                        <span class="muhurtham-symbol">✦</span>
+                        <span class="muhurtham-line"></span>
+                    </div>
+                </div>
+
+                <!-- 3 Glass Pillar Detail Cards -->
+                <div class="muhurtham-centerpiece__grid">
+                    <!-- Pillar 1: Date -->
+                    <div class="muhurtham-pillar">
+                        <div class="muhurtham-pillar__icon-ring">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#C4A265" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                <circle cx="8" cy="14" r="1" fill="#C4A265"/>
+                                <circle cx="12" cy="14" r="1" fill="#C4A265"/>
+                                <circle cx="16" cy="14" r="1" fill="#C4A265"/>
+                                <circle cx="8" cy="18" r="1" fill="#C4A265"/>
+                                <circle cx="12" cy="18" r="1" fill="#C4A265"/>
+                            </svg>
+                        </div>
+                        <p class="muhurtham-pillar__label">DATE</p>
+                        <p class="muhurtham-pillar__val">28 January 2027</p>
+                    </div>
+
+                    <!-- Divider 1 -->
+                    <div class="muhurtham-pillar-divider" aria-hidden="true"></div>
+
+                    <!-- Pillar 2: Venue -->
+                    <div class="muhurtham-pillar">
+                        <div class="muhurtham-pillar__icon-ring">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#C4A265" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <p class="muhurtham-pillar__label">VENUE</p>
+                        <p class="muhurtham-pillar__val">Your temple/wedding ceremony location</p>
+                    </div>
+
+                    <!-- Divider 2 -->
+                    <div class="muhurtham-pillar-divider" aria-hidden="true"></div>
+
+                    <!-- Pillar 3: Muhurtham Time -->
+                    <div class="muhurtham-pillar">
+                        <div class="muhurtham-pillar__icon-ring">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#C4A265" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <p class="muhurtham-pillar__label">MUHURTHAM</p>
+                        <p class="muhurtham-pillar__val">Exact confirmed time</p>
+                    </div>
+                </div>
+
+                <!-- Footer Blessings Banner -->
+                <div class="muhurtham-centerpiece__footer">
+                    <div class="muhurtham-centerpiece__footer-flourish">
+                        <span class="muhurtham-line" style="max-width: 60px;"></span>
+                        <span style="font-size: 18px;">🪷</span>
+                        <span class="muhurtham-line" style="max-width: 60px;"></span>
+                    </div>
+                    <p class="muhurtham-centerpiece__blessings-text">
+                        With the blessings of our loved ones,<br>we seek your presence on this special day
+                    </p>
+                </div>
             </div>
+            <!-- Royal Engagement Card -->
+            <div class="engagement-card rv-scale rv-d2">
+                <!-- Inner Hairline Dashed Border & Corners -->
+                <div class="engagement-card__inner-border" aria-hidden="true"></div>
+                <div class="engagement-card__corner engagement-card__corner--tl" aria-hidden="true"></div>
+                <div class="engagement-card__corner engagement-card__corner--tr" aria-hidden="true"></div>
+                <div class="engagement-card__corner engagement-card__corner--bl" aria-hidden="true"></div>
+                <div class="engagement-card__corner engagement-card__corner--br" aria-hidden="true"></div>
 
-            <!-- Engagement -->
-            <div class="events__card rv-scale rv-d2" data-tilt style="max-width:540px">
-                <div class="shimmer-border" aria-hidden="true"></div>
-                <div class="c-orn c-orn--tl" aria-hidden="true"></div><div class="c-orn c-orn--tr" aria-hidden="true"></div>
-                <div class="c-orn c-orn--bl" aria-hidden="true"></div><div class="c-orn c-orn--br" aria-hidden="true"></div>
-                
-                <h3 class="events__name" style="font-size:clamp(24px,4vw,32px)">✨ Engagement</h3>
-                <div class="orn" style="max-width:120px;margin-bottom:24px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+                <!-- Header Content -->
+                <div class="engagement-card__header">
+                    <div class="engagement-card__ring-badge">💍</div>
+                    <h3 class="engagement-card__title">
+                        <span class="metallic-text">Wedding Reception</span>
+                    </h3>
+                    <div class="engagement-card__divider">
+                        <span class="muhurtham-line"></span>
+                        <span class="muhurtham-symbol">✦</span>
+                        <span class="muhurtham-line"></span>
+                    </div>
+                </div>
 
-                <div class="events__row"><span class="events__text events__text--bold">Date:</span> <span class="events__text">28 January 2027</span></div>
-                <div class="events__row"><span class="events__text events__text--bold">Venue:</span> <span class="events__text">Ushodhaya Csp Gardens, Madhavaram, Chennai</span></div>
-                <div class="events__row"><span class="events__text events__text--bold">Time:</span> <span class="events__text">Add confirmed reception timing</span></div>
+                <!-- 3 Pillar Details Grid -->
+                <div class="engagement-card__grid">
+                    <!-- Pillar 1: Date -->
+                    <div class="engagement-pillar">
+                        <div class="engagement-pillar__icon-ring">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4A265" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                <circle cx="8" cy="14" r="1" fill="#C4A265"/>
+                                <circle cx="12" cy="14" r="1" fill="#C4A265"/>
+                                <circle cx="16" cy="14" r="1" fill="#C4A265"/>
+                            </svg>
+                        </div>
+                        <p class="engagement-pillar__label">DATE</p>
+                        <p class="engagement-pillar__val">28 January 2027</p>
+                    </div>
+
+                    <!-- Divider 1 -->
+                    <div class="engagement-divider" aria-hidden="true"></div>
+
+                    <!-- Pillar 2: Venue -->
+                    <div class="engagement-pillar">
+                        <div class="engagement-pillar__icon-ring">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4A265" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <p class="engagement-pillar__label">VENUE</p>
+                        <p class="engagement-pillar__val">Ushodhaya Csp Gardens, Madhavaram, Chennai</p>
+                    </div>
+
+                    <!-- Divider 2 -->
+                    <div class="engagement-divider" aria-hidden="true"></div>
+
+                    <!-- Pillar 3: Time -->
+                    <div class="engagement-pillar">
+                        <div class="engagement-pillar__icon-ring">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4A265" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <p class="engagement-pillar__label">TIME</p>
+                        <p class="engagement-pillar__val">06:30 PM Onwards</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1596,77 +3812,214 @@ a{color:var(--gold-dk);text-decoration:none}
     <!-- 8. Family Invitation & 9. Traditional Message -->
     <section class="sec sec--warm" aria-label="Family Invitation" style="text-align:center">
         <div class="sec__inner">
-            <p class="sec-title rv">Family Invitation</p>
-            <p class="rv" style="font-family:var(--fse);font-style:italic;font-size:clamp(16px,2vw,22px);color:var(--txt2);margin-bottom:32px">With the love and blessings of our families</p>
-            
-            <div class="rv rv-scale">
-                <h3 style="font-family:var(--fs);font-size:clamp(36px,6vw,56px);margin-bottom:4px" class="metallic-text">Deepthi</h3>
-                <p style="font-family:var(--fse);font-size:clamp(14px,1.6vw,18px);color:var(--txt2)">Daughter of P.N. Ajoy Kumar &amp; M.R. Usha Kumari</p>
-            </div>
-            
-            <div class="orn rv rv-d1" style="max-width:140px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
+            <p class="sec-title rv" style="margin-bottom: clamp(16px, 3vw, 28px);">Family Invitation</p>
 
-            <div class="rv rv-scale rv-d2">
-                <h3 style="font-family:var(--fs);font-size:clamp(36px,6vw,56px);margin-bottom:4px" class="metallic-text">Hari Prasath</h3>
-                <p style="font-family:var(--fse);font-size:clamp(14px,1.6vw,18px);color:var(--txt2)">Son of Sasi Kumar &amp; Baby Rani</p>
+            <!-- Top Header Badge -->
+            <div style="text-align: center; width: 100%; margin-bottom: clamp(20px, 3.5vw, 32px);">
+                <div class="family-dual-header-tag rv rv-d1" style="margin: 0 auto;">
+                    <span style="font-size: 13px; color: #C4A265;">✨</span>
+                    <p class="family-dual-header-txt">With the love and blessings of our families</p>
+                    <span style="font-size: 13px; color: #C4A265;">✨</span>
+                </div>
             </div>
 
-            <div class="rv rv-d3" style="margin-top:60px;max-width:600px;margin-left:auto;margin-right:auto">
-                <p class="tamil-text">அன்பும் அருளும் நிறைந்த இந்த இனிய நாளில்,<br>எங்கள் திருமண விழாவில் தாங்கள் குடும்பத்துடன் கலந்து கொண்டு<br>மணமக்களை ஆசீர்வதிக்க அன்புடன் அழைக்கின்றோம்.</p>
-                <p style="font-family:var(--fse);font-style:italic;color:var(--txt2);margin-top:24px;line-height:1.8">We warmly invite you and your family to grace our wedding ceremony and bless us as we begin our new journey together.</p>
+            <!-- Dual Arch Pillars Grid -->
+            <div class="family-dual-pillars rv-scale">
+                <!-- Bride Arch Pillar -->
+                <div class="family-pillar-card">
+                    <span class="family-pillar-badge">👰 Bride's Family</span>
+                    <h2 class="family-pillar-name metallic-text">Deepthi</h2>
+                    <p class="family-pillar-parents">Daughter of P.N. Ajoy Kumar &amp;<br>M.R. Usha Kumari</p>
+                </div>
+
+                <!-- Center Knot Badge -->
+                <div class="family-dual-center-knot">
+                    <div class="family-dual-knot-badge">
+                        <span>&amp;</span>
+                    </div>
+                </div>
+
+                <!-- Groom Arch Pillar -->
+                <div class="family-pillar-card">
+                    <span class="family-pillar-badge">🤵 Groom's Family</span>
+                    <h2 class="family-pillar-name metallic-text">Hari Prasath</h2>
+                    <p class="family-pillar-parents">Son of Sasi Kumar &amp;<br>Baby Rani</p>
+                </div>
+            </div>
+
+            <!-- Invitation Message Box -->
+            <div class="family-dual-msg-card rv rv-d3">
+                <p class="family-royal-tamil">
+                    அன்பும் அருளும் நிறைந்த இந்த இனிய நாளில்,<br>
+                    எங்கள் திருமண விழாவில் தாங்கள் குடும்பத்துடன் கலந்து கொண்டு<br>
+                    மணமக்களை ஆசீர்வதிக்க அன்புடன் அழைக்கின்றோம்.
+                </p>
+
+                <div style="margin: 14px 0; color: #C4A265; font-size: 16px;">❦</div>
+
+                <p class="family-royal-english">
+                    We warmly invite you and your family to grace our wedding ceremony and bless us as we begin our new journey together.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- 10. Venue / Location -->
-    <section class="sec" aria-label="Location" style="text-align:center">
-        <div class="sec__inner">
-            <p class="sec-title rv">Venue Location</p>
-            <h3 class="events__name rv rv-d1" style="font-size:clamp(22px,3.5vw,32px)">📍 Ushodhaya Csp Gardens</h3>
-            <p class="events__text rv rv-d2" style="margin-bottom:32px">Madhavaram, Chennai</p>
-            
-            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068" target="_blank" rel="noopener noreferrer" class="venue__cta rv rv-d3" style="margin-bottom:32px">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 22v-8a4 4 0 0 1 4-4h14"/><polyline points="16 5 21 10 16 15"/></svg>
-                Open in Google Maps
-            </a>
-            
-            <p class="events__text events__text--sub rv rv-d4" style="max-width:400px;margin:0 auto;line-height:1.8">Valet parking is available.<br>Please enter through the main reception gate.</p>
+    <section class="sec venue-ref-section" aria-label="Location">
+        <!-- Floating Rose Petals Background -->
+        <div class="venue-petals-bg" aria-hidden="true">
+            <div class="v-petal" style="width: 18px; height: 22px; top: 12%; left: 8%; animation-duration: 9s; animation-delay: 0s;"></div>
+            <div class="v-petal" style="width: 14px; height: 18px; top: 25%; right: 12%; animation-duration: 7s; animation-delay: 1.5s;"></div>
+            <div class="v-petal" style="width: 22px; height: 26px; top: 60%; left: 15%; animation-duration: 10s; animation-delay: 3s;"></div>
+            <div class="v-petal" style="width: 16px; height: 20px; top: 75%; right: 20%; animation-duration: 8s; animation-delay: 2s;"></div>
+            <div class="v-petal" style="width: 20px; height: 24px; top: 40%; left: 82%; animation-duration: 11s; animation-delay: 4.5s;"></div>
+            <div class="v-petal" style="width: 15px; height: 19px; top: 80%; left: 45%; animation-duration: 9.5s; animation-delay: 1s;"></div>
+            <div class="v-petal" style="width: 19px; height: 23px; top: 15%; right: 35%; animation-duration: 8.5s; animation-delay: 2.5s;"></div>
         </div>
-    </section>
 
-    <!-- 11. Dress Code -->
-    <!-- 
-<section class="sec sec--alt" aria-label="Dress Code">
         <div class="sec__inner">
-            <p class="sec-title rv">Dress Code</p>
-            <h2 class="countdown__title-main rv rv-d1" style="text-align:center;font-size:clamp(28px,5vw,44px);margin-bottom:32px"><span class="metallic-text">Traditional Elegance</span></h2>
-            
-            <div class="dress-code rv-scale rv-d2">
-                <div class="dress-code__item">
-                    <div class="dress-code__label">Men</div>
-                    <div class="dress-code__val">Veshti / Traditional or Formal</div>
+            <div class="venue-ref-container">
+                <!-- Top Lotus Filigree Divider -->
+                <div class="venue-ref-divider rv">
+                    <span class="v-line"></span>
+                    <span class="v-lotus">🪷</span>
+                    <span class="v-line"></span>
                 </div>
-                <div class="dress-code__item">
-                    <div class="dress-code__label">Women</div>
-                    <div class="dress-code__val">Saree / Traditional attire</div>
+
+                <!-- Venue Title Row with Red/Gold Map Pin -->
+                <div class="venue-ref-title-wrap rv rv-d1">
+                    <div class="venue-pin-icon-3d">
+                        <svg viewBox="0 0 38 48" width="26" height="34" fill="none">
+                            <ellipse cx="19" cy="44" rx="14" ry="4" fill="rgba(196,162,101,0.25)"/>
+                            <path d="M19 2C10.163 2 3 9.163 3 18C3 29.5 19 44 19 44C19 44 35 29.5 35 18C35 9.163 27.837 2 19 2Z" fill="url(#pinGrad)" stroke="#B83A4B" stroke-width="1"/>
+                            <circle cx="19" cy="17" r="6" fill="#FDFBF7"/>
+                            <defs>
+                                <linearGradient id="pinGrad" x1="3" y1="2" x2="35" y2="44" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E54B60"/>
+                                    <stop offset="1" stop-color="#9B2335"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="venue-ref-name">Ushodhaya Csp Gardens</h3>
+                </div>
+
+                <!-- Sub-location line with dashes -->
+                <div class="venue-ref-sub-line rv rv-d2">
+                    <span class="v-sub-dash">—</span>
+                    <span class="v-sub-txt">M A D H A V A R A M , &nbsp; C H E N N A I</span>
+                    <span class="v-sub-dash">—</span>
+                </div>
+
+                <!-- Pill Button: Open in Google Maps -->
+                <div class="venue-ref-btn-wrap rv rv-d3">
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068" 
+                       target="_blank" rel="noopener noreferrer" class="venue-ref-pill-btn">
+                        <!-- Google Maps 4-Color Pin Icon SVG -->
+                        <span class="gmaps-pin-icon">
+                            <svg viewBox="0 0 24 32" width="18" height="24" fill="none">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 9 12 20 12 20s12-11 12-20c0-6.63-5.37-12-12-12z" fill="#EA4335"/>
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 2.45.74 4.73 2 6.64l10-18.64z" fill="#4285F4"/>
+                                <path d="M2 18.64C4.16 21.87 8.08 27.2 12 32V12C6.48 12 2 16.48 2 18.64z" fill="#34A853"/>
+                                <path d="M12 32c3.92-4.8 7.84-10.13 10-13.36L12 0v32z" fill="#FBBC05"/>
+                                <circle cx="12" cy="11" r="4.5" fill="#FFFFFF"/>
+                            </svg>
+                        </span>
+                        <span class="gmaps-btn-txt">OPEN IN GOOGLE MAPS</span>
+                        <span class="gmaps-btn-arrow">→</span>
+                    </a>
+                </div>
+
+                <!-- Middle Leaf Flourish Divider -->
+                <div class="venue-ref-leaf-divider rv rv-d4">
+                    <span class="v-line"></span>
+                    <span class="v-leaf">🌿</span>
+                    <span class="v-line"></span>
+                </div>
+
+                <!-- Valet Parking Note -->
+                <div class="venue-ref-note rv rv-d4">
+                    <p>Valet parking is available.</p>
+                    <p>Please enter through the main reception gate.</p>
                 </div>
             </div>
         </div>
     </section>
--->
 
     <!-- 12. Countdown -->
-    <section class="countdown sec sec--grad" aria-label="Countdown">
+    <section class="countdown sec" aria-label="Countdown">
         <div class="sec__inner">
-            <p class="sec-title rv">Looking Forward</p>
-            <h2 class="countdown__title-main rv rv-d1" style="font-size:clamp(24px,4vw,36px)"><span class="metallic-text">The countdown to forever begins...</span></h2>
-            <p class="countdown__date rv rv-d2" style="margin-top:16px;font-size:clamp(20px,3.5vw,28px)">28 &bull; 01 &bull; 2027</p>
-            <div class="orn rv rv-d3" style="max-width:180px;margin:clamp(12px,2vw,20px) auto;"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
-            <div class="countdown__grid" id="countdownGrid">
-                <div class="countdown__item rv rv-d4"><div class="flip-card"><div class="flip-card-inner"><div class="countdown__num" id="cdDays">--</div><div class="countdown__label">Days</div></div></div></div>
-                <div class="countdown__item rv rv-d4"><div class="flip-card"><div class="flip-card-inner"><div class="countdown__num" id="cdHours">--</div><div class="countdown__label">Hours</div></div></div></div>
-                <div class="countdown__item rv rv-d5"><div class="flip-card"><div class="flip-card-inner"><div class="countdown__num" id="cdMins">--</div><div class="countdown__label">Minutes</div></div></div></div>
-                <div class="countdown__item rv rv-d5"><div class="flip-card"><div class="flip-card-inner"><div class="countdown__num" id="cdSecs">--</div><div class="countdown__label">Seconds</div></div></div></div>
+            <p class="sec-title rv" style="margin-bottom: clamp(20px, 3.5vw, 32px);">Looking Forward</p>
+
+            <!-- Card Container with Botanical Background -->
+            <div class="countdown-card-wrapper rv-scale">
+                <!-- Sub-title -->
+                <p class="countdown__tag-small rv">THE COUNTDOWN TO</p>
+                
+                <!-- Main Title Script -->
+                <h2 class="countdown__title-script rv rv-d1">
+                    <span class="metallic-text">Forever Begins...</span>
+                </h2>
+
+                <!-- Filigree Heart Divider -->
+                <div class="countdown__heart-divider rv rv-d2">
+                    <span class="countdown__line"></span>
+                    <span class="countdown__heart">♥</span>
+                    <span class="countdown__line"></span>
+                </div>
+
+                <!-- Date -->
+                <p class="countdown__date-formatted rv rv-d2">28 &nbsp;&bull;&nbsp; 01 &nbsp;&bull;&nbsp; 2027</p>
+
+                <!-- 4 Shield Cards Grid -->
+                <div class="countdown__shield-grid" id="countdownGrid">
+                    <!-- Days Card -->
+                    <div class="countdown__shield-card rv rv-d3">
+                        <div class="countdown__icon-ring">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#8C7247" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="#8C7247"/><circle cx="12" cy="14" r="1" fill="#8C7247"/><circle cx="16" cy="14" r="1" fill="#8C7247"/></svg>
+                        </div>
+                        <div class="countdown__shield-num" id="cdDays">--</div>
+                        <div class="countdown__shield-label">DAYS</div>
+                        <div class="countdown__bottom-dash"></div>
+                    </div>
+
+                    <!-- Hours Card -->
+                    <div class="countdown__shield-card rv rv-d4">
+                        <div class="countdown__icon-ring">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#8C7247" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+                        </div>
+                        <div class="countdown__shield-num" id="cdHours">--</div>
+                        <div class="countdown__shield-label">HOURS</div>
+                        <div class="countdown__bottom-dash"></div>
+                    </div>
+
+                    <!-- Minutes Card -->
+                    <div class="countdown__shield-card rv rv-d5">
+                        <div class="countdown__icon-ring">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#8C7247" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 14 10"/></svg>
+                        </div>
+                        <div class="countdown__shield-num" id="cdMins">--</div>
+                        <div class="countdown__shield-label">MINUTES</div>
+                        <div class="countdown__bottom-dash"></div>
+                    </div>
+
+                    <!-- Seconds Card -->
+                    <div class="countdown__shield-card rv rv-d6">
+                        <div class="countdown__icon-ring">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#8C7247" stroke-width="1.8"><circle cx="12" cy="13" r="8"/><path d="M12 2v3"/><path d="M10 2h4"/></svg>
+                        </div>
+                        <div class="countdown__shield-num" id="cdSecs">--</div>
+                        <div class="countdown__shield-label">SECONDS</div>
+                        <div class="countdown__bottom-dash"></div>
+                    </div>
+                </div>
+
+                <!-- Bottom Leaf Flourish -->
+                <div class="countdown__bottom-flourish rv rv-d6">
+                    <span class="countdown__line"></span>
+                    <span class="countdown__leaf">🌿</span>
+                    <span class="countdown__line"></span>
+                </div>
             </div>
         </div>
     </section>
@@ -1683,7 +4036,7 @@ a{color:var(--gold-dk);text-decoration:none}
     -->
 
     <!-- 14. Final Blessing -->
-    <section class="sec closing" aria-label="Closing" style="padding-top:clamp(72px,10vh,140px); padding-bottom: 280px;">
+    <section class="sec closing" aria-label="Closing" style="padding-top: 16px; padding-bottom: 260px; background: #FAF6F0 !important; margin-top: 0;">
         <div class="sec__inner">
             <!-- <p class="tamil-text rv" style="font-size:clamp(16px,2vw,24px);color:var(--lotus)">அன்பும் அருளும் நிறைந்த இந்த இனிய நாளில்,<br>எங்கள் திருமண விழாவில் தாங்கள் குடும்பத்துடன் கலந்து கொண்டு<br>மணமக்களை ஆசீர்வதிக்க அன்புடன் அழைக்கின்றோம்.</p> -->
             <div class="orn rv rv-d1" style="max-width:180px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
@@ -1822,7 +4175,7 @@ const W={
     brideParents:'M.R. Usha Kumari & P.N. Ajoy Kumar',
     groomParents:'S.Baby Rani & K. Sasi Kumar',
     date:new Date('2027-01-28T18:30:00+05:30'),
-    event:'Engagement',
+    event:'Wedding Reception',
     venue:'Ushodhaya Csp Gardens',address:'Function Hall & Convention',
     mapsUrl:'https://www.google.com/maps/dir/?api=1&destination=Ushodhaya+Csp+Gardenss,+425,+Milk+Colony+Rd,+Assisi+Nagar,+Madhavaram+Milk+Colony,+Chennai,+Tamil+Nadu+600068'
 };
@@ -1943,7 +4296,7 @@ window.addEventListener('beforeunload',()=>{window.scrollTo(0,0)});
    SCROLL REVEAL (Intersection Observer)
    ================================================================ */
 function initScrollReveal(){
-    const els=document.querySelectorAll('.rv,.rv-scale,.rv-scale,.rv-right');
+    const els=document.querySelectorAll('.rv,.rv-scale,.rv-right,.rv-slide-left,.rv-slide-right');
     if('IntersectionObserver' in window){
         const io=new IntersectionObserver(entries=>{
             entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}});
