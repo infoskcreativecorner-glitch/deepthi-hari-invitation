@@ -2397,6 +2397,14 @@ a{color:var(--gold-dk);text-decoration:none}
     100% { transform: translateX(calc(100vw + 350px)) translateY(0); }
 }
 
+@keyframes driveAcrossMobile {
+    0%   { transform: translateX(0) translateY(0); }
+    25%  { transform: translateX(calc(25vw + 40px)) translateY(-3px); }
+    50%  { transform: translateX(calc(50vw + 80px)) translateY(0); }
+    75%  { transform: translateX(calc(75vw + 120px)) translateY(-3px); }
+    100% { transform: translateX(calc(100vw + 160px)) translateY(0); }
+}
+
 
 /* ================================================================
    SCENIC LANDSCAPE (Starry Night)
@@ -3200,6 +3208,15 @@ a{color:var(--gold-dk);text-decoration:none}
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
         max-width: 360px !important;
+    }
+
+    /* Scooter Animation for Mobile View */
+    .scooter-animation {
+        left: -130px !important;
+        width: 110px !important;
+        animation: driveAcrossMobile 9s linear infinite !important;
+        mix-blend-mode: multiply !important;
+        will-change: transform !important;
     }
 }
 </style>
