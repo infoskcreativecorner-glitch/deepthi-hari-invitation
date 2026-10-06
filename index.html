@@ -1072,11 +1072,32 @@ a{color:var(--gold-dk);text-decoration:none}
 @media (max-width: 767px) {
     .invite__split-grid {
         grid-template-columns: 1fr;
+        justify-items: center;
         gap: 20px;
     }
     
+    .invite__couple-column {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
     .invite__couple-frame {
-        max-width: 240px;
+        width: 100%;
+        max-width: 260px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .invite__couple-frame img {
+        margin: 0 auto;
+        display: block;
+        max-width: 100%;
+        height: auto;
     }
 
     .invite__name {
