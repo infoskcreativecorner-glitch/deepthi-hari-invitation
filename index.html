@@ -167,15 +167,15 @@ a{color:var(--gold-dk);text-decoration:none}
 }
 
 /* Lotus decorations on envelope */
-.envelope__lotus{position:absolute;z-index:1;opacity:.7}
-.envelope__lotus svg{width:clamp(50px,10vw,120px);height:auto}
-.envelope__lotus--tl{top:3%;left:2%}
-.envelope__lotus--tr{top:3%;right:2%}
-.envelope__lotus--bl{bottom:3%;left:2%}
-.envelope__lotus--br{bottom:3%;right:2%}
-.envelope__lotus--tr svg{transform:scaleX(-1)}
-.envelope__lotus--bl svg{transform:scaleY(-1)}
-.envelope__lotus--br svg{transform:scale(-1,-1)}
+.envelope__lotus{position:absolute;z-index:1;opacity:.95;pointer-events:none}
+.envelope__lotus img{width:clamp(100px,22vw,260px);height:auto;display:block}
+.envelope__lotus--tl{top:0;left:0}
+.envelope__lotus--tr{top:0;right:0}
+.envelope__lotus--bl{bottom:0;left:0}
+.envelope__lotus--br{bottom:0;right:0}
+.envelope__lotus--tr img{transform:scaleX(-1)}
+.envelope__lotus--bl img{transform:scaleY(-1)}
+.envelope__lotus--br img{transform:scale(-1,-1)}
 
 /* Corner gold lines */
 .envelope__corner{position:absolute;width:clamp(30px,6vw,80px);height:clamp(30px,6vw,80px);z-index:1}
@@ -1904,7 +1904,7 @@ a{color:var(--gold-dk);text-decoration:none}
 
 .closing__names{font-family:var(--fs);font-size:clamp(36px,6.5vw,64px);color:var(--txt-g);line-height:1.25;margin-bottom:clamp(6px,1vw,12px)}
 .closing__date{font-family:var(--fse);font-size:clamp(13px,1.5vw,17px);font-weight:400;color:var(--gold-dk);letter-spacing:.15em;margin-bottom:clamp(20px,3vw,36px)}
-.closing__msg{font-family:var(--fse);font-size:clamp(13px,1.4vw,16px);font-weight:400;font-style:italic;color:var(--txt2);max-width:480px;margin:0 auto;line-height:1.85}
+.closing__msg{font-family:var(--fse);font-size:clamp(13px,1.4vw,16px);font-weight:400;font-style:italic;color:var(--txt2);max-width:480px;margin:0 auto;line-height:1.85;font-size: 15px;}
 .closing__families{font-family:var(--fse);font-weight:600;color:var(--txt);font-style:normal;display:block;margin-top:8px}
 .closing__lotus{margin-top:clamp(36px,5vw,64px);opacity:.45}
 .closing__lotus svg{width:clamp(56px,9vw,110px);height:auto;margin:0 auto}
@@ -3242,17 +3242,11 @@ a{color:var(--gold-dk);text-decoration:none}
      ENVELOPE / OPENING SCREEN
      ================================================================ -->
 <div class="envelope" id="envelope" role="dialog" aria-label="Wedding Invitation — Tap the bow to open">
-    <!-- Lotus corners -->
-    <div class="envelope__lotus envelope__lotus--tl" aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
-    <div class="envelope__lotus envelope__lotus--tr" aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
-    <div class="envelope__lotus envelope__lotus--bl" aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
-    <div class="envelope__lotus envelope__lotus--br" aria-hidden="true"><svg viewBox="0 0 140 140" fill="none"><path d="M18 28 C28 14,52 6,58 36 C64 6,82 14,72 44 C78 22,94 28,76 56 C60 72,36 62,18 28Z" fill="#6B1E2E" opacity=".6"/><path d="M24 33 C32 22,48 16,52 38 C56 16,68 22,62 44 C54 58,38 52,24 33Z" fill="#7D2D3E" opacity=".7"/><path d="M30 37 C35 30,44 26,47 39 C49 26,58 30,54 42 C49 50,37 47,30 37Z" fill="#9E5A6A" opacity=".5"/><path d="M85 78 C90 68,102 64,100 80 C108 66,114 72,106 86 C98 94,88 90,85 78Z" fill="#6B1E2E" opacity=".5"/><path d="M54 44 Q64 56,72 60 Q80 65,85 78" stroke="#C4A265" stroke-width=".7" fill="none" opacity=".4"/></svg></div>
-
-    <!-- Gold corners -->
-    <div class="envelope__corner envelope__corner--tl" aria-hidden="true"></div>
-    <div class="envelope__corner envelope__corner--tr" aria-hidden="true"></div>
-    <div class="envelope__corner envelope__corner--bl" aria-hidden="true"></div>
-    <div class="envelope__corner envelope__corner--br" aria-hidden="true"></div>
+    <!-- Floral Corner Accents -->
+    <div class="envelope__lotus envelope__lotus--tl" aria-hidden="true"><img src="assets/Elegant Ivory and Gold Floral Corner.png" alt="Top Left Floral Accent"></div>
+    <div class="envelope__lotus envelope__lotus--tr" aria-hidden="true"><img src="assets/Elegant Ivory and Gold Floral Corner.png" alt="Top Right Floral Accent"></div>
+    <div class="envelope__lotus envelope__lotus--bl" aria-hidden="true"><img src="assets/Elegant Ivory and Gold Floral Corner.png" alt="Bottom Left Floral Accent"></div>
+    <div class="envelope__lotus envelope__lotus--br" aria-hidden="true"><img src="assets/Elegant Ivory and Gold Floral Corner.png" alt="Bottom Right Floral Accent"></div>
 
     <!-- The card -->
     <div class="envelope__card">
