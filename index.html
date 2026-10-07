@@ -220,8 +220,9 @@ a{color:var(--gold-dk);text-decoration:none}
 
 .envelope__card-date{
     font-family:var(--fse);font-size:clamp(12px,1.5vw,16px);
-    font-weight:400;color:var(--gold-dk);letter-spacing:.1em;
+    font-weight:700;color:#5A472E;letter-spacing:.2em;
     margin-bottom:clamp(16px,3vw,28px);
+    text-shadow: 0 1px 3px rgba(196,162,101,0.3);
 }
 
 /* ---- DRAG TO OPEN ---- */
@@ -674,6 +675,33 @@ a{color:var(--gold-dk);text-decoration:none}
     text-align: center;
     position: relative;
     width: 100% !important;
+}
+
+@media (max-width: 768px) {
+    .countdown {
+        background: 
+            url('assets/Ivory Botanical Wedding Invitation Background.png') top left / 200% auto no-repeat,
+            url('assets/Ivory Botanical Wedding Invitation Background.png') bottom right / 200% auto no-repeat,
+            #FAF6F0 !important;
+    }
+
+}
+
+.countdown-top-ornament {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    opacity: 0.85;
+}
+.countdown-top-ornament .dot {
+    color: #D4B475;
+    font-size: 14px;
+}
+.countdown-top-ornament .heart {
+    color: #3A3026;
+    font-size: 14px;
 }
 
 .countdown-card-wrapper {
@@ -3998,6 +4026,11 @@ a{color:var(--gold-dk);text-decoration:none}
 
     <!-- 12. Countdown -->
     <section class="countdown sec" aria-label="Countdown">
+        <div class="countdown-top-ornament" aria-hidden="true">
+            <span class="dot">&bull;</span>
+            <span class="heart">&hearts;</span>
+            <span class="dot">&bull;</span>
+        </div>
         <div class="sec__inner">
             <p class="sec-title rv" style="margin-bottom: clamp(20px, 3.5vw, 32px);">Looking Forward</p>
 
