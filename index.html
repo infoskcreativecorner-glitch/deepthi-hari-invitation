@@ -1250,22 +1250,35 @@ a{color:var(--gold-dk);text-decoration:none}
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 8px 26px;
-    background: rgba(196, 162, 101, 0.12);
-    border: 1px solid rgba(196, 162, 101, 0.4);
-    border-radius: 50px;
+    gap: 16px;
+    padding: 16px 40px;
+    background: radial-gradient(ellipse at center, rgba(196, 162, 101, 0.12) 0%, transparent 75%);
+    border: none;
+    border-radius: 0;
     margin: 0 auto clamp(20px, 3.5vw, 32px) auto;
-    box-shadow: 0 4px 16px rgba(196, 162, 101, 0.1);
+    position: relative;
+    box-shadow: none;
 }
+.family-dual-header-tag::before, .family-dual-header-tag::after {
+    content: '';
+    position: absolute;
+    left: 5%; right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196, 162, 101, 0.5), transparent);
+}
+.family-dual-header-tag::before { top: 0; }
+.family-dual-header-tag::after { bottom: 0; }
 
 .family-dual-header-txt {
     font-family: var(--fse);
     font-style: italic;
     font-size: clamp(16px, 2.2vw, 22px);
-    color: #8C7247;
     margin: 0;
-    font-weight: 500;
+    font-weight: 600;
+    background: linear-gradient(to right, #AA771C 0%, #D4AF37 50%, #AA771C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #D4AF37;
 }
 
 .family-dual-pillars {
@@ -2142,6 +2155,7 @@ a{color:var(--gold-dk);text-decoration:none}
     gap: clamp(30px, 5vw, 70px);
     align-items: center;
     width: 100%;
+    margin-bottom: clamp(-50px, -5vw, -30px);
 }
 
 /* Heart Node on Center Line */
@@ -2171,13 +2185,15 @@ a{color:var(--gold-dk);text-decoration:none}
 }
 
 .journey-item--odd .journey-content {
+    grid-column: 2;
     text-align: left;
-    padding-left: clamp(10px, 2vw, 30px);
+    padding-left: clamp(20px, 3vw, 40px);
 }
 
 .journey-item--even .journey-content {
-    text-align: left;
-    padding-right: clamp(10px, 2vw, 30px);
+    grid-column: 1;
+    text-align: right;
+    padding-right: clamp(20px, 3vw, 40px);
 }
 
 /* Date Badge */
@@ -2229,7 +2245,7 @@ a{color:var(--gold-dk);text-decoration:none}
 }
 
 /* Media Box (Illustration side) */
-.journey-media {
+.journey-media { display: none !important;
     z-index: 3;
     position: relative;
 }
@@ -2349,13 +2365,13 @@ a{color:var(--gold-dk);text-decoration:none}
     
     .journey-item--even .journey-content,
     .journey-item--odd .journey-content {
-        order: 1 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
+    grid-column: 2;
+    text-align: left;
+    padding-left: clamp(20px, 3vw, 40px);
+}
     
     .journey-item--even .journey-media,
-    .journey-item--odd .journey-media {
+    .journey-item--odd .journey-media { display: none !important;
         order: 2 !important;
     }
 
@@ -2719,19 +2735,32 @@ a{color:var(--gold-dk);text-decoration:none}
 .hero__date-pill {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 6px 20px;
-    border-radius: 50px;
-    background: linear-gradient(135deg, rgba(245, 235, 215, 0.95), rgba(235, 215, 175, 0.8));
-    border: 1px solid rgba(196, 162, 101, 0.5);
-    box-shadow: 0 4px 15px rgba(196, 162, 101, 0.18);
+    gap: 16px;
+    padding: 16px 40px;
+    background: radial-gradient(ellipse at center, rgba(196, 162, 101, 0.15) 0%, transparent 75%);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    position: relative;
     font-family: var(--fse);
-    font-size: clamp(13px, 1.6vw, 18px);
+    font-size: clamp(14px, 1.8vw, 20px);
     font-weight: 500;
-    color: #7D6337;
-    letter-spacing: 0.12em;
+    background-image: linear-gradient(to right, #AA771C 0%, #D4AF37 50%, #AA771C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #D4AF37;
+    letter-spacing: 0.15em;
     margin-top: clamp(6px, 1vh, 12px);
 }
+.hero__date-pill::before, .hero__date-pill::after {
+    content: '';
+    position: absolute;
+    left: 5%; right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196, 162, 101, 0.6), transparent);
+}
+.hero__date-pill::before { top: 0; }
+.hero__date-pill::after { bottom: 0; }
 .hero__bokeh {
     position: absolute;
     border-radius: 50%;
@@ -3154,6 +3183,7 @@ a{color:var(--gold-dk);text-decoration:none}
     .journey-item {
         display: flex !important;
         flex-direction: column !important;
+        margin-bottom: 20px !important;
         align-items: center !important;
     }
     /* Mobile: Text ALWAYS First (order: 1) and slides LEFT to RIGHT */
@@ -3169,7 +3199,7 @@ a{color:var(--gold-dk);text-decoration:none}
         opacity: 1 !important;
     }
     /* Mobile: Photo ALWAYS Second (order: 2) and slides RIGHT to LEFT */
-    .journey-media {
+    .journey-media { display: none !important;
         order: 2 !important;
         width: 100% !important;
         margin-top: 14px !important;
@@ -4717,6 +4747,11 @@ if (jumpBtn) {
 </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
