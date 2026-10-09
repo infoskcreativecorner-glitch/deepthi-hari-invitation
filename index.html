@@ -41,7 +41,7 @@
     --fse:'Cormorant Garamond','Georgia',serif;
     --fb:'Lora','Georgia',serif;
     --fsa:'Josefin Sans','Helvetica Neue',sans-serif;
-    --spy:clamp(72px,12vh,150px);--spx:clamp(20px,5vw,60px);--mw:880px;
+    --spy:clamp(48px,7vh,88px);--spx:clamp(20px,5vw,60px);--mw:880px;
     --e:cubic-bezier(.25,.46,.45,.94);--eo:cubic-bezier(0,0,.2,1);
     
     /* Metallic Gold Gradient */
@@ -472,7 +472,7 @@ a{color:var(--gold-dk);text-decoration:none}
    ================================================================ */
 .venue-ref-section {
     background: #FAF6F0 !important;
-    padding: clamp(56px, 7.5vh, 96px) var(--spx);
+    padding: var(--spy) var(--spx);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -671,20 +671,57 @@ a{color:var(--gold-dk);text-decoration:none}
    ================================================================ */
 .countdown {
     background: #FAF6F0 url('assets/Ivory Botanical Wedding Invitation Background.png') center / cover no-repeat !important;
-    padding: clamp(52px, 7vh, 80px) var(--spx) clamp(100px, 12vh, 140px) var(--spx) !important;
+    padding: clamp(32px, 4vh, 56px) var(--spx) clamp(36px, 5vh, 64px) var(--spx) !important;
     text-align: center;
     position: relative;
     width: 100% !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Top fade — gradual blend with section above */
+.countdown::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 30%;
+    background: linear-gradient(to bottom,
+        #FAF6F0 0%,
+        rgba(250,246,240,0.85) 20%,
+        rgba(250,246,240,0.5) 50%,
+        rgba(250,246,240,0.1) 80%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Bottom fade — gradual blend with section below */
+.countdown::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 30%;
+    background: linear-gradient(to top,
+        #FAF6F0 0%,
+        rgba(250,246,240,0.85) 20%,
+        rgba(250,246,240,0.5) 50%,
+        rgba(250,246,240,0.1) 80%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
 @media (max-width: 768px) {
     .countdown {
-        background: 
-            url('assets/Ivory Botanical Wedding Invitation Background.png') top left / 200% auto no-repeat,
-            url('assets/Ivory Botanical Wedding Invitation Background.png') bottom right / 200% auto no-repeat,
-            #FAF6F0 !important;
+        background: #FAF6F0 url('assets/Ivory Botanical Wedding Invitation Background.png') center / cover no-repeat !important;
+        min-height: 100svh;
     }
-
 }
 
 .countdown-top-ornament {
@@ -692,8 +729,10 @@ a{color:var(--gold-dk);text-decoration:none}
     justify-content: center;
     align-items: center;
     gap: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     opacity: 0.85;
+    position: relative;
+    z-index: 2;
 }
 .countdown-top-ornament .dot {
     color: #D4B475;
@@ -717,6 +756,7 @@ a{color:var(--gold-dk);text-decoration:none}
     text-align: center;
     overflow: hidden;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 .countdown-card-wrapper::before {
@@ -774,76 +814,72 @@ a{color:var(--gold-dk);text-decoration:none}
 }
 
 .countdown__shield-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(10px, 1.8vw, 22px);
+    display: flex;
     justify-content: center;
-    align-items: stretch;
-    max-width: 780px;
+    align-items: center;
+    gap: clamp(0px, 2vw, 0px);
+    max-width: 860px;
     margin: 0 auto;
 }
 
+/* Elegant minimal countdown unit */
 .countdown__shield-card {
-    background: linear-gradient(180deg, #FDFBF7 0%, #F8F2E4 100%);
-    border: 1.5px solid #D4B475;
-    border-radius: 28px 28px 16px 16px;
-    padding: clamp(14px, 2vw, 22px) clamp(8px, 1.2vw, 14px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 
-        0 8px 24px rgba(90, 74, 58, 0.06),
-        0 2px 8px rgba(196, 162, 101, 0.12),
-        inset 0 0 0 1px #FFFFFF;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    padding: clamp(16px, 2.5vw, 28px) clamp(20px, 3vw, 40px);
+    background: transparent;
+    border: none;
+    box-shadow: none;
     box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+/* Vertical gold separator between units */
+.countdown__shield-card + .countdown__shield-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(196,162,101,0.45), transparent);
 }
 
 .countdown__shield-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        0 14px 32px rgba(90, 74, 58, 0.1),
-        0 3px 12px rgba(196, 162, 101, 0.2);
+    transform: translateY(-4px);
 }
 
 .countdown__icon-ring {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: rgba(196, 162, 101, 0.12);
-    border: 1px solid rgba(196, 162, 101, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
+    display: none;
 }
 
 .countdown__shield-num {
     font-family: var(--fse);
-    font-size: clamp(22px, 3.2vw, 34px);
-    font-weight: 500;
-    color: #261E17;
+    font-size: clamp(44px, 7vw, 80px);
+    font-weight: 300;
+    color: var(--gold-dk);
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    min-width: 2ch;
+    text-align: center;
 }
 
 .countdown__shield-label {
     font-family: var(--fsa);
-    font-size: clamp(8px, 1vw, 10px);
-    letter-spacing: 0.22em;
+    font-size: clamp(9px, 1vw, 11px);
+    letter-spacing: 0.35em;
     color: #8C7247;
     text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 6px;
+    font-weight: 400;
+    margin-bottom: 0;
 }
 
 .countdown__bottom-dash {
-    width: 18px;
-    height: 1.5px;
-    background: #D4B475;
-    border-radius: 2px;
+    display: none;
 }
 
 .countdown__bottom-flourish {
@@ -862,8 +898,25 @@ a{color:var(--gold-dk);text-decoration:none}
 
 @media (max-width: 600px) {
     .countdown__shield-grid {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
+        gap: 0;
+        max-width: 340px;
+    }
+    /* Vertical line between columns */
+    .countdown__shield-card + .countdown__shield-card::before {
+        display: block;
+    }
+    /* Hide separator on 3rd card — it's the first item in row 2 */
+    .countdown__shield-card:nth-child(3)::before {
+        display: none;
+    }
+
+    .countdown__shield-card {
+        padding: 20px 16px;
+    }
+    .countdown__shield-num {
+        font-size: clamp(36px, 10vw, 52px);
     }
 }
 
@@ -1457,7 +1510,7 @@ a{color:var(--gold-dk);text-decoration:none}
    ================================================================ */
 .events {
     background: var(--ivory) !important;
-    padding: clamp(48px, 7vh, 88px) 5px !important;
+    padding: var(--spy) 5px !important;
     text-align: center;
     position: relative;
     overflow: visible;
@@ -1987,7 +2040,7 @@ a{color:var(--gold-dk);text-decoration:none}
     .envelope__card-names{font-size:28px}
 }
 @media(min-width:1024px){
-    :root{--spy:clamp(80px,10vh,150px)}
+    :root{--spy:clamp(48px,7vh,88px)}
     .invite__card{padding:56px 72px}
     .events__card{padding:52px 76px}
 }
@@ -2132,6 +2185,26 @@ a{color:var(--gold-dk);text-decoration:none}
 }
 
 /* Central Golden Vertical Line */
+
+
+.journey-traveler {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    background: #FAF6F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
 .journey-timeline__line {
     position: absolute;
     top: 20px;
@@ -2164,18 +2237,83 @@ a{color:var(--gold-dk);text-decoration:none}
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
     background: #FAF6F0;
-    border: 1px stroke #C4A265;
+    border: 1px solid rgba(196,162,101,0.3);
     border-radius: 50%;
-    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
-    color: #8C7247;
     z-index: 4;
     box-shadow: 0 0 0 5px #FAF6F0;
+}
+
+.journey-timeline__progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: transparent; /* No red line, just the traveling heart */
+    z-index: 2;
+}
+
+
+
+
+.heart-fill {
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: center;
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-delay: 0.2s;
+}
+
+.journey-node::before {
+    content: '♥';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: transparent;
+    pointer-events: none;
+    z-index: 6;
+}
+.journey-node::after {
+    content: '♥';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    font-size: 14px;
+    color: transparent;
+    pointer-events: none;
+    z-index: 6;
+}
+@keyframes multiHeartBlast {
+    0% {
+        text-shadow: 0 0 0 rgba(217,56,70,0.8), 0 0 0 rgba(217,56,70,0.8), 0 0 0 rgba(217,56,70,0.8), 0 0 0 rgba(217,56,70,0.8);
+        opacity: 1;
+    }
+    100% {
+        text-shadow: -36px -36px 0 rgba(217,56,70,0), 36px -36px 0 rgba(217,56,70,0), -36px 36px 0 rgba(217,56,70,0), 36px 36px 0 rgba(217,56,70,0);
+        opacity: 0;
+    }
+}
+@keyframes multiHeartBlast2 {
+    0% {
+        text-shadow: 0 0 0 rgba(217,56,70,0.8), 0 0 0 rgba(217,56,70,0.8), 0 0 0 rgba(217,56,70,0.8), 0 0 0 rgba(217,56,70,0.8);
+        opacity: 1;
+    }
+    100% {
+        text-shadow: 0 -52px 0 rgba(217,56,70,0), 0 52px 0 rgba(217,56,70,0), -52px 0 0 rgba(217,56,70,0), 52px 0 0 rgba(217,56,70,0);
+        opacity: 0;
+    }
+}
+.rv-heart.vis::before { animation: multiHeartBlast 3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.rv-heart.vis::after { animation: multiHeartBlast2 3.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.rv-heart.vis .heart-fill {
+    opacity: 1;
+    transform: scale(1);
 }
 
 /* Content Box (Text side) */
@@ -2346,11 +2484,12 @@ a{color:var(--gold-dk);text-decoration:none}
 
 /* Mobile Responsiveness (< 768px) */
 @media (max-width: 767px) {
-    .journey-timeline__line {
+    
+.journey-timeline__line {
         left: 20px;
         transform: none;
     }
-    
+
     .journey-item {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -3528,11 +3667,17 @@ a{color:var(--gold-dk);text-decoration:none}
             <!-- Zig-Zag Timeline Container -->
             <div class="journey-timeline">
                 <!-- Center Vertical Gold Line -->
-                <div class="journey-timeline__line"></div>
+                <div class="journey-timeline__line" id="journeyLine">
+                    <div class="journey-traveler" id="journeyTraveler">
+                        <svg viewBox="0 0 24 24" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="#D93846" />
+                        </svg>
+                    </div>
+                </div>
 
                 <!-- Item 1: February 2017 (Illustration Left, Text Right) -->
                 <div class="journey-item journey-item--odd">
-                    <div class="journey-node">♥</div>
+                    <div class="journey-node rv-heart"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path class="heart-outline" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="none" stroke="#222" stroke-width="2"/><path class="heart-fill" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="#D93846" stroke="#D93846" stroke-width="1"/></svg></div>
                     <div class="journey-media rv rv-slide-right">
                         <div class="journey-img-frame">
                             <img src="assets/journey_1.jpg" alt="When He Knew" loading="lazy">
@@ -3550,7 +3695,7 @@ a{color:var(--gold-dk);text-decoration:none}
 
                 <!-- Item 2: March 2019 (Text Left, Illustration Right) -->
                 <div class="journey-item journey-item--even">
-                    <div class="journey-node">♥</div>
+                    <div class="journey-node rv-heart"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path class="heart-outline" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="none" stroke="#222" stroke-width="2"/><path class="heart-fill" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="#D93846" stroke="#D93846" stroke-width="1"/></svg></div>
                     <div class="journey-content rv rv-slide-right">
                         <div class="journey-date-badge">
                             <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
@@ -3568,7 +3713,7 @@ a{color:var(--gold-dk);text-decoration:none}
 
                 <!-- Item 3: 2019 - 2024 (Illustration Left, Text Right) -->
                 <div class="journey-item journey-item--odd">
-                    <div class="journey-node">♥</div>
+                    <div class="journey-node rv-heart"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path class="heart-outline" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="none" stroke="#222" stroke-width="2"/><path class="heart-fill" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="#D93846" stroke="#D93846" stroke-width="1"/></svg></div>
                     <div class="journey-media rv rv-slide-right">
                         <div class="journey-img-frame">
                             <img src="assets/journey_3.jpg" alt="Building Memories" loading="lazy">
@@ -3586,7 +3731,7 @@ a{color:var(--gold-dk);text-decoration:none}
 
                 <!-- Item 4: April 2024 (Text Left, Illustration Right) -->
                 <div class="journey-item journey-item--even">
-                    <div class="journey-node">♥</div>
+                    <div class="journey-node rv-heart"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path class="heart-outline" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="none" stroke="#222" stroke-width="2"/><path class="heart-fill" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="#D93846" stroke="#D93846" stroke-width="1"/></svg></div>
                     <div class="journey-content rv rv-slide-right">
                         <div class="journey-date-badge">
                             <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
@@ -3604,7 +3749,7 @@ a{color:var(--gold-dk);text-decoration:none}
 
                 <!-- Item 5: July 2026 (Illustration Left, Text Right) -->
                 <div class="journey-item journey-item--odd">
-                    <div class="journey-node">♥</div>
+                    <div class="journey-node rv-heart"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path class="heart-outline" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="none" stroke="#222" stroke-width="2"/><path class="heart-fill" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="#D93846" stroke="#D93846" stroke-width="1"/></svg></div>
                     <div class="journey-media rv rv-slide-right">
                         <div class="journey-img-frame">
                             <img src="assets/journey_5.jpg" alt="Bringing Families Together" loading="lazy">
@@ -3622,7 +3767,7 @@ a{color:var(--gold-dk);text-decoration:none}
 
                 <!-- Item 6: January 2027 (Text Left, Illustration Right) -->
                 <div class="journey-item journey-item--even">
-                    <div class="journey-node">♥</div>
+                    <div class="journey-node rv-heart"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path class="heart-outline" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="none" stroke="#222" stroke-width="2"/><path class="heart-fill" d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 12 21Z" fill="#D93846" stroke="#D93846" stroke-width="1"/></svg></div>
                     <div class="journey-content rv rv-slide-right">
                         <div class="journey-date-badge">
                             <svg class="journey-cal-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/></svg>
@@ -3660,7 +3805,7 @@ a{color:var(--gold-dk);text-decoration:none}
     <!-- 3. The Wedding Announcement -->
     <section class="sec sec--alt invite invite--royal" aria-label="Wedding Announcement">
         <div class="sec__inner">
-            <p class="sec-title rv">The Wedding</p>
+            
             
             <div class="invite__royal-card rv-scale">
                 <!-- Card Corner Ornaments -->
@@ -3934,7 +4079,7 @@ a{color:var(--gold-dk);text-decoration:none}
     <!-- 8. Family Invitation & 9. Traditional Message -->
     <section class="sec sec--warm" aria-label="Family Invitation" style="text-align:center">
         <div class="sec__inner">
-            <p class="sec-title rv" style="margin-bottom: clamp(16px, 3vw, 28px);">Family Invitation</p>
+            
 
             <!-- Top Header Badge -->
             <div style="text-align: center; width: 100%; margin-bottom: clamp(20px, 3.5vw, 32px);">
@@ -4068,7 +4213,7 @@ a{color:var(--gold-dk);text-decoration:none}
             <span class="dot">&bull;</span>
         </div>
         <div class="sec__inner">
-            <p class="sec-title rv" style="margin-bottom: clamp(20px, 3.5vw, 32px);">Looking Forward</p>
+            
 
             <!-- Card Container with Botanical Background -->
             <div class="countdown-card-wrapper rv-scale">
@@ -4155,7 +4300,7 @@ a{color:var(--gold-dk);text-decoration:none}
     -->
 
     <!-- 14. Final Blessing -->
-    <section class="sec closing" aria-label="Closing" style="padding-top: clamp(60px, 8vh, 100px); padding-bottom: 260px; background: #FAF6F0 !important; margin-top: 0;">
+    <section class="sec closing" aria-label="Closing" style="padding-top: var(--spy); padding-bottom: 260px; background: #FAF6F0 !important; margin-top: 0;">
         <div class="sec__inner">
             <!-- <p class="tamil-text rv" style="font-size:clamp(16px,2vw,24px);color:var(--lotus)">அன்பும் அருளும் நிறைந்த இந்த இனிய நாளில்,<br>எங்கள் திருமண விழாவில் தாங்கள் குடும்பத்துடன் கலந்து கொண்டு<br>மணமக்களை ஆசீர்வதிக்க அன்புடன் அழைக்கின்றோம்.</p> -->
             <div class="orn rv rv-d1" style="max-width:180px"><span class="orn__line"></span><span class="orn__dot"></span><span class="orn__line"></span></div>
@@ -4421,8 +4566,21 @@ function initScrollReveal(){
             entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}});
         },{threshold:.1,rootMargin:'0px 0px -20px 0px'});
         els.forEach(el=>io.observe(el));
+        const heartIo = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    heartIo.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0, rootMargin: '0px 0px -50% 0px' });
+        document.querySelectorAll('.rv-heart').forEach(el => heartIo.observe(el));
+
+
+        
     }else{
-        els.forEach(el=>el.classList.add('vis'));
+        els.forEach(el=>el.classList.add('vis')); document.querySelectorAll('.rv-heart').forEach(el=>el.classList.add('vis'));
+        
     }
 }
 
@@ -4743,6 +4901,69 @@ if (jumpBtn) {
     });
 }
 
+
+
+
+// Smooth Traveling Heart Logic
+const journeyLine = document.getElementById('journeyLine');
+const traveler = document.getElementById('journeyTraveler');
+if (journeyLine && traveler) {
+    const nodes = document.querySelectorAll('.journey-node');
+    let currentY = 0;
+    let targetY = 0;
+    let maxTravel = 0;
+    
+    function updateMaxTravel() {
+        if (nodes.length > 0) {
+            const lastNode = nodes[nodes.length - 1];
+            // Since nodes are placed via flex/gap in journey-timeline, 
+            // and journey-timeline__line is absolute within it,
+            // we calculate the relative offset between the line and the last node.
+            const lineRect = journeyLine.getBoundingClientRect();
+            const nodeRect = lastNode.getBoundingClientRect();
+            maxTravel = (nodeRect.top - lineRect.top) + (nodeRect.height / 2);
+        }
+    }
+    
+    window.addEventListener('resize', updateMaxTravel);
+    
+    // Lerp loop
+    function animateTraveler() {
+        currentY = targetY; // 0.08 is the smoothing factor (lower = slower/smoother)
+        
+        if (traveler) {
+            traveler.style.top = currentY + 'px';
+            // Show traveler when it starts moving down
+            if (currentY > 10 && currentY < maxTravel - 2) {
+                traveler.style.opacity = '1';
+            } else if (currentY >= maxTravel - 2) {
+                // When it perfectly hits the last node, hide it so the node's own heart shows
+                traveler.style.opacity = '0';
+            } else {
+                traveler.style.opacity = '0';
+            }
+        }
+        
+        requestAnimationFrame(animateTraveler);
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (maxTravel === 0) updateMaxTravel();
+        
+        const rect = journeyLine.getBoundingClientRect();
+        const viewportCenter = window.innerHeight / 2;
+        let pY = viewportCenter - rect.top;
+        
+        if (pY < 0) pY = 0;
+        if (pY > maxTravel) pY = maxTravel;
+        
+        targetY = pY;
+    }, { passive: true });
+    
+    // Initialize
+    updateMaxTravel();
+    animateTraveler();
+}
 })();
 </script>
 </body>
