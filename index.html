@@ -310,7 +310,7 @@ a{color:var(--gold-dk);text-decoration:none}
     height: 100%;
     width: 100%;
     object-fit: contain;
-    mix-blend-mode: multiply; /* Magically removes solid white backgrounds on the cream envelope */
+     /* Magically removes solid white backgrounds on the cream envelope */
 }
 
 .envelope__tap-text{
@@ -4509,7 +4509,15 @@ function createBurstPetals(){
 }
 createBurstPetals();
 
+// Clear any hash on load to ensure we always start at the drag screen
+if (window.location.hash === '#invite') {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+
 function openEnvelope(){
+    // Add state to history so back button works
+    history.pushState({ opened: true }, '', '#invite');
+
     // Burst petals
     document.querySelectorAll('.burst-petal').forEach((p,i)=>{
         p.style.animation=`burstPetal 1.2s ${i*30}ms var(--eo) forwards`;
@@ -4534,6 +4542,49 @@ function openEnvelope(){
         setTimeout(initScrollReveal,200);
     },1000);
 }
+
+// Handle Back / Forward buttons
+window.addEventListener('popstate', (e) => {
+    if (window.location.hash !== '#invite') {
+        // User clicked BACK: Re-show the drag screen
+        envelope.classList.remove('hidden');
+        envelope.classList.remove('opening');
+        document.documentElement.classList.add('envelope-active');
+        document.body.classList.add('envelope-active');
+        document.body.style.overflow = 'hidden';
+        
+        mainContent.classList.add('content-hidden');
+        mainContent.classList.remove('revealed');
+        musicBtn.classList.remove('show');
+        
+        // Reset drag input
+        if (dragInput) {
+            dragInput.value = 0;
+            dragInput.disabled = false;
+            dragFill.style.width = '0px';
+            dragGirl.style.left = '0px';
+        }
+        
+        // Reset burst petals
+        document.querySelectorAll('.burst-petal').forEach(p => {
+            p.style.animation = 'none';
+        });
+        
+        // Pause music if needed, or leave it playing? Let's leave it playing or pause it.
+        // Pausing is probably safer.
+        if (playing && window._audio) {
+            window._audio.pause();
+            playing = false;
+            musicBtn.classList.remove('playing');
+            musicBtn.setAttribute('aria-pressed', 'false');
+        }
+        
+    } else {
+        // User clicked FORWARD. The user explicitly requested to NOT have a forward button functionality.
+        // So we instantly erase the forward state and keep them on the drag screen.
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+});
 
 const dragInput=document.getElementById('dragInput');
 const dragGirl=document.getElementById('dragGirl');
@@ -4566,15 +4617,7 @@ function initScrollReveal(){
             entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}});
         },{threshold:.1,rootMargin:'0px 0px -20px 0px'});
         els.forEach(el=>io.observe(el));
-        const heartIo = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('vis');
-                    heartIo.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0, rootMargin: '0px 0px -50% 0px' });
-        document.querySelectorAll('.rv-heart').forEach(el => heartIo.observe(el));
+        
 
 
         
@@ -4904,51 +4947,54 @@ if (jumpBtn) {
 
 
 
-// Smooth Traveling Heart Logic
+// Perfectly Synced Traveling Heart Logic
 const journeyLine = document.getElementById('journeyLine');
 const traveler = document.getElementById('journeyTraveler');
 if (journeyLine && traveler) {
     const nodes = document.querySelectorAll('.journey-node');
-    let currentY = 0;
-    let targetY = 0;
     let maxTravel = 0;
+    let nodePositions = [];
     
-    function updateMaxTravel() {
+    function updatePositions() {
         if (nodes.length > 0) {
-            const lastNode = nodes[nodes.length - 1];
-            // Since nodes are placed via flex/gap in journey-timeline, 
-            // and journey-timeline__line is absolute within it,
-            // we calculate the relative offset between the line and the last node.
             const lineRect = journeyLine.getBoundingClientRect();
-            const nodeRect = lastNode.getBoundingClientRect();
-            maxTravel = (nodeRect.top - lineRect.top) + (nodeRect.height / 2);
+            nodePositions = Array.from(nodes).map(node => {
+                const nodeRect = node.getBoundingClientRect();
+                return (nodeRect.top - lineRect.top) + (nodeRect.height / 2);
+            });
+            maxTravel = nodePositions[nodePositions.length - 1];
         }
     }
     
-    window.addEventListener('resize', updateMaxTravel);
+    window.addEventListener('resize', updatePositions);
     
-    // Lerp loop
-    function animateTraveler() {
-        currentY = targetY; // 0.08 is the smoothing factor (lower = slower/smoother)
-        
+    let currentY = 0;
+    
+    function updateTraveler() {
         if (traveler) {
             traveler.style.top = currentY + 'px';
-            // Show traveler when it starts moving down
+            
+            // Show/hide traveler
             if (currentY > 10 && currentY < maxTravel - 2) {
                 traveler.style.opacity = '1';
-            } else if (currentY >= maxTravel - 2) {
-                // When it perfectly hits the last node, hide it so the node's own heart shows
-                traveler.style.opacity = '0';
             } else {
                 traveler.style.opacity = '0';
             }
+            
+            // Sync nodes!
+            nodes.forEach((node, index) => {
+                // Trigger exactly when the traveler reaches the node's center
+                if (currentY >= nodePositions[index] - 5) {
+                    node.classList.add('vis');
+                } else {
+                    node.classList.remove('vis');
+                }
+            });
         }
-        
-        requestAnimationFrame(animateTraveler);
     }
     
     window.addEventListener('scroll', () => {
-        if (maxTravel === 0) updateMaxTravel();
+        if (maxTravel === 0) updatePositions();
         
         const rect = journeyLine.getBoundingClientRect();
         const viewportCenter = window.innerHeight / 2;
@@ -4957,12 +5003,13 @@ if (journeyLine && traveler) {
         if (pY < 0) pY = 0;
         if (pY > maxTravel) pY = maxTravel;
         
-        targetY = pY;
+        currentY = pY;
+        updateTraveler();
     }, { passive: true });
     
     // Initialize
-    updateMaxTravel();
-    animateTraveler();
+    updatePositions();
+    updateTraveler();
 }
 })();
 </script>
