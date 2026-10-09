@@ -4497,7 +4497,7 @@ function initInviteLogic() {
             if (p.toLowerCase() === 'and') return '&';
             return p.charAt(0).toUpperCase() + p.slice(1).toLowerCase();
         }).filter(Boolean);
-        guestName = parts.join(' ');
+        guestName = parts.join(' & ');
     }
     
     var greeting = guestName ? 'Dear ' + guestName : 'Dear Family & Friends';
