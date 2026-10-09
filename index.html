@@ -3880,7 +3880,7 @@ a{color:var(--gold-dk);text-decoration:none}
 -->
 
     <!-- 5. Muhurtham & 6. Engagement -->
-    <section class="sec sec--grad events" aria-label="Event Details">
+    <section class="sec sec--grad events" id="muhurthamSection" aria-label="Event Details">
         <!-- Left & Right Screen-Border Flush Mandalas -->
         <div class="muhurtham-side-img muhurtham-side-img--left" aria-hidden="true">
             <img src="assets/Untitled design (3)-Photoroom.png" alt="Left Mandala Accent" loading="lazy">
@@ -4459,29 +4459,66 @@ const W={
 /* ================================================================
    PERSONALIZED GUEST WELCOME (from /invite/slug URL)
    ================================================================ */
-function getGuestGreeting(){
-    var path=window.location.pathname;
-    var match=path.match(/\/invite\/([^\/\?#]+)/i);
-    if(!match)return null;
-    var slug=decodeURIComponent(match[1]).replace(/[^a-zA-Z0-9\-_ ]/g,'');
-    if(!slug)return null;
-    var parts=slug.split('-').map(function(p){
-        p=p.trim();
-        if(!p)return '';
-        if(p.toLowerCase()==='family')return 'Family';
-        return p.charAt(0).toUpperCase()+p.slice(1).toLowerCase();
-    }).filter(Boolean);
-    if(!parts.length)return null;
-    return 'Dear '+parts.join(' & ')+' ❤️';
+function initInviteLogic() {
+    var path = window.location.pathname;
+    
+    // Remove leading slash and split path segments
+    var segments = path.replace(/^\//, '').split('/');
+    
+    // The last meaningful segment (ignore empty trailing segments)
+    var lastSegment = '';
+    for (var i = segments.length - 1; i >= 0; i--) {
+        if (segments[i].trim() !== '') {
+            lastSegment = segments[i].toLowerCase();
+            break;
+        }
+    }
+    
+    // Determine if wedding mode
+    var isWedding = lastSegment === 'wedding' || lastSegment.startsWith('wedding-invite');
+    
+    // Extract guest name
+    var guestName = '';
+    var nameSlug = '';
+    
+    if (lastSegment.startsWith('wedding-invite-')) {
+        // e.g. wedding-invite-priya-family
+        nameSlug = lastSegment.replace('wedding-invite-', '');
+    } else if (lastSegment.startsWith('invite-')) {
+        // e.g. invite-priya-family
+        nameSlug = lastSegment.replace('invite-', '');
+    }
+    
+    if (nameSlug) {
+        var parts = nameSlug.split('-').map(function(p) {
+            p = p.trim();
+            if (!p) return '';
+            if (p.toLowerCase() === 'family') return 'Family';
+            if (p.toLowerCase() === 'and') return '&';
+            return p.charAt(0).toUpperCase() + p.slice(1).toLowerCase();
+        }).filter(Boolean);
+        guestName = parts.join(' ');
+    }
+    
+    var greeting = guestName ? 'Dear ' + guestName : 'Dear Family & Friends';
+    
+    // Apply greeting
+    var envEl = document.getElementById('guestWelcomeEnvelope');
+    var heroEl = document.getElementById('guestWelcomeHero');
+    if (envEl) { envEl.textContent = greeting; envEl.classList.add('active'); }
+    if (heroEl) { heroEl.textContent = greeting; heroEl.classList.add('active'); }
+    
+    // Show/hide Muhurtham section
+    var muhurthamEl = document.getElementById('muhurthamSection');
+    if (muhurthamEl) {
+        if (isWedding) {
+            muhurthamEl.style.display = '';
+        } else {
+            muhurthamEl.style.display = 'none';
+        }
+    }
 }
-(function(){
-    var greeting=getGuestGreeting();
-    if(!greeting)return;
-    var envEl=document.getElementById('guestWelcomeEnvelope');
-    var heroEl=document.getElementById('guestWelcomeHero');
-    if(envEl){envEl.textContent=greeting;envEl.classList.add('active')}
-    if(heroEl){heroEl.textContent=greeting;heroEl.classList.add('active')}
-})();
+initInviteLogic();
 
 /* ================================================================
    ENVELOPE OPENING
