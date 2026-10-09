@@ -3624,7 +3624,7 @@ a{color:var(--gold-dk);text-decoration:none}
             <h1 class="hero__names rv rv-d4" style="font-size:clamp(42px,8.5vw,85px);margin: 8px 0;"><span class="metallic-text">Deepthi</span> <span class="hero__amp">weds</span> <span class="metallic-text">Hari</span></h1>
             
             <div class="rv rv-d5" style="margin-top:clamp(12px,2vw,20px); margin-bottom:clamp(10px,1.5vw,16px);">
-                <p style="font-family: var(--fse); font-weight:400; font-style: italic; font-size: clamp(13px, 1.5vw, 17px); color: var(--txt2); line-height: 1.8; max-width: 520px; margin: 0 auto;">Please join us for an evening filled with love, laughter, and celebration as we step into this new chapter of life together.</p>
+                <p id="dynamicWelcomeText" style="font-family: var(--fse); font-weight:400; font-style: italic; font-size: clamp(13px, 1.5vw, 17px); color: var(--txt2); line-height: 1.8; max-width: 520px; margin: 0 auto;">Please join us for an evening filled with love, laughter, and celebration as we step into this new chapter of life together.</p>
             </div>
 
             <div class="rv rv-d6">
@@ -3833,7 +3833,7 @@ a{color:var(--gold-dk);text-decoration:none}
                                 <h2 class="invite__person-title">
                                     <span class="metallic-text">Deepthi</span>
                                 </h2>
-                                <p class="invite__parents-desc">Daughter of P.N. Ajoy Kumar &amp; M.R. Usha Kumari</p>
+                                <p class="invite__parents-desc">P.N. Ajoy Kumar &amp; M.R. Usha Kumari</p>
                             </div>
 
                             <!-- Center Divider -->
@@ -3848,7 +3848,7 @@ a{color:var(--gold-dk);text-decoration:none}
                                 <h2 class="invite__person-title">
                                     <span class="metallic-text">Hari Prasath</span>
                                 </h2>
-                                <p class="invite__parents-desc">Son of K. Sasi Kumar &amp; S. Baby Rani</p>
+                                <p class="invite__parents-desc">K. Sasi Kumar &amp; S. Baby Rani</p>
                             </div>
                         </div>
                     </div>
@@ -4095,7 +4095,7 @@ a{color:var(--gold-dk);text-decoration:none}
                 <!-- Bride Arch Pillar -->
                 <div class="family-pillar-card">
                     <span class="family-pillar-badge">👰 Bride's Family</span>
-                    <p class="family-pillar-parents" style="font-size: clamp(16px, 2.2vw, 22px); font-style: italic; font-weight: 400; margin-top: 10px; line-height: 1.5; color: #5A4A3E;">Daughter of P.N. Ajoy Kumar &amp;<br>M.R. Usha Kumari</p>
+                    <p class="family-pillar-parents" style="font-size: clamp(16px, 2.2vw, 22px); font-style: italic; font-weight: 400; margin-top: 10px; line-height: 1.5; color: #5A4A3E;">P.N. Ajoy Kumar &amp;<br>M.R. Usha Kumari</p>
                 </div>
 
                 <!-- Center Knot Badge -->
@@ -4108,7 +4108,7 @@ a{color:var(--gold-dk);text-decoration:none}
                 <!-- Groom Arch Pillar -->
                 <div class="family-pillar-card">
                     <span class="family-pillar-badge">🤵 Groom's Family</span>
-                    <p class="family-pillar-parents" style="font-size: clamp(16px, 2.2vw, 22px); font-style: italic; font-weight: 400; margin-top: 10px; line-height: 1.5; color: #5A4A3E;">Son of K. Sasi Kumar &amp;<br>S. Baby Rani</p>
+                    <p class="family-pillar-parents" style="font-size: clamp(16px, 2.2vw, 22px); font-style: italic; font-weight: 400; margin-top: 10px; line-height: 1.5; color: #5A4A3E;">K. Sasi Kumar &amp;<br>S. Baby Rani</p>
                 </div>
             </div>
 
@@ -4517,6 +4517,16 @@ function initInviteLogic() {
             muhurthamEl.style.display = 'none';
         }
     }
+    // Change welcome text based on wedding mode
+    var welcomeTextEl = document.getElementById('dynamicWelcomeText');
+    if (welcomeTextEl) {
+        if (typeof isWedding !== 'undefined' && isWedding) {
+            welcomeTextEl.textContent = "Please join us for a beautiful day filled with love, laughter, and celebration as we step into this new chapter of life together.";
+        } else {
+            welcomeTextEl.textContent = "Please join us for an evening filled with love, laughter, and celebration as we step into this new chapter of life together.";
+        }
+    }
+
 }
 initInviteLogic();
 
