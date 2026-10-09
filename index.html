@@ -4509,7 +4509,7 @@ function initInviteLogic() {
     if (heroEl) { heroEl.textContent = greeting; heroEl.classList.add('active'); }
     
     // Show/hide Muhurtham section
-    var muhurthamEl = document.getElementById('muhurthamSection');
+    var muhurthamEl = document.querySelector('.muhurtham-centerpiece');
     if (muhurthamEl) {
         if (isWedding) {
             muhurthamEl.style.display = '';
