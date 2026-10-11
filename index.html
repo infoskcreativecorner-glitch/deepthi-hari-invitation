@@ -24,6 +24,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="preload" href="assets/bg-music.mp3" as="audio" type="audio/mpeg">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 
 <style>
@@ -4607,6 +4608,11 @@ if (window.location.hash === '#invite') {
 }
 
 function openEnvelope(){
+    // Reset audio to start from 0:00 on every fresh open
+    if (window._audio) {
+        window._audio.currentTime = 0;
+    }
+
     // Add state to history so back button works
     history.pushState({ opened: true }, '', '#invite');
 
@@ -4662,10 +4668,10 @@ window.addEventListener('popstate', (e) => {
             p.style.animation = 'none';
         });
         
-        // Pause music if needed, or leave it playing? Let's leave it playing or pause it.
-        // Pausing is probably safer.
-        if (playing && window._audio) {
+        // Pause music and rewind to 0:00 when returning to the drag screen
+        if (window._audio) {
             window._audio.pause();
+            window._audio.currentTime = 0;
             playing = false;
             musicBtn.classList.remove('playing');
             musicBtn.setAttribute('aria-pressed', 'false');
@@ -4772,10 +4778,31 @@ if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
    MUSIC TOGGLE
    ================================================================ */
 let playing=false;
+
+// Preload audio immediately when the drag screen loads so it is cached in memory
+window._audio = new Audio('assets/bg-music.mp3');
+window._audio.preload = 'auto';
+window._audio.loop = true;
+
+// Prime audio buffer on the first touch/pointer on the drag screen for instant mobile playback
+function primeAudioOnFirstGesture() {
+    if (window._audio) {
+        window._audio.load();
+    }
+    window.removeEventListener('touchstart', primeAudioOnFirstGesture);
+    window.removeEventListener('pointerdown', primeAudioOnFirstGesture);
+}
+window.addEventListener('touchstart', primeAudioOnFirstGesture, { once: true, passive: true });
+window.addEventListener('pointerdown', primeAudioOnFirstGesture, { once: true, passive: true });
+
 musicBtn.addEventListener('click',function(){
     playing=!playing;
     musicBtn.setAttribute('aria-pressed',String(playing));
-    if(!window._audio){window._audio=new Audio('assets/bg-music.mp3');window._audio.loop=true}
+    if(!window._audio){
+        window._audio=new Audio('assets/bg-music.mp3');
+        window._audio.preload='auto';
+        window._audio.loop=true;
+    }
     playing?window._audio.play():window._audio.pause();
 });
 
