@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="envelope-active">
 <head>
     <script>
@@ -2613,7 +2613,7 @@ a{color:var(--gold-dk);text-decoration:none}
     width: clamp(140px, 18vw, 220px); /* Responsive sizing */
     z-index: 999;
     pointer-events: none; /* So it doesn't block clicking things */
-    mix-blend-mode: multiply; /* Removes the white background on cream pages */
+    aspect-ratio: 16 / 9;
     animation: driveAcross 18s linear infinite;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
 }
@@ -4459,7 +4459,8 @@ a{color:var(--gold-dk);text-decoration:none}
 
         <div class="landscape-ground"></div>
     </div>
-    <img src="assets/scooter.png" alt="Couple driving a scooter" class="scooter-animation">
+    <video id="scooterVideo" src="assets/scooter-video.mp4" autoplay loop muted playsinline style="display:none;" preload="auto"></video>
+    <canvas id="scooterCanvas" class="scooter-animation"></canvas>
 
     </footer>
 
@@ -5102,6 +5103,110 @@ if (journeyLine && traveler) {
     updatePositions();
     updateTraveler();
 }
+
+/* ================================================================
+   TRANSPARENT VIDEO CHROMA-KEY (SCOOTER ANIMATION)
+   ================================================================ */
+(function initScooterChromaKey() {
+    const video = document.getElementById('scooterVideo');
+    const canvas = document.getElementById('scooterCanvas');
+    if (!video || !canvas) return;
+
+    const W = 360;
+    const H = 202;
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+    // Pre-allocate arrays for fast 60fps performance without garbage collection
+    const totalPixels = W * H;
+    const visited = new Uint8Array(totalPixels);
+    const queue = new Int32Array(totalPixels);
+
+    function render() {
+        if (!video.paused && !video.ended && video.readyState >= 2) {
+            ctx.drawImage(video, 0, 0, W, H);
+            const frame = ctx.getImageData(0, 0, W, H);
+            const data = frame.data;
+
+            visited.fill(0);
+            let qHead = 0;
+            let qTail = 0;
+
+            // Seed queue ONLY from the outer 4 borders of the video frame
+            for (let x = 0; x < W; x++) {
+                visited[x] = 1;
+                queue[qTail++] = x; // Top row
+                const bot = (H - 1) * W + x;
+                visited[bot] = 1;
+                queue[qTail++] = bot; // Bottom row
+            }
+            for (let y = 1; y < H - 1; y++) {
+                const left = y * W;
+                visited[left] = 1;
+                queue[qTail++] = left; // Left column
+                const right = y * W + (W - 1);
+                visited[right] = 1;
+                queue[qTail++] = right; // Right column
+            }
+
+            // Flood-fill only the outer background from borders inward
+            while (qHead < qTail) {
+                const idx = queue[qHead++];
+                const p = idx * 4;
+                const r = data[p];
+                const g = data[p + 1];
+                const b = data[p + 2];
+                const max = (r > g ? (r > b ? r : b) : (g > b ? g : b));
+
+                // Check for isolated bottom-right watermark star
+                const px = idx % W;
+                const py = (idx / W) | 0;
+                const isWatermark = (px > W * 0.83 && py > H * 0.72);
+                const bgThreshold = isWatermark ? 70 : 12;
+
+                if (max < bgThreshold) {
+                    data[p + 3] = 0; // Transparent outer background
+
+                    // Expand 4-way neighbors
+                    if (px > 0) {
+                        const n = idx - 1;
+                        if (!visited[n]) { visited[n] = 1; queue[qTail++] = n; }
+                    }
+                    if (px < W - 1) {
+                        const n = idx + 1;
+                        if (!visited[n]) { visited[n] = 1; queue[qTail++] = n; }
+                    }
+                    if (py > 0) {
+                        const n = idx - W;
+                        if (!visited[n]) { visited[n] = 1; queue[qTail++] = n; }
+                    }
+                    if (py < H - 1) {
+                        const n = idx + W;
+                        if (!visited[n]) { visited[n] = 1; queue[qTail++] = n; }
+                    }
+                } else if (max < bgThreshold + 10) {
+                    // Smooth 1-2px feathered outer boundary
+                    data[p + 3] = Math.round(((max - bgThreshold) / 10) * 255);
+                }
+            }
+
+            ctx.putImageData(frame, 0, 0);
+        }
+        requestAnimationFrame(render);
+    }
+
+    video.play().catch(function() {
+        function startPlay() {
+            video.play();
+            document.removeEventListener('touchstart', startPlay);
+            document.removeEventListener('click', startPlay);
+        }
+        document.addEventListener('touchstart', startPlay, { once: true });
+        document.addEventListener('click', startPlay, { once: true });
+    });
+    requestAnimationFrame(render);
+})();
 })();
 </script>
 </body>
