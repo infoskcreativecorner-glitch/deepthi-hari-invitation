@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="envelope-active">
 <head>
     <script>
@@ -717,10 +717,48 @@ a{color:var(--gold-dk);text-decoration:none}
     z-index: 1;
 }
 
+/* Corner floral accents from existing background asset (mobile only) */
+.countdown-decor {
+    display: none;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
 @media (max-width: 768px) {
     .countdown {
         background: #FAF6F0 url('assets/Ivory Botanical Wedding Invitation Background.png') center / cover no-repeat !important;
         min-height: 100svh;
+        overflow: hidden;
+    }
+
+    .countdown::before,
+    .countdown::after {
+        z-index: 2;
+    }
+
+    .countdown-decor {
+        display: block;
+    }
+
+    .countdown-decor--tl {
+        top: 0;
+        left: 0;
+        width: clamp(140px, 42vw, 200px);
+        height: clamp(140px, 42vw, 200px);
+        background: url('assets/Ivory Botanical Wedding Invitation Background.png') left top / auto 480px no-repeat;
+        -webkit-mask-image: radial-gradient(circle at top left, black 45%, rgba(0,0,0,0.8) 60%, transparent 88%);
+        mask-image: radial-gradient(circle at top left, black 45%, rgba(0,0,0,0.8) 60%, transparent 88%);
+    }
+
+    .countdown-decor--br {
+        bottom: 0;
+        right: 0;
+        width: clamp(150px, 45vw, 220px);
+        height: clamp(150px, 45vw, 220px);
+        background: url('assets/Ivory Botanical Wedding Invitation Background.png') right bottom / auto 480px no-repeat;
+        -webkit-mask-image: radial-gradient(circle at bottom right, black 45%, rgba(0,0,0,0.8) 60%, transparent 88%);
+        mask-image: radial-gradient(circle at bottom right, black 45%, rgba(0,0,0,0.8) 60%, transparent 88%);
     }
 }
 
@@ -3958,6 +3996,10 @@ a{color:var(--gold-dk);text-decoration:none}
                         </div>
                         <p class="muhurtham-pillar__label">VENUE</p>
                         <p class="muhurtham-pillar__val">Sri Venkatachalapathy Swami Temple, Kodungaiyur, Chennai - 118</p>
+                        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Sri+Venkatachalapathy+Swami+Temple,+46RX%2B5GQ,+Venkateswara+Nagar,+Kodungaiyur,+Chennai,+Tamil+Nadu+600118" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; margin-top: 6px; font-size: 0.9em; color: #C4A265; text-decoration: none; border-bottom: 1px solid #C4A265; padding-bottom: 1px;">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                            Get Directions
+                        </a>
                     </div>
 
                     <!-- Divider 2 -->
@@ -4207,6 +4249,8 @@ a{color:var(--gold-dk);text-decoration:none}
 
     <!-- 12. Countdown -->
     <section class="countdown sec" aria-label="Countdown">
+        <div class="countdown-decor countdown-decor--tl" aria-hidden="true"></div>
+        <div class="countdown-decor countdown-decor--br" aria-hidden="true"></div>
         <div class="countdown-top-ornament" aria-hidden="true">
             <span class="dot">&bull;</span>
             <span class="heart">&hearts;</span>
@@ -4730,7 +4774,7 @@ let playing=false;
 musicBtn.addEventListener('click',function(){
     playing=!playing;
     musicBtn.setAttribute('aria-pressed',String(playing));
-    if(!window._audio){window._audio=new Audio('assets/background-music.mp3');window._audio.loop=true}
+    if(!window._audio){window._audio=new Audio('assets/bg-music.mp3');window._audio.loop=true}
     playing?window._audio.play():window._audio.pause();
 });
 
