@@ -2615,8 +2615,13 @@ a{color:var(--gold-dk);text-decoration:none}
     z-index: 999;
     pointer-events: none; /* So it doesn't block clicking things */
     aspect-ratio: 16 / 9;
-    animation: driveAcross 18s linear infinite;
+    visibility: hidden;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.scooter-animation.is-driving {
+    visibility: visible;
+    animation: driveAcross 18s linear infinite;
 }
 
 @keyframes driveAcross {
@@ -3478,9 +3483,12 @@ a{color:var(--gold-dk);text-decoration:none}
     .scooter-animation {
         left: -130px !important;
         width: 110px !important;
-        animation: driveAcrossMobile 9s linear infinite !important;
         mix-blend-mode: multiply !important;
         will-change: transform !important;
+    }
+    .scooter-animation.is-driving {
+        visibility: visible !important;
+        animation: driveAcrossMobile 9s linear infinite !important;
     }
 }
 </style>
@@ -5233,6 +5241,37 @@ if (journeyLine && traveler) {
         document.addEventListener('click', startPlay, { once: true });
     });
     requestAnimationFrame(render);
+})();
+
+/* ================================================================
+   SCOOTER SCROLL OBSERVER (Starts only when footer is reached & loops)
+   ================================================================ */
+(function initScooterScrollObserver() {
+    const footer = document.querySelector('.footer');
+    const scooter = document.querySelector('.scooter-animation');
+    const video = document.getElementById('scooterVideo');
+    if (!footer || !scooter) return;
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    scooter.classList.add('is-driving');
+                    if (video && video.paused) {
+                        video.play().catch(function() {});
+                    }
+                } else {
+                    scooter.classList.remove('is-driving');
+                }
+            });
+        }, {
+            threshold: 0.05,
+            rootMargin: '0px 0px 50px 0px'
+        });
+        observer.observe(footer);
+    } else {
+        scooter.classList.add('is-driving');
+    }
 })();
 })();
 </script>
