@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="envelope-active">
 <head>
     <script>
@@ -24,7 +24,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="preload" href="assets/bg-music.mp3" as="audio" type="audio/mpeg">
+    <link rel="preload" href="assets/bg-music-1.mp3" as="audio" type="audio/mpeg">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 
 <style>
@@ -4788,7 +4788,7 @@ if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
 let playing=false;
 
 // Preload audio immediately when the drag screen loads so it is cached in memory
-window._audio = new Audio('assets/bg-music.mp3');
+window._audio = new Audio('assets/bg-music-1.mp3');
 window._audio.preload = 'auto';
 window._audio.loop = true;
 
@@ -4807,7 +4807,7 @@ musicBtn.addEventListener('click',function(){
     playing=!playing;
     musicBtn.setAttribute('aria-pressed',String(playing));
     if(!window._audio){
-        window._audio=new Audio('assets/bg-music.mp3');
+        window._audio=new Audio('assets/bg-music-1.mp3');
         window._audio.preload='auto';
         window._audio.loop=true;
     }
