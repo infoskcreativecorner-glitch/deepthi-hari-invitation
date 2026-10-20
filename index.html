@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="envelope-active">
 <head>
     <script>
@@ -1377,25 +1377,30 @@ a{color:var(--gold-dk);text-decoration:none}
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: stretch;
-    gap: clamp(14px, 2.5vw, 28px);
+    gap: clamp(16px, 2.8vw, 32px);
     max-width: 1040px;
     margin: clamp(16px, 3vw, 28px) auto 0;
     position: relative;
     z-index: 3;
 }
 
+/* Card Container with Royal Arch Silhouette */
 .family-pillar-card {
-    background: #FFFEFC;
-    border: 1px solid rgba(196, 162, 101, 0.15);
-    border-top: 4px solid #C4A265;
-    border-radius: 12px;
-    padding: clamp(36px, 4vw, 45px) clamp(24px, 3vw, 36px);
+    background: linear-gradient(175deg, #FFFFFF 0%, #FDFBF8 42%, #F8F3EA 100%);
+    border: 1.5px solid rgba(196, 162, 101, 0.45);
+    border-radius: 36px 36px 22px 22px;
+    padding: clamp(36px, 4.2vw, 48px) clamp(20px, 3vw, 36px) clamp(30px, 3.5vw, 40px);
     text-align: center;
     position: relative;
+    overflow: hidden;
     box-shadow: 
-        0 8px 32px rgba(90, 74, 58, 0.04),
-        0 1px 4px rgba(196, 162, 101, 0.05);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+        0 18px 48px rgba(90, 74, 58, 0.08),
+        0 3px 12px rgba(196, 162, 101, 0.12),
+        inset 0 0 0 7px #FDFBF8,
+        inset 0 0 0 8.5px rgba(196, 162, 101, 0.35);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1403,81 +1408,238 @@ a{color:var(--gold-dk);text-decoration:none}
 }
 
 .family-pillar-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px) scale(1.012);
+    border-color: rgba(196, 162, 101, 0.75);
     box-shadow: 
-        0 14px 40px rgba(90, 74, 58, 0.08),
-        0 4px 12px rgba(196, 162, 101, 0.1);
+        0 24px 54px rgba(196, 162, 101, 0.22),
+        0 6px 18px rgba(90, 74, 58, 0.08),
+        inset 0 0 0 7px #FDFBF8,
+        inset 0 0 0 8.5px rgba(196, 162, 101, 0.5);
 }
 
+/* Inner dashed royal border */
 .family-pillar-card::before {
-    display: none;
-}
-
-.family-pillar-badge {
-    font-family: var(--fsa);
-    font-size: clamp(11px, 1.2vw, 13px);
-    letter-spacing: 0.25em;
-    color: #A38052;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: clamp(16px, 2vw, 24px);
-    position: relative;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-.family-pillar-badge::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    inset: 13px;
+    border: 1px dashed rgba(196, 162, 101, 0.32);
+    border-radius: 26px 26px 14px 14px;
+    pointer-events: none;
+    z-index: 2;
+    display: block !important;
+}
+
+/* Subtle Shimmer Sheen on Hover */
+.family-pillar-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        60deg, 
+        transparent 40%, 
+        rgba(255, 255, 255, 0.45) 50%, 
+        rgba(212, 184, 122, 0.15) 54%, 
+        transparent 62%
+    );
+    transform: rotate(25deg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 4;
+}
+.family-pillar-card:hover::after {
+    opacity: 1;
+}
+
+/* Filigree Corner Markers */
+.family-card-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: #C4A265;
+    border-style: solid;
+    pointer-events: none;
+    opacity: 0.7;
+    z-index: 3;
+}
+.family-card-corner--tl { top: 18px; left: 18px; border-width: 1.5px 0 0 1.5px; border-top-left-radius: 8px; }
+.family-card-corner--tr { top: 18px; right: 18px; border-width: 1.5px 1.5px 0 0; border-top-right-radius: 8px; }
+.family-card-corner--bl { bottom: 18px; left: 18px; border-width: 0 0 1.5px 1.5px; border-bottom-left-radius: 4px; }
+.family-card-corner--br { bottom: 18px; right: 18px; border-width: 0 1.5px 1.5px 0; border-bottom-right-radius: 4px; }
+
+/* Top Crown Accent Line */
+.family-card-arch-top {
+    position: absolute;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 24px;
-    height: 1px;
-    background: #C4A265;
-    opacity: 0.6;
+    width: 140px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #C4A265, #E5CB8C, #C4A265, transparent);
+    border-radius: 0 0 4px 4px;
+    z-index: 3;
 }
 
-.family-pillar-name {
-    font-family: var(--fs);
-    font-size: clamp(38px, 5.5vw, 60px);
-    line-height: 1.15;
-    margin: 0 0 8px 0;
-    font-weight: 400;
-    filter: drop-shadow(0 2px 8px rgba(196, 162, 101, 0.18));
+/* Background Mandala Watermark */
+.family-card-mandala {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    pointer-events: none;
+    opacity: 0.04;
+    z-index: 1;
 }
 
-.family-pillar-parents {
+/* Header Text & Flourish */
+.family-pillar-header {
+    position: relative;
+    z-index: 3;
+    margin-bottom: 16px;
+}
+.family-pillar-badge {
+    font-family: var(--fsa);
+    font-size: clamp(12px, 1.3vw, 13px);
+    letter-spacing: 0.26em;
+    color: #8C6D3B;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+.family-pillar-sublabel {
     font-family: var(--fse);
-    font-size: clamp(14px, 1.7vw, 18px);
-    color: #4A423A;
+    font-size: clamp(13px, 1.3vw, 14.5px);
+    color: #8A7A6C;
     font-style: italic;
-    margin: 0;
-    line-height: 1.5;
+    display: block;
+    margin-bottom: 8px;
+}
+.family-pillar-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 140px;
+    margin: 0 auto;
+}
+.family-flourish-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A265, transparent);
+    opacity: 0.8;
+}
+.family-flourish-symbol {
+    color: #C4A265;
+    font-size: 13px;
+    line-height: 1;
 }
 
+/* Parents Names Wrap */
+.family-pillar-parents-wrap {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: 0 6px;
+}
+.family-parent-name {
+    font-family: var(--fse);
+    font-size: clamp(20px, 2.4vw, 24px);
+    font-weight: 600;
+    color: #382E26;
+    font-style: italic;
+    letter-spacing: 0.015em;
+    line-height: 1.35;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(196, 162, 101, 0.08);
+}
+.family-names-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 5px auto;
+    max-width: 110px;
+}
+.family-conn-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196, 162, 101, 0.45), transparent);
+}
+.family-conn-amp {
+    font-family: var(--fse);
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 400;
+    color: #B08D4C;
+    line-height: 1;
+}
+
+/* Center Knot Badge */
 .family-dual-center-knot {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 5;
     align-self: center;
+}
+.family-knot-connector {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(196, 162, 101, 0.2), rgba(196, 162, 101, 0.7));
+    z-index: 1;
+    pointer-events: none;
+}
+.family-knot-connector--top {
+    left: -24px;
+    width: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(196, 162, 101, 0.2), rgba(196, 162, 101, 0.7));
+}
+.family-knot-connector--bottom {
+    right: -24px;
+    width: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(196, 162, 101, 0.7), rgba(196, 162, 101, 0.2));
 }
 
 .family-dual-knot-badge {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #D4B475, #B08D4C);
+    background: linear-gradient(135deg, #DFC287 0%, #B88E4B 50%, #916828 100%);
     color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 
+        0 0 0 4px #FDFBF8,
+        0 0 0 5.5px rgba(196, 162, 101, 0.45),
+        0 8px 24px rgba(176, 141, 76, 0.35);
+    border: none;
+    position: relative;
+    z-index: 2;
+    animation: gentleBob 3.5s ease-in-out infinite alternate;
+}
+.family-dual-knot-badge::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.45);
+    pointer-events: none;
+}
+.family-knot-amp {
     font-family: var(--fse);
     font-style: italic;
     font-size: 24px;
-    box-shadow: 0 6px 20px rgba(176, 141, 76, 0.35);
-    border: 2px solid #FDFBF7;
+    line-height: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .family-dual-msg-card {
@@ -1498,8 +1660,31 @@ a{color:var(--gold-dk);text-decoration:none}
         grid-template-columns: 1fr;
         gap: 20px;
     }
+    .family-pillar-card {
+        padding: 34px 20px 30px;
+    }
     .family-dual-center-knot {
-        margin: -8px 0;
+        margin: -6px 0;
+    }
+    .family-knot-connector {
+        width: 1px;
+        height: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .family-knot-connector--top {
+        top: -14px;
+        left: 50%;
+        width: 1px;
+        height: 16px;
+        background: linear-gradient(180deg, rgba(196, 162, 101, 0.2), rgba(196, 162, 101, 0.7));
+    }
+    .family-knot-connector--bottom {
+        bottom: -14px;
+        left: 50%;
+        width: 1px;
+        height: 16px;
+        background: linear-gradient(180deg, rgba(196, 162, 101, 0.7), rgba(196, 162, 101, 0.2));
     }
 }
 
@@ -3267,7 +3452,6 @@ a{color:var(--gold-dk);text-decoration:none}
 }
 
 /* Luxury Interactive Card Hover Effects */
-.family-pillar-card,
 .engagement-pillar,
 .muhurtham-pillar,
 .countdown__shield-card,
@@ -3276,7 +3460,6 @@ a{color:var(--gold-dk);text-decoration:none}
     transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease, border-color 0.35s ease !important;
 }
 
-.family-pillar-card:hover,
 .engagement-pillar:hover,
 .muhurtham-pillar:hover,
 .countdown__shield-card:hover,
@@ -4145,21 +4328,105 @@ a{color:var(--gold-dk);text-decoration:none}
             <div class="family-dual-pillars rv-scale">
                 <!-- Bride Arch Pillar -->
                 <div class="family-pillar-card">
-                    <span class="family-pillar-badge">👰 Bride's Family</span>
-                    <p class="family-pillar-parents" style="font-size: clamp(16px, 2.2vw, 22px); font-style: italic; font-weight: 400; margin-top: 10px; line-height: 1.5; color: #5A4A3E;">P.N. Ajoy Kumar &amp;<br>M.R. Usha Kumari</p>
+                    <!-- Top Arch Accent -->
+                    <div class="family-card-arch-top" aria-hidden="true"></div>
+
+                    <!-- Corner Filigree Ornaments -->
+                    <div class="family-card-corner family-card-corner--tl" aria-hidden="true"></div>
+                    <div class="family-card-corner family-card-corner--tr" aria-hidden="true"></div>
+                    <div class="family-card-corner family-card-corner--bl" aria-hidden="true"></div>
+                    <div class="family-card-corner family-card-corner--br" aria-hidden="true"></div>
+
+                    <!-- Background Mandala Watermark -->
+                    <div class="family-card-mandala" aria-hidden="true">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="#C4A265" stroke-width="0.8">
+                            <circle cx="50" cy="50" r="44" stroke-dasharray="2 3"/>
+                            <circle cx="50" cy="50" r="35"/>
+                            <circle cx="50" cy="50" r="24"/>
+                            <circle cx="50" cy="50" r="14"/>
+                            <path d="M50 6 C53 23, 67 37, 84 50 C67 63, 53 77, 50 94 C47 77, 33 63, 16 50 C33 37, 47 23, 50 6 Z"/>
+                            <path d="M19 19 C35 30, 43 41, 50 50 C43 59, 35 70, 19 81 C30 65, 41 57, 50 50 C41 43, 30 35, 19 19 Z"/>
+                            <path d="M81 19 C65 30, 57 41, 50 50 C57 59, 65 70, 81 81 C70 65, 59 57, 50 50 C59 43, 70 35, 81 19 Z"/>
+                        </svg>
+                    </div>
+
+                    <!-- Header Title & Flourish -->
+                    <div class="family-pillar-header">
+                        <span class="family-pillar-badge">Bride's Family</span>
+                        <span class="family-pillar-sublabel">Parents of the Bride</span>
+                        <div class="family-pillar-flourish">
+                            <span class="family-flourish-line"></span>
+                            <span class="family-flourish-symbol">❦</span>
+                            <span class="family-flourish-line"></span>
+                        </div>
+                    </div>
+
+                    <!-- Parents Names -->
+                    <div class="family-pillar-parents-wrap">
+                        <h4 class="family-parent-name">P.N. Ajoy Kumar</h4>
+                        <div class="family-names-connector">
+                            <span class="family-conn-line"></span>
+                            <span class="family-conn-amp">&amp;</span>
+                            <span class="family-conn-line"></span>
+                        </div>
+                        <h4 class="family-parent-name">M.R. Usha Kumari</h4>
+                    </div>
                 </div>
 
                 <!-- Center Knot Badge -->
                 <div class="family-dual-center-knot">
-                    <div class="family-dual-knot-badge">
-                        <span>&amp;</span>
+                    <div class="family-knot-connector family-knot-connector--top" aria-hidden="true"></div>
+                    <div class="family-dual-knot-badge" title="United in Blessings">
+                        <span class="family-knot-amp">&amp;</span>
                     </div>
+                    <div class="family-knot-connector family-knot-connector--bottom" aria-hidden="true"></div>
                 </div>
 
                 <!-- Groom Arch Pillar -->
                 <div class="family-pillar-card">
-                    <span class="family-pillar-badge">🤵 Groom's Family</span>
-                    <p class="family-pillar-parents" style="font-size: clamp(16px, 2.2vw, 22px); font-style: italic; font-weight: 400; margin-top: 10px; line-height: 1.5; color: #5A4A3E;">K. Sasi Kumar &amp;<br>S. Baby Rani</p>
+                    <!-- Top Arch Accent -->
+                    <div class="family-card-arch-top" aria-hidden="true"></div>
+
+                    <!-- Corner Filigree Ornaments -->
+                    <div class="family-card-corner family-card-corner--tl" aria-hidden="true"></div>
+                    <div class="family-card-corner family-card-corner--tr" aria-hidden="true"></div>
+                    <div class="family-card-corner family-card-corner--bl" aria-hidden="true"></div>
+                    <div class="family-card-corner family-card-corner--br" aria-hidden="true"></div>
+
+                    <!-- Background Mandala Watermark -->
+                    <div class="family-card-mandala" aria-hidden="true">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="#C4A265" stroke-width="0.8">
+                            <circle cx="50" cy="50" r="44" stroke-dasharray="2 3"/>
+                            <circle cx="50" cy="50" r="35"/>
+                            <circle cx="50" cy="50" r="24"/>
+                            <circle cx="50" cy="50" r="14"/>
+                            <path d="M50 6 C53 23, 67 37, 84 50 C67 63, 53 77, 50 94 C47 77, 33 63, 16 50 C33 37, 47 23, 50 6 Z"/>
+                            <path d="M19 19 C35 30, 43 41, 50 50 C43 59, 35 70, 19 81 C30 65, 41 57, 50 50 C41 43, 30 35, 19 19 Z"/>
+                            <path d="M81 19 C65 30, 57 41, 50 50 C57 59, 65 70, 81 81 C70 65, 59 57, 50 50 C59 43, 70 35, 81 19 Z"/>
+                        </svg>
+                    </div>
+
+                    <!-- Header Title & Flourish -->
+                    <div class="family-pillar-header">
+                        <span class="family-pillar-badge">Groom's Family</span>
+                        <span class="family-pillar-sublabel">Parents of the Groom</span>
+                        <div class="family-pillar-flourish">
+                            <span class="family-flourish-line"></span>
+                            <span class="family-flourish-symbol">❦</span>
+                            <span class="family-flourish-line"></span>
+                        </div>
+                    </div>
+
+                    <!-- Parents Names -->
+                    <div class="family-pillar-parents-wrap">
+                        <h4 class="family-parent-name">K. Sasi Kumar</h4>
+                        <div class="family-names-connector">
+                            <span class="family-conn-line"></span>
+                            <span class="family-conn-amp">&amp;</span>
+                            <span class="family-conn-line"></span>
+                        </div>
+                        <h4 class="family-parent-name">S. Baby Rani</h4>
+                    </div>
                 </div>
             </div>
 
